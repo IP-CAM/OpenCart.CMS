@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -137,7 +137,7 @@ class ControllerBlogSetting extends Controller {
 		$data['cancel'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], true);
 
 		$data['token'] = $this->session->data['token'];
-		
+
 		if (isset($this->request->post['configblog_article_limit'])) {
 			$data['configblog_article_limit'] = $this->request->post['configblog_article_limit'];
 		} else {
@@ -172,6 +172,18 @@ class ControllerBlogSetting extends Controller {
 			$data['configblog_blog_search'] = $this->request->post['configblog_blog_search'];
 		} else {
 			$data['configblog_blog_search'] = $this->config->get('configblog_blog_search');
+		}
+
+		if (isset($this->request->post['configblog_sitemap'])) {
+			$data['configblog_sitemap'] = $this->request->post['configblog_sitemap'];
+		} else {
+			$data['configblog_sitemap'] = $this->config->get('configblog_sitemap');
+		}
+
+		if (isset($this->request->post['configblog_cache_status'])) {
+			$data['configblog_cache_status'] = $this->request->post['configblog_cache_status'];
+		} else {
+			$data['configblog_cache_status'] = $this->config->get('configblog_cache_status');
 		}
 
 		if (isset($this->request->post['configblogarticle_download'])) {
@@ -233,19 +245,19 @@ class ControllerBlogSetting extends Controller {
 		} else {
 			$data['configblog_image_related_height'] = $this->config->get('configblog_image_related_height');
 		}
-		
+
 		if (isset($this->request->post['configblog_name'])) {
 			$data['configblog_name'] = $this->request->post['configblog_name'];
 		} else {
 			$data['configblog_name'] = $this->config->get('configblog_name');
 		}
-		
+
 		if (isset($this->request->post['configblog_html_h1'])) {
 			$data['configblog_html_h1'] = $this->request->post['configblog_html_h1'];
 		} else {
 			$data['configblog_html_h1'] = $this->config->get('configblog_html_h1');
 		}
-		
+
 		if (isset($this->request->post['configblog_meta_title'])) {
 			$data['configblog_meta_title'] = $this->request->post['configblog_meta_title'];
 		} else {
