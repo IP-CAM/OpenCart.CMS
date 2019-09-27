@@ -16,8 +16,8 @@ class ControllerExtensionModuleFeaturedProduct extends Controller {
 
 		if (isset($this->request->get['manufacturer_id'])) {
 			$filter_data = array(
-				'manufacturer_id'  => $this->request->get['manufacturer_id'],
-				'limit' => $setting['limit']
+				'manufacturer_id' => $this->request->get['manufacturer_id'],
+				'limit'           => $setting['limit']
 			);
 
 			$results = $this->model_catalog_cms->getProductRelatedByManufacturer($filter_data);
@@ -27,8 +27,8 @@ class ControllerExtensionModuleFeaturedProduct extends Controller {
 
 				if(!empty($parts) && is_array($parts)) {
 					$filter_data = array(
-						'category_id'  => array_pop($parts),
-						'limit' => $setting['limit']
+						'category_id' => array_pop($parts),
+						'limit'       => $setting['limit']
 					);
 
 					$results = $this->model_catalog_cms->getProductRelatedByCategory($filter_data);
