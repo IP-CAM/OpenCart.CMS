@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -9,11 +9,11 @@ class ControllerExtensionModuleProductTab extends Controller {
 		$this->load->language('extension/module/product_tab');
 
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['tab_latest'] = $this->language->get('tab_latest');
-      	$data['tab_featured'] = $this->language->get('tab_featured');
-      	$data['tab_bestseller'] = $this->language->get('tab_bestseller');
-      	$data['tab_special'] = $this->language->get('tab_special');
+		$data['tab_featured'] = $this->language->get('tab_featured');
+		$data['tab_bestseller'] = $this->language->get('tab_bestseller');
+		$data['tab_special'] = $this->language->get('tab_special');
 
 		$data['text_tax'] = $this->language->get('text_tax');
 
@@ -24,9 +24,8 @@ class ControllerExtensionModuleProductTab extends Controller {
 		$this->load->model('catalog/product');
 
 		$this->load->model('tool/image');
-		
+
 		//Latest Products
-		
 		$data['latest_products'] = array();
 
 		$filter_data = array(
@@ -69,8 +68,6 @@ class ControllerExtensionModuleProductTab extends Controller {
 				} else {
 					$rating = false;
 				}
-				
-				$stickers = $this->getStickers($result['product_id']) ;
 
 				$data['latest_products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -80,16 +77,14 @@ class ControllerExtensionModuleProductTab extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
-					'sticker'     => $stickers,
+					'sticker'     => $this->getProStickers($result['product_id']),
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 				);
 			}
-
 		}
-		
-		//Specials product
 
+		//Specials product
 		$data['special_products'] = array();
 
 		$filter_data = array(
@@ -132,8 +127,6 @@ class ControllerExtensionModuleProductTab extends Controller {
 				} else {
 					$rating = false;
 				}
-				
-				$stickers = $this->getStickers($result['product_id']) ;
 
 				$data['special_products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -143,14 +136,13 @@ class ControllerExtensionModuleProductTab extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
-					'sticker'     => $stickers,
+					'sticker'     => $this->getProStickers($result['product_id']),
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
-			
 		}
-			
+
 		//BestSeller
 		$data['bestseller_products'] = array();
 
@@ -187,8 +179,6 @@ class ControllerExtensionModuleProductTab extends Controller {
 				} else {
 					$rating = false;
 				}
-				
-				$stickers = $this->getStickers($result['product_id']) ;
 
 				$data['bestseller_products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -198,20 +188,19 @@ class ControllerExtensionModuleProductTab extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
-					'sticker'     => $stickers,
+					'sticker'     => $this->getProStickers($result['product_id']),
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 				);
 			}
-			
 		}
 
 		//Featured
 		$data['featured_products'] = array();
 		$products = array();
-			
+
 		$feautured_module_info = $this->model_extension_module->getModule($setting['active_module']);
-		
+
 		if (!empty($feautured_module_info['product'])) {
 			$products = $feautured_module_info['product'];
 		}
@@ -255,8 +244,6 @@ class ControllerExtensionModuleProductTab extends Controller {
 				} else {
 					$rating = false;
 				}
-				
-				$stickers = $this->getStickers($product_info['product_id']) ;
 
 				$data['featured_products'][] = array(
 					'product_id'  => $product_info['product_id'],
@@ -266,35 +253,35 @@ class ControllerExtensionModuleProductTab extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
-					'sticker'     => $stickers,
+					'sticker'     => $this->getProStickers($product_info['product_id']),
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				);
 			}
 		}
 
-			return $this->load->view('extension/module/product_tab', $data);
+		return $this->load->view('extension/module/product_tab', $data);
 	}
-	
-	private function getStickers($product_id) {
-	
- 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
 
-		
+	private function getProStickers($product_id) {
+		$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id);
+
 		if (!$stickers) {
 			return;
 		}
-		
+
+		$server = $this->request->server['HTTPS'] ? $this->config->get('config_ssl') : $this->config->get('config_url');
+
 		$data['stickers'] = array();
-		
+
 		foreach ($stickers as $sticker) {
 			$data['stickers'][] = array(
 				'position' => $sticker['position'],
-				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
-			);		
+				'name'     => $sticker['name'],
+				'image'    => ($sticker['image'] ? $server . 'image/' . $sticker['image'] : false)
+			);
 		}
-				
+
 		return $this->load->view('product/stickers', $data);
-	
 	}
 }
