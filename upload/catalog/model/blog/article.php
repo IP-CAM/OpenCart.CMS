@@ -39,15 +39,21 @@ class ModelBlogArticle extends Model {
 	}
 
 	public function getArticles($data = array()) {
-		$cache = 'article.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . md5(http_build_query($data));
+		$article_data = false;
+		//$cache = $this->config->get('configblog_cache_status');
+		$cache = true;
 
-		$article_data = $this->cache->get($cache);
+		if ($cache) {
+			$cache = 'article.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . md5(http_build_query($data));
+
+			$article_data = $this->cache->get($cache);
+		}
 
 		if (!$article_data) {
 			$sql = "SELECT p.article_id, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review_article r1 WHERE r1.article_id = p.article_id AND r1.status = '1' GROUP BY r1.article_id) AS rating FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)";
 
 			if (!empty($data['filter_blog_category_id'])) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category a2c ON (p.article_id = a2c.article_id)";			
+				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category a2c ON (p.article_id = a2c.article_id)";
 			}
 
 			$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'"; 
@@ -120,7 +126,6 @@ class ModelBlogArticle extends Model {
 				'pd.name',
 				//opencart.pro
 				'p.viewed',
-				//opencart.pro
 				'rating',
 				'p.sort_order',
 				'p.date_added'
@@ -149,7 +154,7 @@ class ModelBlogArticle extends Model {
 
 				if ($data['limit'] < 1) {
 					$data['limit'] = 20;
-				}	
+				}
 
 				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 			}
@@ -162,16 +167,24 @@ class ModelBlogArticle extends Model {
 				$article_data[$result['article_id']] = $this->getArticle($result['article_id']);
 			}
 
-			$this->cache->set($cache, $article_data);
+			if ($cache) {
+				$this->cache->set($cache, $article_data);
+			}
 		}
 
 		return $article_data;
 	}
 
 	public function getLatestArticles($limit) {
-		$cache = 'article.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$limit;
+		$article_data = false;
+		//$cache = $this->config->get('configblog_cache_status');
+		$cache = true;
 
-		$article_data = $this->cache->get($cache);
+		if ($cache) {
+			$cache = 'article.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$limit;
+
+			$article_data = $this->cache->get($cache);
+		}
 
 		if (!$article_data) {
 			$query = $this->db->query("SELECT p.article_id FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.date_added DESC LIMIT " . (int)$limit);
@@ -180,7 +193,9 @@ class ModelBlogArticle extends Model {
 				$article_data[$result['article_id']] = $this->getArticle($result['article_id']);
 			}
 
-			$this->cache->set($cache, $article_data);
+			if ($cache) {
+				$this->cache->set($cache, $article_data);
+			}
 		}
 
 		return $article_data;
@@ -262,7 +277,7 @@ class ModelBlogArticle extends Model {
 		$this->load->model('catalog/product');
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_related_product np LEFT JOIN " . DB_PREFIX . "product p ON (np.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE np.article_id = '" . (int)$article_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
-		
+
 		foreach ($query->rows as $result) {
 			$product_data[$result['product_id']] = $this->model_catalog_product->getProduct($result['product_id']);
 		}
@@ -287,43 +302,40 @@ class ModelBlogArticle extends Model {
 	}
 
 	public function getDownloads($article_id) {
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_download pd LEFT JOIN " . DB_PREFIX . "download d ON(pd.download_id=d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON(pd.download_id=dd.download_id) WHERE article_id = '" . (int)$article_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_download pd LEFT JOIN " . DB_PREFIX . "download d ON(pd.download_id = d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON (pd.download_id = dd.download_id) WHERE article_id = '" . (int)$article_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->rows;
 	}
 
-	public function getDownload($article_id, $download_id = "") {
-		if ($download_id != 0) {
-			$download=" AND d.download_id = " . (int)$download_id;
+	public function getDownload($article_id, $download_id = false) {
+		if ($download_id) {
+			$download = " AND d.download_id = " . (int)$download_id;
 		}
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_download pd LEFT JOIN " . DB_PREFIX . "download d ON(pd.download_id=d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON(pd.download_id=dd.download_id) WHERE article_id = '" . (int)$article_id . "' ".$download." AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_download pd LEFT JOIN " . DB_PREFIX . "download d ON(pd.download_id = d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON (pd.download_id = dd.download_id) WHERE article_id = '" . (int)$article_id . "'" . $download . " AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
-		
+
 	public function getTotalArticles($data = array()) {
-		if ($this->customer->isLogged()) {
-			$customer_group_id = $this->customer->getGroupId();
-		} else {
-			$customer_group_id = $this->config->get('config_customer_group_id');
+		$article_data = false;
+		//$cache = $this->config->get('configblog_cache_status');
+		$cache = false;
+
+		if ($cache) {
+			$cache = 'article.total.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . md5(http_build_query($data));
+
+			$article_data = $this->cache->get($cache);
 		}
-
-		$cache = md5(http_build_query($data));
-
-		$article_data = $this->cache->get('article.total.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$customer_group_id . '.' . $cache);
-
-		$article_data = [];
 
 		if (!$article_data) {
 			$sql = "SELECT COUNT(DISTINCT p.article_id) AS total FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)";
 	
 
 			if (!empty($data['filter_blog_category_id'])) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category a2c ON (p.article_id = a2c.article_id)";			
+				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category a2c ON (p.article_id = a2c.article_id)";
 			}
-						
+
 			$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
 			if (!empty($data['filter_blog_category_id'])) {
@@ -390,9 +402,11 @@ class ModelBlogArticle extends Model {
 
 			$query = $this->db->query($sql);
 
-			$article_data = $query->row['total']; 
+			$article_data = $query->row['total'];
 
-			$this->cache->set('article.total.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$customer_group_id . '.' . $cache, $article_data);
+			if ($cache) {
+				$this->cache->set($cache, $article_data);
+			}
 		}
 
 		return $article_data;
