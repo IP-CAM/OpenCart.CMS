@@ -1,6 +1,6 @@
 <?php
 // *	@copyright	OPENCART.PRO 2011 - 2020.
-// *	@forum	http://forum.opencart.pro
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -195,15 +195,15 @@ class ControllerBlogSearch extends Controller {
 
 		if ($search || $tag) {
 			$filter_data = array(
-				'filter_name'				=> $search,
-				'filter_tag'				=> $tag,
-				'filter_description'		=> $description,
-				'filter_blog_category_id'	=> $blog_category_id,
-				'filter_sub_category'		=> $sub_category,
-				'sort'						=> $sort,
-				'order'						=> $order,
-				'start'						=> ($page - 1) * $limit,
-				'limit'						=> $limit
+				'filter_name'             => $search,
+				'filter_tag'              => $tag,
+				'filter_description'      => $description,
+				'filter_blog_category_id' => $blog_category_id,
+				'filter_sub_category'     => $sub_category,
+				'sort'                    => $sort,
+				'order'                   => $order,
+				'start'                   => ($page - 1) * $limit,
+				'limit'                   => $limit
 			);
 
 			$article_total = $this->model_blog_article->getTotalArticles($filter_data);
@@ -253,7 +253,7 @@ class ControllerBlogSearch extends Controller {
 						'type'      		=> $benefit['type']
 					);
 				}
-				
+
 				$stickers = $this->getStickers($result['article_id']) ; */
 
 				$data['articles'][] = array(
@@ -301,7 +301,7 @@ class ControllerBlogSearch extends Controller {
 				'value' => 'p.sort_order-ASC',
 				'href'  => $this->url->link('blog/category', '&sort=p.sort_order&order=ASC' . $url)
 			);
-			
+
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_name_asc'),
 				'value' => 'pd.name-ASC',
@@ -318,40 +318,40 @@ class ControllerBlogSearch extends Controller {
 				'text'  => $this->language->get('text_date_asc'),
 				'value' => 'p.date_added-ASC',
 				'href'  => $this->url->link('blog/category', '&sort=p.date_added&order=ASC' . $url)
-			); 
+			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_date_desc'),
 				'value' => 'p.date_added-DESC',
 				'href'  => $this->url->link('blog/category', '&sort=p.date_added&order=DESC' . $url)
-			); 
-			
+			);
+
 			if ($this->config->get('configblog_review_status')) {
 				$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_desc'),
 					'value' => 'rating-DESC',
 					'href'  => $this->url->link('blog/category', '&sort=rating&order=DESC' . $url)
-				); 
-				
+				);
+
 				$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_asc'),
 					'value' => 'rating-ASC',
 					'href'  => $this->url->link('blog/category', '&sort=rating&order=ASC' . $url)
 				);
 			}
-			
+
 			//opencart.pro sort viewed
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_viewed_asc'),
 				'value' => 'p.viewed-ASC',
 				'href'  => $this->url->link('blog/category', '&sort=p.viewed&order=ASC' . $url)
-			); 
+			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_viewed_desc'),
 				'value' => 'p.viewed-DESC',
 				'href'  => $this->url->link('blog/category', '&sort=p.viewed&order=DESC' . $url)
-			); 
+			);
 			//opencart.pro sort viewed
 
 			$url = '';
@@ -444,15 +444,15 @@ class ControllerBlogSearch extends Controller {
 
 			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-			    $this->document->addLink($this->url->link('blog/search', '', true), 'canonical');
+				$this->document->addLink($this->url->link('blog/search', '', true), 'canonical');
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('blog/search', '', true), 'prev');
+				$this->document->addLink($this->url->link('blog/search', '', true), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('blog/search', $url . '&page='. ($page - 1), true), 'prev');
+				$this->document->addLink($this->url->link('blog/search', $url . '&page='. ($page - 1), true), 'prev');
 			}
 
 			if ($limit && ceil($article_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('blog/search', $url . '&page='. ($page + 1), true), 'next');
+				$this->document->addLink($this->url->link('blog/search', $url . '&page='. ($page + 1), true), 'next');
 			}
 
 			if (isset($this->request->get['search']) && $this->config->get('config_customer_search')) {
@@ -471,13 +471,13 @@ class ControllerBlogSearch extends Controller {
 				}
 
 				$search_data = array(
-					'keyword'       => $search,
-					'blog_category_id'   => $blog_category_id,
-					'sub_category'  => $sub_category,
-					'description'   => $description,
-					'articles'      => $article_total,
-					'customer_id'   => $customer_id,
-					'ip'            => $ip
+					'keyword'          => $search,
+					'blog_category_id' => $blog_category_id,
+					'sub_category'     => $sub_category,
+					'description'      => $description,
+					'articles'         => $article_total,
+					'customer_id'      => $customer_id,
+					'ip'               => $ip
 				);
 
 				$this->model_account_search->addSearch($search_data);
@@ -510,16 +510,17 @@ class ControllerBlogSearch extends Controller {
 			return;
 		}
 
+		$server = $this->request->server['HTTPS'] ? $this->config->get('config_ssl') : $this->config->get('config_url');
+
 		$data['stickers'] = array();
 
 		foreach ($stickers as $sticker) {
 			$data['stickers'][] = array(
 				'position' => $sticker['position'],
-				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+				'image'    => $server . 'image/' . $sticker['image']
 			);		
 		}
 
 		return $this->load->view('article/stickers', $data);
-	
 	} */
 }
