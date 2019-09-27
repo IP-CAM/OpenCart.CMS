@@ -4,12 +4,13 @@
     <div class="container-fluid">
       <div class="pull-right">
         <button type="submit" form="form-setting" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>
-        <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+        <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a>
+      </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
-        <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-        <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-        <?php } ?>
+      <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+      <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+      <?php } ?>
       </ul>
     </div>
   </div>
@@ -31,31 +32,31 @@
       <div class="panel-body">
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-setting" class="form-horizontal">
           <ul class="nav nav-tabs">
-			<li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
+            <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-option" data-toggle="tab"><?php echo $tab_option; ?></a></li>
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
           </ul>
           <div class="tab-content">
-		  <div class="tab-pane active" id="tab-general">
-				<div class="form-group">
+            <div class="tab-pane active" id="tab-general">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_name; ?></label>
                   <div class="col-sm-10">
                     <input type="text" name="configblog_name" value="<?php echo $configblog_name; ?>" placeholder="<?php echo $entry_name; ?>" id="input-name" class="form-control" />
                   </div>
                 </div>
-				<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-h1"><?php echo $entry_html_h1; ?></label>
                   <div class="col-sm-10">
                     <input type="text" name="configblog_html_h1" value="<?php echo $configblog_html_h1; ?>" placeholder="<?php echo $entry_html_h1; ?>" id="input-h1" class="form-control" />
                   </div>
                 </div>
-				<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_meta_title; ?></label>
                   <div class="col-sm-10">
                     <input type="text" name="configblog_meta_title" value="<?php echo $configblog_meta_title; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title" class="form-control" />
                   </div>
                 </div>
-				<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-meta-description"><?php echo $entry_meta_description; ?></label>
                   <div class="col-sm-10">
                     <textarea name="configblog_meta_description" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description" class="form-control"><?php echo $configblog_meta_description; ?></textarea>
@@ -67,7 +68,7 @@
                     <textarea name="configblog_meta_keyword" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword" class="form-control"><?php echo $configblog_meta_keyword; ?></textarea>
                   </div>
                 </div>
-		  </div>
+            </div>
             <div class="tab-pane" id="tab-option">
               <fieldset>
                 <legend><?php echo $text_article; ?></legend>
@@ -315,5 +316,5 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 <?php echo $footer; ?>
