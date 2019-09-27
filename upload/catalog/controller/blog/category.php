@@ -258,7 +258,7 @@ class ControllerBlogCategory extends Controller {
 				'href'  => $this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'] . '&sort=p.date_added&order=DESC' . $url)
 			); 
 
-			if ($this->config->get('configblog_review_status')) {
+			if ($configblog_review_status) {
 				$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_desc'),
 					'value' => 'rating-DESC',
