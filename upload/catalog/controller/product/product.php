@@ -799,3 +799,4 @@ class ControllerProductProduct extends Controller {
 		return $benefits;
 	}
 }
+ 
