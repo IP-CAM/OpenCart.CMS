@@ -283,6 +283,19 @@ class ControllerBlogLatest extends Controller {
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($article_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($article_total - $limit)) ? $article_total : ((($page - 1) * $limit) + $limit), $article_total, ceil($article_total / $limit));
 
+		// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
+		$this->document->addLink($this->url->link('blog/latest', '', true), 'canonical');
+
+		if ($page == 2)  {
+			$this->document->addLink($this->url->link('blog/latest', '', true), 'prev');
+		} elseif($page > 2)   {
+			$this->document->addLink($this->url->link('blog/latest', '&page='. ($page - 1), true), 'prev');
+		}
+
+		if ($limit && ceil($article_total / $limit) > $page) {
+			$this->document->addLink($this->url->link('blog/latest', '&page='. ($page + 1), true), 'next');
+		}
+
 		$data['sort'] = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
