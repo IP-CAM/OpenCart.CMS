@@ -10,7 +10,7 @@ $(document).ready(function() {
 	$('#blog-search input[name=\'search\']').parent().find('button').on('click', function() {
 		var url = $('base').attr('href') + 'index.php?route=blog/search';
 
-		var value = $('header #blog-search input[name=\'search\']').val();
+		var value = $('#blog-search input[name=\'search\']').val();
 
 		if (value) {
 			url += '&search=' + encodeURIComponent(value);
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 	$('#blog-search input[name=\'search\']').on('keydown', function(e) {
 		if (e.keyCode == 13) {
-			$('header #blog-search input[name=\'search\']').parent().find('button').trigger('click');
+			$('#blog-search input[name=\'search\']').parent().find('button').trigger('click');
 		}
 	});
 });
