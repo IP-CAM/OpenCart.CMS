@@ -15,15 +15,15 @@ class ControllerBlogSearch extends Controller {
 		$this->load->model('tool/image');
 
 		if (isset($this->request->get['search'])) {
-			$search = ($this->request->get['search'] > '' ? $this->request->get['search'] : '');
+			$search = $this->request->get['search'];
 		} else {
 			$search = '';
 		}
 
 		if (isset($this->request->get['tag'])) {
-			$tag = ($this->request->get['tag'] > '' ? $this->request->get['tag'] : '');
+			$tag = $this->request->get['tag'];
 		} elseif (isset($this->request->get['search'])) {
-			$tag = ($this->request->get['search'] > '' ? $this->request->get['search'] : '');
+			$tag = $this->request->get['search'];
 		} else {
 			$tag = '';
 		}
