@@ -123,7 +123,6 @@ class ControllerBlogCategory extends Controller {
 
 			$this->document->setDescription($category_info['meta_description']);
 			$this->document->setKeywords($category_info['meta_keyword']);
-			$this->document->addLink($this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id']), 'canonical');
 
 			$data['text_refine'] = $this->language->get('text_refine');
 			$data['text_empty'] = $this->language->get('text_empty');
@@ -171,8 +170,8 @@ class ControllerBlogCategory extends Controller {
 
 			foreach ($results as $result) {
 				$filter_data = array(
-					'filter_blog_category_id'  => $result['blog_category_id'],
-					'filter_sub_category' => true
+					'filter_blog_category_id' => $result['blog_category_id'],
+					'filter_sub_category'     => true
 				);
 
 				$data['categories'][] = array(
@@ -333,6 +332,19 @@ class ControllerBlogCategory extends Controller {
 			$data['pagination'] = $pagination->render();
 
 			$data['results'] = sprintf($this->language->get('text_pagination'), ($article_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($article_total - $limit)) ? $article_total : ((($page - 1) * $limit) + $limit), $article_total, ceil($article_total / $limit));
+
+			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
+			$this->document->addLink($this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'], true), 'canonical');
+
+			if ($page == 2)  {
+				$this->document->addLink($this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'], true), 'prev');
+			} elseif($page > 2)   {
+				$this->document->addLink($this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'] . '&page='. ($page - 1), true), 'prev');
+			}
+
+			if ($limit && ceil($article_total / $limit) > $page) {
+				$this->document->addLink($this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'] . '&page='. ($page + 1), true), 'next');
+			}
 
 			$data['sort'] = $sort;
 			$data['order'] = $order;
