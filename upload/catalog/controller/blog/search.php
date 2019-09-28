@@ -224,37 +224,8 @@ class ControllerBlogSearch extends Controller {
 				}
 
 				//if ($result['description_mini']) {
-					//$description = utf8_substr(strip_tags(html_entity_decode($result['description_mini'], ENT_QUOTES, 'UTF-8')), 0);
-				//} else {
-					$description = utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_article_description_length')) . '..';
+					//$result['description'] = $result['description_mini'];
 				//}
-
-				/* $articlebenefits = $this->model_blog_article->getArticleBenefitsbyArticleId($result['article_id']);
-
-				$benefits = array();
-
-				foreach ($articlebenefits as $benefit) {
-					if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
-						$bimage = $benefit['image'];
-						if ($benefit['type']) {
-							$bimage = $this->model_tool_image->resize($bimage, 25, 25);
-						} else {
-							$bimage = $this->model_tool_image->resize($bimage, 120, 60);
-						}
-					} else {
-						$bimage = 'no_image.jpg';
-					}
-					$benefits[] = array(
-						'benefit_id'      	=> $benefit['benefit_id'],
-						'name'      		=> $benefit['name'],
-						'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
-						'thumb'      		=> $bimage,
-						'link'      		=> $benefit['link'],
-						'type'      		=> $benefit['type']
-					);
-				}
-
-				$stickers = $this->getStickers($result['article_id']) ; */
 
 				$data['articles'][] = array(
 					'article_id'  => $result['article_id'],
@@ -263,6 +234,8 @@ class ControllerBlogSearch extends Controller {
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('configblog_article_description_length')) . '..',
 					'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 					'viewed'      => $result['viewed'],
+					//'sticker'     => $this->getProBlogStickers($result['article_id']),
+					//'benefits'    => $this->getProBlogBenefits($result['article_id']),
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('blog/article', '&article_id=' . $result['article_id'] . $url)
 				);
@@ -503,8 +476,8 @@ class ControllerBlogSearch extends Controller {
 		$this->response->setOutput($this->load->view('blog/search', $data));
 	}
 
-	/* private function getProStickers($product_id) {
-		$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id);
+	/* private function getProBlogStickers($article_id) {
+		$stickers = $this->model_blog_article->getArticleStickerbyArticleId($article_id);
 
 		if (!$stickers) {
 			return;
@@ -523,5 +496,43 @@ class ControllerBlogSearch extends Controller {
 		}
 
 		return $this->load->view('product/stickers', $data);
+	}
+
+	private function getProBlogBenefits($article_id, $width = 120, $height = 60) {
+		$benefits = array();
+
+		$articlebenefits = $this->model_blog_article->getArticleBenefitsbyArticleId($article_id);
+
+		foreach ($articlebenefits as $benefit) {
+			if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+				if ($benefit['type']) {
+					$bimage = $this->model_tool_image->resize($benefit['image'], 25, 25);
+				} else {
+					$bimage = $this->model_tool_image->resize($benefit['image'], $width, $height);
+				}
+			} else {
+				if ($benefit['type']) {
+					//$bimage = false;
+					$bimage = $this->model_tool_image->resize('no_image.png', 25, 25);
+					//$bimage = $this->model_tool_image->resize('placeholder.jpg', 25, 25);
+				} else {
+					//$bimage = false;
+					$bimage = $this->model_tool_image->resize('no_image.png', $width, $height);
+					//$bimage = $this->model_tool_image->resize('placeholder.jpg', $width, $height);
+				}
+			}
+
+			$benefits[] = array(
+				'benefit_id'  => $benefit['benefit_id'],
+				'name'        => $benefit['name'],
+				'description' => strip_tags(html_entity_decode($benefit['description'])),
+				'thumb'       => $bimage,
+				'link'        => $benefit['link'],
+				'type'        => $benefit['type']
+				//'sort_order'  => $benefit['sort_order']
+			);
+		}
+
+		return $benefits;
 	} */
 }
