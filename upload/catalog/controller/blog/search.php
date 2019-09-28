@@ -65,9 +65,9 @@ class ControllerBlogSearch extends Controller {
 		}
 
 		if (isset($this->request->get['limit'])) {
-			$limit = ((int)$this->request->get['limit'] > 100 && (int)$this->request->get['limit'] > $this->config->get('configblog_article_limit') ? 100 : (int)$this->request->get['limit']);
+			$limit = (int)$this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('configblog_article_limit');
+			$limit = (int)$this->config->get('configblog_article_limit');
 		}
 
 		if (isset($this->request->get['search'])) {
@@ -359,7 +359,7 @@ class ControllerBlogSearch extends Controller {
 
 			$data['limits'] = array();
 
-			$limits = array_unique(array($this->config->get('configblog_article_limit'), 25, 50, 75, 100));
+			$limits = array_unique(array((int)$this->config->get('configblog_article_limit'), 25, 50, 75, 100));
 
 			sort($limits);
 
