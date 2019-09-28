@@ -115,6 +115,22 @@ class ControllerBlogLatest extends Controller {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
 
+		/* $data['categories'] = array();
+
+		$results = $this->model_blog_category->getCategories(0);
+
+		foreach ($results as $result) {
+			$filter_data = array(
+				'filter_blog_category_id' => $result['blog_category_id'],
+				'filter_sub_category'     => true
+			);
+
+			$data['categories'][] = array(
+				'name'  => $result['name'] . ($this->config->get('configblog_article_count') ? ' (' . $this->model_blog_article->getTotalArticles($filter_data) . ')' : ''),
+				'href'  => $this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'] . '_' . $result['blog_category_id'] . $url)
+			);
+		} */
+
 		$data['articles'] = array();
 
 		$article_data = array(
