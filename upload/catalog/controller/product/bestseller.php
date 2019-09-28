@@ -6,6 +6,7 @@
 
 class ControllerProductBestseller extends Controller {
 	private $max = 100;
+
 	public function index() {
 		$this->load->language('product/bestseller');
 
@@ -40,6 +41,7 @@ class ControllerProductBestseller extends Controller {
 			$this->document->setRobots('noindex,follow');
 		} else {
 			$limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
+			$this->max = $limit;
 		}
 
 		if ($this->config->get('seomanager_meta_title_bestseller')) {
