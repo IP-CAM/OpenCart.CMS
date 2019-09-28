@@ -65,7 +65,7 @@ class ControllerBlogSearch extends Controller {
 		}
 
 		if (isset($this->request->get['limit'])) {
-			$limit = (int)$this->request->get['limit'];
+			$limit = ((int)$this->request->get['limit'] > 100 && (int)$this->request->get['limit'] > (int)$this->config->get('configblog_article_limit') ? 100 : (int)$this->request->get['limit']);
 		} else {
 			$limit = (int)$this->config->get('configblog_article_limit');
 		}
