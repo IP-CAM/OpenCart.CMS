@@ -156,6 +156,10 @@ class ModelBlogArticle extends Model {
 					$data['limit'] = 20;
 				}
 
+				if ($data['limit'] > 100 && $data['limit'] > (int)$this->config->get('configblog_article_limit')) {
+					$data['limit'] = 100;
+				}
+
 				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 			}
 
