@@ -41,6 +41,7 @@ class ControllerProductLatest extends Controller {
 			$this->document->setRobots('noindex,follow');
 		} else {
 			$limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
+			$this->max = $limit;
 		}
 
 		if ($this->config->get('seomanager_meta_title_latest')) {
@@ -127,13 +128,6 @@ class ControllerProductLatest extends Controller {
 		);
 
 		$results = $this->model_catalog_cms->getLatest($filter_data);
-
-		$filter_data = array(
-			'sort'  => $sort,
-			'order' => $order,
-			'start' => ($page - 1) * $limit,
-			'limit' => $this->max
-		);
 
 		$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 
