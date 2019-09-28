@@ -503,8 +503,8 @@ class ControllerBlogSearch extends Controller {
 		$this->response->setOutput($this->load->view('blog/search', $data));
 	}
 
-	/* private function getStickers($article_id) {
-		$stickers = $this->model_blog_article->getArticleStickerbyarticleId($article_id) ;	
+	/* private function getProStickers($product_id) {
+		$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id);
 
 		if (!$stickers) {
 			return;
@@ -517,10 +517,11 @@ class ControllerBlogSearch extends Controller {
 		foreach ($stickers as $sticker) {
 			$data['stickers'][] = array(
 				'position' => $sticker['position'],
-				'image'    => $server . 'image/' . $sticker['image']
-			);		
+				'name'     => $sticker['name'],
+				'image'    => ($sticker['image'] ? $server . 'image/' . $sticker['image'] : false)
+			);
 		}
 
-		return $this->load->view('article/stickers', $data);
+		return $this->load->view('product/stickers', $data);
 	} */
 }
