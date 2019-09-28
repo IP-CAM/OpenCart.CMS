@@ -33,7 +33,7 @@ class ControllerBlogLatest extends Controller {
 		}
 
 		if (isset($this->request->get['limit'])) {
-			$limit = $this->request->get['limit'];
+			$limit = ((int)$this->request->get['limit'] > 100 && (int)$this->request->get['limit'] > (int)$this->config->get('configblog_article_limit') ? 100 : (int)$this->request->get['limit']);
 			$this->document->setRobots('noindex,follow');
 		} else {
 			$limit = $this->config->get('configblog_article_limit');
@@ -246,7 +246,7 @@ class ControllerBlogLatest extends Controller {
 
 		$data['limits'] = array();
 
-		$limits = array_unique(array($this->config->get('configblog_article_limit'), 25, 50, 75, 100));
+		$limits = array_unique(array((int)$this->config->get('configblog_article_limit'), 25, 50, 75, 100));
 
 		sort($limits);
 
