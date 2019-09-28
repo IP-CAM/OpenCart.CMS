@@ -41,6 +41,7 @@ class ControllerProductMostviewed extends Controller {
 			$this->document->setRobots('noindex,follow');
 		} else {
 			$limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
+			$this->max = $limit;
 		}
 
 		if ($this->config->get('seomanager_meta_title_mostviewed')) {
