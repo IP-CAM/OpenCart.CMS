@@ -65,7 +65,7 @@ class ControllerProductSearch extends Controller {
 		}
 
 		if (isset($this->request->get['limit'])) {
-			$limit = (int)$this->request->get['limit'];
+			$limit = ((int)$this->request->get['limit'] > 100 && (int)$this->request->get['limit'] > (int)$this->config->get($this->config->get('config_theme') . '_product_limit') ? 100 : (int)$this->request->get['limit']);
 		} else {
 			$limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
 		}
@@ -135,7 +135,7 @@ class ControllerProductSearch extends Controller {
 		} else {
 			$data['heading_title'] = $this->language->get('heading_title');
 		}
-		
+
 		$this->document->setRobots('noindex,follow');
 
 		$data['text_empty'] = $this->language->get('text_empty');
