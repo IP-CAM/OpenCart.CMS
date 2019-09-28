@@ -372,7 +372,7 @@ class ControllerProductSpecial extends Controller {
 				'thumb'       => $bimage,
 				'link'        => $benefit['link'],
 				'type'        => $benefit['type']
-				//'sort_order' => $benefit['sort_order']
+				//'sort_order'  => $benefit['sort_order']
 			);
 		}
 
