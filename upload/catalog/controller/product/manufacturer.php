@@ -103,7 +103,7 @@ class ControllerProductManufacturer extends Controller {
 		}
 
 		if (isset($this->request->get['limit'])) {
-			$limit = (int)$this->request->get['limit'];
+			$limit = ((int)$this->request->get['limit'] > 100 && (int)$this->request->get['limit'] > (int)$this->config->get($this->config->get('config_theme') . '_product_limit') ? 100 : (int)$this->request->get['limit']);
 			$this->document->setRobots('noindex,follow');
 		} else {
 			$limit = (int)$this->config->get($this->config->get('config_theme') . '_product_limit');
@@ -377,6 +377,7 @@ class ControllerProductManufacturer extends Controller {
 
 			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
 			$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'], true), 'canonical');
+
 			if ($page == 2)  {
 				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'], true), 'prev');
 			} elseif($page > 2)   {
