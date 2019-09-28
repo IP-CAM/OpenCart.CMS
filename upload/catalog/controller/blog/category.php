@@ -164,7 +164,7 @@ class ControllerBlogCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$data['categories'] = array();
+			/* $data['categories'] = array();
 
 			$results = $this->model_blog_category->getCategories($blog_category_id);
 
@@ -178,7 +178,7 @@ class ControllerBlogCategory extends Controller {
 					'name'  => $result['name'] . ($this->config->get('configblog_article_count') ? ' (' . $this->model_blog_article->getTotalArticles($filter_data) . ')' : ''),
 					'href'  => $this->url->link('blog/category', 'blog_category_id=' . $this->request->get['blog_category_id'] . '_' . $result['blog_category_id'] . $url)
 				);
-			}
+			} */
 
 			$data['articles'] = array();
 
