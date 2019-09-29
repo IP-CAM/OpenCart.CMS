@@ -37,6 +37,7 @@
               <?php } ?>
             </li>
             <?php } ?>
+<?php echo $pro_blog_categories; ?>
           </ul>
         </div>
         <div class="col-sm-6">
@@ -62,6 +63,7 @@
                 <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
               </ul>
             </li>
+<?php echo $pro_manufacturers; ?>
           </ul>
         </div>
       </div>
