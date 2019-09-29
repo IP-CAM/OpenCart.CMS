@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -75,6 +75,18 @@ class ControllerInformationSitemap extends Controller {
 			);
 		}
 
+		if (1 == 1) { //$this->config->get('configblog_sitemap');
+			$this->load->model('blog/category');
+
+			$data['pro_blog_categories'] = $this->getProBlogCategories(0);
+		}
+
+		if (1 == 1) {
+			$this->load->model('catalog/manufacturer');
+
+			$data['pro_manufacturers'] = $this->getProManufacturers(0);
+		}
+
 		$data['special'] = $this->url->link('product/special');
 		$data['account'] = $this->url->link('account/account', '', true);
 		$data['edit'] = $this->url->link('account/edit', '', true);
@@ -106,5 +118,117 @@ class ControllerInformationSitemap extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 
 		$this->response->setOutput($this->load->view('information/sitemap', $data));
+	}
+
+	private function getProBlogCategories($parent_id, $current_path = '') {
+		$output = '';
+
+		$pro_blog_categories = $this->model_blog_category->getCategories($parent_id);
+
+		if ($pro_blog_categories) {
+			$output .= '<br/>';
+
+			if ($current_path) {
+				$output .= '                <ul>';
+				$output .= "\n";
+			}
+
+			if (!$current_path) {
+				if ($this->config->get('configblog_name')) {
+					$output .= '<li><a href="' . $this->url->link('blog/latest') . '">' . $this->config->get('configblog_name') . '</a>';
+					$output .= "\n";
+				} else {
+					$output .= '<li><a href="' . $this->url->link('blog/latest') . '">' . $this->language->get('text_blog') . '</a>';
+					$output .= "\n";
+				}
+
+				$output .= '              <ul>';
+				$output .= "\n";
+			}
+
+			foreach ($pro_blog_categories as $blogcategory) {
+				if (!$current_path) {
+					$new_path = $blogcategory['blog_category_id'];
+				} else {
+					$new_path = $current_path . '_' . $blogcategory['blog_category_id'];
+				}
+
+				$output .= '                <li><a href="' . $this->url->link('blog/category', 'blog_category_id=' . $new_path) . '">' . $blogcategory['name'] . '</a>';
+				$output .= "\n";
+				$output .= $this->getProBlogCategories($blogcategory['blog_category_id'], $new_path);
+				$output .= '                </li>';
+				$output .= "\n";
+			}
+
+			if (!$current_path) {
+				$output .= '              </ul>';
+				$output .= "\n";
+				$output .= '            </li>';
+				$output .= "\n";
+			}
+
+			if ($current_path) {
+				$output .= '                </ul>';
+				$output .= "\n";
+			}
+		}
+
+		return $output;
+	}
+
+	private function getProManufacturers($parent_id, $current_path = '') {
+		$output = '';
+
+		$pro_manufacturers = $this->model_catalog_manufacturer->getManufacturers($parent_id);
+
+		if ($pro_manufacturers) {
+			$output .= '<br/>';
+
+			if ($current_path) {
+				$output .= '                <ul>';
+				$output .= "\n";
+			}
+
+			if (!$current_path) {
+				if ($this->config->get('seomanager_html_h1_manufacturer')) {
+					$output .= '<li><a href="' . $this->url->link('product/manufacturer') . '">' . $this->config->get('seomanager_html_h1_manufacturer') . '</a>';
+					$output .= "\n";
+				} else {
+					$output .= '<li><a href="' . $this->url->link('product/manufacturer') . '">' . $this->language->get('text_manufacturers') . '</a>';
+					$output .= "\n";
+				}
+
+				$output .= '              <ul>';
+				$output .= "\n";
+			}
+
+			foreach ($pro_manufacturers as $manufacturer) {
+				if (!$current_path) {
+					$new_path = $manufacturer['manufacturer_id'];
+				} else {
+					$new_path = $current_path . '_' . $manufacturer['manufacturer_id'];
+				}
+
+				$output .= '                <li><a href="' . $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $new_path) . '">' . $manufacturer['name'] . '</a>';
+				$output .= "\n";
+				//$output .= $this->getProManufacturers($manufacturer['manufacturer_id'], $new_path);
+				$output .= '                </li>';
+				$output .= "\n";
+			}
+
+			if (!$current_path) {
+				$output .= '              </ul>';
+				$output .= "\n";
+				$output .= '            </li>';
+				$output .= "\n";
+			}
+
+			if ($current_path) {
+				$output .= '                </ul>';
+				$output .= "\n";
+			}
+		}
+
+		return $output;
 	}
 }
