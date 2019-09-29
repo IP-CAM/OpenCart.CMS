@@ -237,7 +237,7 @@ class ControllerBlogSearch extends Controller {
 					//'sticker'     => $this->getProBlogStickers($result['article_id']),
 					//'benefits'    => $this->getProBlogBenefits($result['article_id']),
 					'rating'      => $result['rating'],
-					'href'        => $this->url->link('blog/article', '&article_id=' . $result['article_id'] . $url)
+					'href'        => $this->url->link('blog/article', 'article_id=' . $result['article_id'] . $url)
 				);
 			}
 
@@ -272,44 +272,44 @@ class ControllerBlogSearch extends Controller {
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_default'),
 				'value' => 'p.sort_order-ASC',
-				'href'  => $this->url->link('blog/category', '&sort=p.sort_order&order=ASC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=p.sort_order&order=ASC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_name_asc'),
 				'value' => 'pd.name-ASC',
-				'href'  => $this->url->link('blog/category', '&sort=pd.name&order=ASC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=pd.name&order=ASC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_name_desc'),
 				'value' => 'pd.name-DESC',
-				'href'  => $this->url->link('blog/category', '&sort=pd.name&order=DESC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=pd.name&order=DESC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_date_asc'),
 				'value' => 'p.date_added-ASC',
-				'href'  => $this->url->link('blog/category', '&sort=p.date_added&order=ASC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=p.date_added&order=ASC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_date_desc'),
 				'value' => 'p.date_added-DESC',
-				'href'  => $this->url->link('blog/category', '&sort=p.date_added&order=DESC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=p.date_added&order=DESC' . $url)
 			);
 
 			if ($this->config->get('configblog_review_status')) {
 				$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_desc'),
 					'value' => 'rating-DESC',
-					'href'  => $this->url->link('blog/category', '&sort=rating&order=DESC' . $url)
+					'href'  => $this->url->link('blog/search', '&sort=rating&order=DESC' . $url)
 				);
 
 				$data['sorts'][] = array(
 					'text'  => $this->language->get('text_rating_asc'),
 					'value' => 'rating-ASC',
-					'href'  => $this->url->link('blog/category', '&sort=rating&order=ASC' . $url)
+					'href'  => $this->url->link('blog/search', '&sort=rating&order=ASC' . $url)
 				);
 			}
 
@@ -317,13 +317,13 @@ class ControllerBlogSearch extends Controller {
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_viewed_asc'),
 				'value' => 'p.viewed-ASC',
-				'href'  => $this->url->link('blog/category', '&sort=p.viewed&order=ASC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=p.viewed&order=ASC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_viewed_desc'),
 				'value' => 'p.viewed-DESC',
-				'href'  => $this->url->link('blog/category', '&sort=p.viewed&order=DESC' . $url)
+				'href'  => $this->url->link('blog/search', '&sort=p.viewed&order=DESC' . $url)
 			);
 			//opencart.pro sort viewed
 
