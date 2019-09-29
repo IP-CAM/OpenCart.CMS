@@ -421,6 +421,17 @@ class ControllerProductProduct extends Controller {
 
 			$data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
+			$this->user = new Cart\User($this->registry);
+
+			if ($this->user->isLogged()) {
+				$server = $this->request->server['HTTPS'] ? $this->config->get('config_ssl') : $this->config->get('config_url');
+				$data['button_pro_href_admin'] = $this->language->get('button_edit');
+				$data['pro_href_admin'] = $server . ($this->config->get('config_pro_href_admin') ? $this->config->get('config_pro_href_admin') : 'admin/') . 'index.php?route=catalog/product/edit' . '&token=' . $this->session->data['token'] . '&product_id=' . $product_info['product_id'];
+			} else {
+				$data['button_pro_href_admin'] = false;
+				$data['pro_href_admin'] = false;
+			}
+
 			$data['sticker'] = $this->getProStickers($product_info['product_id']);
 
 			$data['benefits'] = $this->getProBenefits($product_info['product_id'], 350, 140);
