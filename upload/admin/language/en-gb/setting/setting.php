@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -63,6 +63,7 @@ $_['entry_currency']               = 'Currency';
 $_['entry_currency_auto']          = 'Auto Update Currency';
 $_['entry_length_class']           = 'Length Class';
 $_['entry_weight_class']           = 'Weight Class';
+$_['entry_bus_href_admin']         = 'Internal link admin panel';
 $_['entry_limit_admin']            = 'Default Items Per Page (Admin)';
 $_['entry_product_count']          = 'Category Product Count';
 $_['entry_review']                 = 'Allow Reviews';
@@ -123,7 +124,7 @@ $_['entry_robots']                 = 'Robots';
 $_['entry_seo_url']                = 'Use SEO URLs';
 $_['entry_seo_url_include_path']   = 'Friendly URL goods categories';
 $_['entry_seo_url_postfix']        = 'End Friendly URL';
-$_['entry_file_max_size']	       = 'Max File Size';
+$_['entry_file_max_size']          = 'Max File Size';
 $_['entry_file_ext_allowed']       = 'Allowed File Extensions';
 $_['entry_file_mime_allowed']      = 'Allowed File Mime Types';
 $_['entry_maintenance']            = 'Maintenance Mode';
@@ -142,10 +143,10 @@ $_['help_comment']                 = 'This field is for any special notes you wo
 $_['help_location']                = 'The different store locations you have that you want displayed on the contact us form.';
 $_['help_currency']                = 'Change the default currency. Clear your browser cache to see the change and reset your existing cookie.';
 $_['help_currency_auto']           = 'Set your store to automatically update currencies daily.';
-$_['help_limit_admin']   	       = 'Determines how many admin items are shown per page (orders, customers, etc).';
+$_['help_limit_admin']             = 'Determines how many admin items are shown per page (orders, customers, etc).';
 $_['help_product_count']           = 'Show the number of products inside the subcategories in the storefront header category menu. Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!';
-$_['help_review']       	       = 'Enable/Disable new review entry and display of existing reviews.';
-$_['help_review_guest']       	   = 'Allow guests to post reviews.';
+$_['help_review']                  = 'Enable/Disable new review entry and display of existing reviews.';
+$_['help_review_guest']            = 'Allow guests to post reviews.';
 $_['help_voucher_min']             = 'Minimum amount a customer can purchase a voucher for.';
 $_['help_voucher_max']             = 'Maximum amount a customer can purchase a voucher for.';
 $_['help_tax_default']             = 'Use the store address to calculate taxes if customer is not logged in. You can choose to use the store address for the customer\'s shipping or payment address.';
@@ -189,8 +190,8 @@ $_['help_shared']                  = 'Try to share the session cookie between st
 $_['help_robots']                  = 'A list of web crawler user agents that shared sessions will not be used with. Use separate lines for each user agent.';
 $_['help_seo_url']                 = 'To use SEO URLs, apache module mod-rewrite must be installed and you need to rename the htaccess.txt to .htaccess.';
 $_['help_seo_url_include_path']    = '/category/subcategory/product';
-$_['help_seo_url_postfix'] 		   = 'For example. html';
-$_['help_file_max_size']		   = 'The maximum image file size you can upload in Image Manager. Enter as byte.';
+$_['help_seo_url_postfix']         = 'For example. html';
+$_['help_file_max_size']           = 'The maximum image file size you can upload in Image Manager. Enter as byte.';
 $_['help_file_ext_allowed']        = 'Add which file extensions are allowed to be uploaded. Use a new line for each value.';
 $_['help_file_mime_allowed']       = 'Add which file mime types are allowed to be uploaded. Use a new line for each value.';
 $_['help_maintenance']             = 'Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.';
@@ -207,7 +208,7 @@ $_['error_owner']                  = 'Store Owner must be between 3 and 64 chara
 $_['error_address']                = 'Store Address must be between 10 and 256 characters!';
 $_['error_email']                  = 'E-Mail Address does not appear to be valid!';
 $_['error_telephone']              = 'Telephone must be between 3 and 32 characters!';
-$_['error_limit']       	       = 'Limit required!';
+$_['error_limit']                  = 'Limit required!';
 $_['error_login_attempts']         = 'Login Attempts must be greater than 0!';
 $_['error_customer_group_display'] = 'You must include the default customer group if you are going to use this feature!';
 $_['error_voucher_min']            = 'Minimum voucher amount required!';
@@ -219,5 +220,5 @@ $_['error_ftp_port']               = 'FTP Port required!';
 $_['error_ftp_username']           = 'FTP Username required!';
 $_['error_ftp_password']           = 'FTP Password required!';
 $_['error_error_filename']         = 'Error Log Filename required!';
-$_['error_malformed_filename']	   = 'Error Malformed Log Filename!';
+$_['error_malformed_filename']     = 'Error Malformed Log Filename!';
 $_['error_encryption']             = 'Encryption Key must be between 32 and 1024 characters!';
