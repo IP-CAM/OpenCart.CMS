@@ -258,6 +258,10 @@ class ControllerBlogArticle extends Controller {
 					$rating = false;
 				}
 
+				if ($result['description_mini']) {
+					$result['description'] = $result['description_mini'];
+				}
+
 				$data['text_tax'] = $this->language->get('text_tax');
 
 				$data['products'][] = array(
