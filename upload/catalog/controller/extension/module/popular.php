@@ -70,6 +70,10 @@ class ControllerExtensionModulePopular extends Controller {
 					$rating = false;
 				}
 
+				if ($result['description_mini']) {
+					$result['description'] = $result['description_mini'];
+				}
+
 				$data['products'][] = array(
 					'product_id'   => $result['product_id'],
 					'thumb'        => $image,
