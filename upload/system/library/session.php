@@ -52,7 +52,7 @@ class Session {
 		$this->data = &$_SESSION[$this->session_id];
 
 		if ($key != 'PHPSESSID') {
-			setcookie($key, $this->session_id, (ini_get('session.cookie_lifetime') ? (time() + ini_get('session.cookie_lifetime')) : 0), ini_get('session.cookie_path'), ini_get('session.cookie_domain'), ini_get('session.cookie_secure'), ini_get('session.cookie_httponly'));
+			setcookie($key, $this->session_id, ini_get('session.cookie_lifetime'), ini_get('session.cookie_path'), ini_get('session.cookie_domain'), ini_get('session.cookie_secure'), ini_get('session.cookie_httponly'));
 		}
 
 		return $this->session_id;
