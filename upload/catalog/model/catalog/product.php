@@ -20,7 +20,7 @@ class ModelCatalogProduct extends Model {
 				'description_mini' => $query->row['description_mini'],
 				'meta_title'       => $query->row['meta_title'],
 				'noindex'          => $query->row['noindex'],
-				'meta_h1'	       => $query->row['meta_h1'],
+				'meta_h1'          => $query->row['meta_h1'],
 				'meta_description' => $query->row['meta_description'],
 				'meta_keyword'     => $query->row['meta_keyword'],
 				'tag'              => $query->row['tag'],
