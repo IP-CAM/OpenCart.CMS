@@ -63,6 +63,10 @@ class ControllerExtensionModuleFeatured extends Controller {
 						$rating = false;
 					}
 
+					if ($product_info['description_mini']) {
+						$product_info['description'] = $product_info['description_mini'];
+					}
+
 					$data['products'][] = array(
 						'product_id'  => $product_info['product_id'],
 						'thumb'       => $image,
