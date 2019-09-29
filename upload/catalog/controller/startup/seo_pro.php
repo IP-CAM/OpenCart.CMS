@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -30,9 +30,7 @@ class ControllerStartupSeoPro extends Controller {
 		'yclid',
 		'gclid'
 	);
-	
 
-	
 	public function __construct($registry) {
 		parent::__construct($registry);
 		$this->valid_server = (bool)(parse_url(HTTPS_SERVER, PHP_URL_SCHEME)=='https');
@@ -74,20 +72,18 @@ class ControllerStartupSeoPro extends Controller {
 			$this->languages[$result['code']] = $result;
 		}
 	}
-	
-	
-	public function index() {
 
+	public function index() {
 		// Add rewrite to url class
 		if ($this->config->get('config_seo_url')) {
 			$this->url->addRewrite($this);
 		} else {
 			return;
 		}
-		
+
 		// Для cron скриптов, типа YML feed
 		if (php_sapi_name() === 'cli') return;
-		
+
 		// Decode URL
 		if (!isset($this->request->get['_route_'])) {
 			$this->validate();
@@ -103,14 +99,14 @@ class ControllerStartupSeoPro extends Controller {
 					$rows[] = array('keyword' => $keyword, 'query' => $this->cache_data['keywords'][$keyword]);
 				}
 			}
-						
+
 			if (count($rows) == sizeof($parts)) {
 				$queries = array();
 				foreach ($rows as $row) {
 					$queries[utf8_strtolower($row['keyword'])] = $row['query'];
 				}
 				reset($parts);
-			
+
 				foreach ($parts as $part) {
 					$url = explode('=', $queries[$part], 2);
 					if ($url[0] == 'category_id') {
@@ -132,7 +128,7 @@ class ControllerStartupSeoPro extends Controller {
 			} else {
 				$this->request->get['route'] = 'error/not_found';
 			}
-			
+
 			if (isset($this->request->get['product_id'])) {
 				$this->request->get['route'] = 'product/product';
 				if (!isset($this->request->get['path'])) {
@@ -168,6 +164,7 @@ class ControllerStartupSeoPro extends Controller {
 			}
 		}
 	}
+
 	public function rewrite($link) {
 		if (!$this->config->get('config_seo_url')) return $link;
 		$seo_url = '';
@@ -212,8 +209,8 @@ class ControllerStartupSeoPro extends Controller {
 					$data['path'] = $this->getPathByCategory($category);
 					if (!$data['path']) return $link;
 				}
-				break;			
-			//blog	
+				break;
+			//blog
 			case 'blog/article':
 				if (isset($data['article_id'])) {
 					$tmp = $data;
@@ -224,7 +221,7 @@ class ControllerStartupSeoPro extends Controller {
 					}
 					$data['article_id'] = $tmp['article_id'];
 				}
-				break;	
+				break;
 			case 'blog/category':
 				if (isset($data['blog_category_id'])) {
 					$blog_category_id = explode('_', $data['blog_category_id']);
@@ -233,7 +230,8 @@ class ControllerStartupSeoPro extends Controller {
 					if (!$data['blog_category_id']) return $link;
 				}
 				break;
-			//blog	
+			//blog
+			case 'blog/article/review':
 			case 'product/product/review':
 			case 'information/information/info':
 			case 'information/information/agree':
@@ -242,13 +240,12 @@ class ControllerStartupSeoPro extends Controller {
 			default:
 				break;
 		}
-		
-		
+
 		$link = $url_info['scheme'] . '://' . $url_info['host'] . (isset($url_info['port']) ? ':' . $url_info['port'] : '');
-		
+
 		//fix subfolder ($url_info['path'])
 		$link .= $url_info['path'] . '?route=' . $route . (count($data) ? '&amp;' . urldecode(http_build_query($data, '', '&amp;')) : '');			
-		
+
 		$queries = array();
 		foreach ($data as $key => $value) {
 			switch ($key) {
@@ -272,7 +269,7 @@ class ControllerStartupSeoPro extends Controller {
 						$queries[] = 'category_id=' . $category;
 					}
 					unset($data[$key]);
-					break;			
+					break;
 				//blog
 				case 'blog_category_id':
 					$blog_categories = explode('_', $value);
@@ -283,34 +280,33 @@ class ControllerStartupSeoPro extends Controller {
 					break;
 				default:
 					break;
-				//blog	
+				//blog
 			}
 		}
-		if(empty($queries)) {
+		if (empty($queries)) {
 			$queries[] = $route;
 		}
 		$rows = array();
-		foreach($queries as $query) {
+		foreach ($queries as $query) {
 			if(isset($this->cache_data['queries'][$query])) {
 				$rows[] = array('query' => $query, 'keyword' => $this->cache_data['queries'][$query]);
 			}
 		}
-		if(count($rows) == count($queries)) {
+		if (count($rows) == count($queries)) {
 			$aliases = array();
-			foreach($rows as $row) {
+			foreach ($rows as $row) {
 				$aliases[$row['query']] = $row['keyword'];
 			}
-			foreach($queries as $query) {
+			foreach ($queries as $query) {
 				$seo_url .= '/' . rawurlencode($aliases[$query]);
 			}
 		}
-		
+
 		if ($seo_url == '') return $link;
 		$seo_url = trim($seo_url, '/');
 		//fix subfolder
 		$path = rtrim($url_info['path'], '/index.php');
 
-	
 		$seo_url = $url_info['scheme'] . '://' . $url_info['host'] . (isset($url_info['port']) ? ':' . $url_info['port'] : '') . $path . '/' . $seo_url;
 		if (isset($postfix)) {
 			$seo_url .= trim($this->config->get('config_seo_url_postfix'));
@@ -319,16 +315,16 @@ class ControllerStartupSeoPro extends Controller {
 		}
 		//fix subfolder
 
-		
-		if(substr($seo_url, -2) == '//') {
+		if (substr($seo_url, -2) == '//') {
 			$seo_url = substr($seo_url, 0, -1);
 		}
 		if (count($data)) {
 			$seo_url .= '?' . urldecode(http_build_query($data, '', '&amp;'));
 		}
-		
+
 		return $seo_url;
 	}
+
 	private function getPathByProduct($product_id) {
 		$product_id = (int)$product_id;
 		if ($product_id < 1) return false;
@@ -344,6 +340,7 @@ class ControllerStartupSeoPro extends Controller {
 		}
 		return $path[$product_id];
 	}
+
 	private function getPathByCategory($category_id) {
 		$category_id = (int)$category_id;
 		if ($category_id < 1) return false;
@@ -368,7 +365,8 @@ class ControllerStartupSeoPro extends Controller {
 			$this->cache->set('category.seopath', $path);
 		}
 		return $path[$category_id];
-	}	
+	}
+
 	//blog	
 	private function getPathByBlogCategory($blog_category_id) {
 		$blog_category_id = (int)$blog_category_id;
@@ -395,7 +393,7 @@ class ControllerStartupSeoPro extends Controller {
 		}
 		return $path[$blog_category_id];
 	}
-	
+
 	private function getPathByArticle($article_id) {
 		$article_id = (int)$article_id;
 		if ($article_id < 1) return false;
@@ -411,8 +409,8 @@ class ControllerStartupSeoPro extends Controller {
 		}
 		return $path[$article_id];
 	}
-	
 	//blog
+
 	private function validate() {
 		//fix flat link for xml feed
 		if (isset($this->request->get['route'])) {
@@ -423,37 +421,31 @@ class ControllerStartupSeoPro extends Controller {
 				'extension/feed/sitemap_pro',
 				'extension/feed/yandex_feed'
 			];
-			
+
 			if (in_array($this->request->get['route'], $break_routes)) 
 				return;
-			
-		}		
-		
+		}
+
 		//Remove negative page count
-		
-		if (isset($this->request->get['page'])  ) {
+		if (isset($this->request->get['page'])) {
 			if((float)$this->request->get['page'] < 1) {
 				unset($this->request->get['page']);
 			};
 		};
-		
-		if(empty($this->request->get['route'])) {
+
+		if (empty($this->request->get['route'])) {
 			$this->request->get['route'] = 'common/home';
 		}
-		
-		
+
 		if (isset($this->request->server['HTTP_X_REQUESTED_WITH']) && strtolower($this->request->server['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 			return;
 		}
-
 
 		if ((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == '1' || $_SERVER['HTTPS'])) || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https') || (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on'))) {		
 			$url = str_replace('&amp;', '&', $this->config->get('config_ssl') . ltrim($this->request->server['REQUEST_URI'], '/'));
 			$seo = str_replace('&amp;', '&', $this->url->link($this->request->get['route'], $this->getQueryString(array('route')), 'SSL'));
 		} else {
-			$url = str_replace('&amp;', '&',
-				substr($this->config->get('config_url'), 0, strpos($this->config->get('config_url'), '/', 10)) // leave only domain
-				. $this->request->server['REQUEST_URI']);
+			$url = str_replace('&amp;', '&', substr($this->config->get('config_url'), 0, strpos($this->config->get('config_url'), '/', 10)) /* leave only domain */ . $this->request->server['REQUEST_URI']);
 			$seo = str_replace('&amp;', '&', $this->url->link($this->request->get['route'], $this->getQueryString(array('route'))));
 		}
 
@@ -461,14 +453,15 @@ class ControllerStartupSeoPro extends Controller {
 			$this->response->redirect($seo, 301);
 		}
 	}
+
 	private function getQueryString($exclude = array()) {
 		if (!is_array($exclude)) {
 			$exclude = array();
-			}
+		}
 		return urldecode(
 			http_build_query(
 				array_diff_key($this->request->get, array_flip($exclude))
-				)
-			);
-		}
+			)
+		);
 	}
+}
