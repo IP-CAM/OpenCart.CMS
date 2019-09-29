@@ -69,6 +69,10 @@ class ControllerExtensionModuleProductTab extends Controller {
 					$rating = false;
 				}
 
+				if ($result['description_mini']) {
+					$result['description'] = $result['description_mini'];
+				}
+
 				$data['latest_products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
@@ -128,6 +132,10 @@ class ControllerExtensionModuleProductTab extends Controller {
 					$rating = false;
 				}
 
+				if ($result['description_mini']) {
+					$result['description'] = $result['description_mini'];
+				}
+
 				$data['special_products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
@@ -178,6 +186,10 @@ class ControllerExtensionModuleProductTab extends Controller {
 					$rating = $result['rating'];
 				} else {
 					$rating = false;
+				}
+
+				if ($result['description_mini']) {
+					$result['description'] = $result['description_mini'];
 				}
 
 				$data['bestseller_products'][] = array(
@@ -243,6 +255,10 @@ class ControllerExtensionModuleProductTab extends Controller {
 					$rating = $product_info['rating'];
 				} else {
 					$rating = false;
+				}
+
+				if ($product_info['description_mini']) {
+					$product_info['description'] = $product_info['description_mini'];
 				}
 
 				$data['featured_products'][] = array(
