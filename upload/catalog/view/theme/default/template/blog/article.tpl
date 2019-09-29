@@ -217,41 +217,40 @@
 </div>
 <script type="text/javascript"><!--
 $('#button-cart').ready(function() {
-$('#button-cart').click(function() {
-    $.ajax({
-        url: 'index.php?route=checkout/cart/add',
-        type: 'post',
-        data: $('#product input[type=\'text\'], #product input[type=\'date\'], #product input[type=\'datetime-local\'], #product input[type=\'time\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-        dataType: 'json',
-        success: function(json) {
-            $('.alert, .text-danger').remove();
+	$('#button-cart').click(function() {
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			data: $('#product input[type=\'text\'], #product input[type=\'date\'], #product input[type=\'datetime-local\'], #product input[type=\'time\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+			dataType: 'json',
+			success: function(json) {
+				$('.alert, .text-danger').remove();
 
-            if (json['error']) {
-                if (json['error']['option']) {
-                    for (i in json['error']['option']) {
-                        $('#input-option' + i).after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-                    }
-                }
-            } 
+				if (json['error']) {
+					if (json['error']['option']) {
+						for (i in json['error']['option']) {
+							$('#input-option' + i).after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				} 
 
-            if (json['success']) {
-                $('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-                $('#cart').load('index.php?route=module/cart' + ' #cart > *');    
-                //$('#cart-total').html(json['total']);
-
-                $('html, body').animate({ scrollTop: 0 }, 'slow'); 
-            }
-        }
-    });
-});
+				if (json['success']) {
+					$('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					$('#cart').load('index.php?route=module/cart' + ' #cart > *');    
+					//$('#cart-total').html(json['total']);
+					$('html, body').animate({ scrollTop: 0 }, 'slow'); 
+				}
+			}
+		});
+	});
 });
 //--></script> 
 <script type="text/javascript"><!--
 $('button[id^=\'button-upload\']').on('click', function() {
 	var node = this;
-	
+
 	$('#form-upload').remove();
-	
+
 	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
 
 	$('#form-upload input[name=\'file\']').trigger('click');
@@ -280,7 +279,6 @@ $('button[id^=\'button-upload\']').on('click', function() {
 
 				if (json['success']) {
 					alert(json['success']);
-
 					$(node).parent().find('input[name^=\'option\']').attr('value', json['file']);
 				}
 			},
@@ -293,13 +291,13 @@ $('button[id^=\'button-upload\']').on('click', function() {
 //--></script> 
 <script type="text/javascript"><!--
 $('#review').delegate('.pagination a', 'click', function(e) {
-    e.preventDefault();
+	e.preventDefault();
 
-    $('#review').fadeOut('slow');
+	$('#review').fadeOut('slow');
 
-    $('#review').load(this.href);
+	$('#review').load(this.href);
 
-    $('#review').fadeIn('slow');
+	$('#review').fadeIn('slow');
 });
 
 $('#review').load('index.php?route=blog/article/review&article_id=<?php echo $article_id; ?>');
@@ -325,7 +323,6 @@ $('#button-review').on('click', function() {
 
 			if (json['success']) {
 				$('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
-
 				$('input[name=\'name\']').val('');
 				$('textarea[name=\'text\']').val('');
 				$('input[name=\'rating\']:checked').prop('checked', false);
