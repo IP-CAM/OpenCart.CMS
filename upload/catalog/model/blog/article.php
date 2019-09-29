@@ -39,7 +39,7 @@ class ModelBlogArticle extends Model {
 	}
 
 	public function getArticles($data = array()) {
-		$article_data = false;
+		$article_data = array();
 		//$cache = $this->config->get('configblog_cache_status');
 		$cache = true;
 
@@ -159,8 +159,6 @@ class ModelBlogArticle extends Model {
 				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 			}
 
-			$article_data = array();
-
 			$query = $this->db->query($sql);
 
 			foreach ($query->rows as $result) {
@@ -234,14 +232,12 @@ class ModelBlogArticle extends Model {
 	public function getArticleRelatedByProduct($data) {
 		$article_data = array();
 
-		$this->load->model('blog/article');
-
 		$sql = "SELECT * FROM " . DB_PREFIX . "product_related_article np LEFT JOIN " . DB_PREFIX . "article p ON (np.article_id = p.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id) WHERE np.product_id = '" . (int)$data['product_id'] . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT ". (int)$data['limit'];
 
 		$query = $this->db->query($sql);
 
 		foreach ($query->rows as $result) {
-			$article_data[$result['article_id']] = $this->model_blog_article->getArticle($result['article_id']);
+			$article_data[$result['article_id']] = $this->getArticle($result['article_id']);
 		}
 
 		return $article_data;
@@ -272,9 +268,9 @@ class ModelBlogArticle extends Model {
 	}
 
 	public function getArticleRelatedProduct($article_id) {
-		$product_data = array();
-
 		$this->load->model('catalog/product');
+
+		$product_data = array();
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_related_product np LEFT JOIN " . DB_PREFIX . "product p ON (np.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE np.article_id = '" . (int)$article_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
@@ -330,7 +326,6 @@ class ModelBlogArticle extends Model {
 
 		if (!$article_data) {
 			$sql = "SELECT COUNT(DISTINCT p.article_id) AS total FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)";
-	
 
 			if (!empty($data['filter_blog_category_id'])) {
 				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category a2c ON (p.article_id = a2c.article_id)";
