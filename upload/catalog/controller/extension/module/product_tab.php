@@ -6,6 +6,17 @@
 
 class ControllerExtensionModuleProductTab extends Controller {
 	public function index($setting) {
+		//$cache = $this->config->get('turbo_status');
+		$cache = true;
+
+		if ($cache) {
+			$data = $this->cache->get('product.product_tab.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$setting['limit']);
+
+			if ($data) {
+				return  $this->load-> view( 'extension/module/' . 'product_tab' , $data );
+			}
+		}
+
 		$this->load->language('extension/module/product_tab');
 
 		$data['heading_title'] = $this->language->get('heading_title');
@@ -274,6 +285,10 @@ class ControllerExtensionModuleProductTab extends Controller {
 					'href'        => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				);
 			}
+		}
+
+		if ($cache) {
+			$this->cache->set('product.product_tab.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$setting['limit'], $data);
 		}
 
 		return $this->load->view('extension/module/product_tab', $data);
