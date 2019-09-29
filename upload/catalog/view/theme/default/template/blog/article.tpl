@@ -198,17 +198,18 @@
             <input type="radio" name="rating" value="4" />
             &nbsp;
             <input type="radio" name="rating" value="5" />
-            &nbsp;<?php echo $entry_good; ?></div>
+            &nbsp;<?php echo $entry_good; ?>
+		  </div>
+        </div>
+        <?php echo $captcha; ?>
+        <div class="buttons clearfix">
+          <div class="pull-right">
+            <button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_continue; ?></button>
           </div>
-          <?php echo $captcha; ?>
-          <div class="buttons clearfix">
-            <div class="pull-right">
-              <button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_continue; ?></button>
-            </div>
-          </div>
-          <?php } else { ?>
-          <?php echo $text_login; ?>
-          <?php } ?>
+        </div>
+        <?php } else { ?>
+        <?php echo $text_login; ?>
+        <?php } ?>
         </form>
       </div>
       <?php } ?>
