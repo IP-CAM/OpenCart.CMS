@@ -23,11 +23,10 @@
         <?php $class = 'col-sm-6'; ?>
         <?php } ?>
         <div class="col-sm-12">
-		<h1><?php echo $heading_title; ?></h1>
+          <h1><?php echo $heading_title; ?></h1>
           <div class="tab-content">
-            <div id="description"><?php echo $description; ?></div>
-			
-			<?php if ($review_status) { ?>
+          <div id="description"><?php echo $description; ?></div>
+          <?php if ($review_status) { ?>
           <div class="rating">
             <p>
               <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -45,19 +44,17 @@
             <!-- AddThis Button END --> 
           </div><br />
           <?php } ?>
-		  
-		  <?php if ($download_status) { ?>
-			<div class="blog-info">
-			<?php if($downloads){ ?>
-			<br />
-			<?php foreach($downloads as $download){ ?>
-			<a href="<?php echo $download['href']; ?>" title=""><i class="fa fa-floppy-o"></i> <?php echo $download['name']; ?> <?php echo " (". $download['size'] .")";?></a><br>
-			<?php } ?>
-			<br />
-			<?php } ?> 
-			</div>
-		  <?php } ?>
-		  
+          <?php if ($download_status) { ?>
+          <div class="blog-info">
+            <?php if ($downloads) { ?>
+            <br />
+            <?php foreach($downloads as $download){ ?>
+            <a href="<?php echo $download['href']; ?>" title=""><i class="fa fa-floppy-o"></i> <?php echo $download['name']; ?> <?php echo " (". $download['size'] .")";?></a><br>
+            <?php } ?>
+            <br />
+            <?php } ?> 
+          </div>
+          <?php } ?>
           </div>
         </div>
       </div>
@@ -66,7 +63,6 @@
       <div class="row module">
         <?php $i = 0; ?>
         <?php foreach ($products as $product) { ?>
-        
         <?php if ($column_left && $column_right) { ?>
         <?php $class = 'col-lg-6 col-md-6 col-sm-12 col-xs-12'; ?>
         <?php } elseif ($column_left || $column_right) { ?>
@@ -119,18 +115,14 @@
         <div class="clearfix visible-md"></div>
         <?php } ?>
         <?php $i++; ?>
-        
-        
         <?php } ?>
       </div>
       <?php } ?>
-	  
-	  <?php if ($articles) { ?>
+      <?php if ($articles) { ?>
       <h3><?php echo $text_related; ?></h3>
       <div class="row module">
         <?php $i = 0; ?>
         <?php foreach ($articles as $article) { ?>
-        
         <?php if ($column_left && $column_right) { ?>
         <?php $class = 'col-lg-6 col-md-6 col-sm-12 col-xs-12'; ?>
         <?php } elseif ($column_left || $column_right) { ?>
@@ -157,10 +149,10 @@
               <?php } ?>
             </div>
             <div class="button-group">
-				<button type="button" onclick="location.href = ('<?php echo $article['href']; ?>');"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_more; ?></span></button>
-				<button type="button" data-toggle="tooltip" title="<?php echo $article["date_added"];?>" "><i class="fa fa-clock-o"></i></button>
-				<button type="button" data-toggle="tooltip" title="<?php echo $text_views; ?> <?php echo $article["viewed"];?>" "><i class="fa fa-eye"></i></button>
-			</div>
+              <button type="button" onclick="location.href = ('<?php echo $article['href']; ?>');"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_more; ?></span></button>
+              <button type="button" data-toggle="tooltip" title="<?php echo $article["date_added"];?>" "><i class="fa fa-clock-o"></i></button>
+              <button type="button" data-toggle="tooltip" title="<?php echo $text_views; ?> <?php echo $article["viewed"];?>" "><i class="fa fa-eye"></i></button>
+            </div>
           </div>
         </div>
         <?php if (($column_left && $column_right) && ($i % 2 == 0)) { ?>
@@ -171,12 +163,9 @@
         <div class="clearfix visible-md"></div>
         <?php } ?>
         <?php $i++; ?>
-        
-        
         <?php } ?>
       </div>
       <?php } ?>
-	  
 	  <?php if ($review_status) { ?>
             <div class="tab-pane" id="tab-review">
               <form class="form-horizontal" id="form-review">
@@ -223,12 +212,10 @@
               </form>
             </div>
             <?php } ?>
-	  
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
 <script type="text/javascript"><!--
-
 $('#button-cart').ready(function() {
 $('#button-cart').click(function() {
     $.ajax({
@@ -236,10 +223,9 @@ $('#button-cart').click(function() {
         type: 'post',
         data: $('#product input[type=\'text\'], #product input[type=\'date\'], #product input[type=\'datetime-local\'], #product input[type=\'time\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
         dataType: 'json',
-        
         success: function(json) {
             $('.alert, .text-danger').remove();
-            
+
             if (json['error']) {
                 if (json['error']['option']) {
                     for (i in json['error']['option']) {
@@ -247,14 +233,14 @@ $('#button-cart').click(function() {
                     }
                 }
             } 
-            
+
             if (json['success']) {
                 $('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 $('#cart').load('index.php?route=module/cart' + ' #cart > *');    
                 //$('#cart-total').html(json['total']);
-                
+
                 $('html, body').animate({ scrollTop: 0 }, 'slow'); 
-            }   
+            }
         }
     });
 });
@@ -273,31 +259,31 @@ $('button[id^=\'button-upload\']').on('click', function() {
 	$('#form-upload input[name=\'file\']').on('change', function() {
 		$.ajax({
 			url: 'index.php?route=product/product/upload',
-			type: 'post',		
+			type: 'post',
 			dataType: 'json',
 			data: new FormData($(this).parent()[0]),
 			cache: false,
 			contentType: false,
-			processData: false,		
+			processData: false,
 			beforeSend: function() {
 				$(node).find('i').replaceWith('<i class="fa fa-spinner fa-spin"></i>');
 				$(node).prop('disabled', true);
 			},
 			complete: function() {
 				$(node).find('i').replaceWith('<i class="fa fa-upload"></i>');
-				$(node).prop('disabled', false);			
-			},		
+				$(node).prop('disabled', false);
+			},
 			success: function(json) {
 				if (json['error']) {
 					$(node).parent().find('input[name^=\'option\']').after('<div class="text-danger">' + json['error'] + '</div>');
 				}
-							
+
 				if (json['success']) {
 					alert(json['success']);
-					
+
 					$(node).parent().find('input[name^=\'option\']').attr('value', json['file']);
 				}
-			},			
+			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
@@ -347,6 +333,7 @@ $('#button-review').on('click', function() {
 		}
 	});
 });
+
 $(document).ready(function() {
 	$('.thumbnails').magnificPopup({
 		type:'image',
@@ -359,26 +346,31 @@ $(document).ready(function() {
 //--></script>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  $('#description').find('a>img').each(function(){
-    $(this).parent().addClass('gallery');
-  });
-  $('#description').magnificPopup({
-    delegate: 'a.gallery',
-    type: 'image',
-    gallery: {
-        enabled: true
-    }
-  });
+	$('#description').find('a>img').each(function(){
+		$(this).parent().addClass('gallery');
+	});
 
-  gotoReview = function() {
-    offset = $('#form-review').offset();
-    $('html, body').animate({ scrollTop: offset.top-20 }, 'slow');
-  }
-  gotoReviewWrite = function() {
-    offset = $('#form-review h2').offset();
-    $('html, body').animate({ scrollTop: offset.top-20 }, 'slow');
-  }
-  
+	$('#description').find('a>img.nogallery').each(function(){
+		$(this).parent().removeClass('gallery');
+	});
+
+	$('#description').magnificPopup({
+		delegate: 'a.gallery',
+		type: 'image',
+		gallery: {
+			enabled: true
+		}
+	});
+
+	gotoReview = function() {
+		offset = $('#form-review').offset();
+		$('html, body').animate({ scrollTop: offset.top-20 }, 'slow');
+	}
+
+	gotoReviewWrite = function() {
+		offset = $('#form-review h2').offset();
+		$('html, body').animate({ scrollTop: offset.top-20 }, 'slow');
+	}
 });
---></script>
+//--></script>
 <?php echo $footer; ?>
