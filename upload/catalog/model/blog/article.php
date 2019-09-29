@@ -174,7 +174,7 @@ class ModelBlogArticle extends Model {
 	}
 
 	public function getLatestArticles($limit) {
-		$article_data = false;
+		$article_data = array();
 		//$cache = $this->config->get('configblog_cache_status');
 		$cache = true;
 
