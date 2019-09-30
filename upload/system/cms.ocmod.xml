@@ -22,7 +22,7 @@
 	<file path="catalog/view/theme/*/template/product/product.tpl">
 		<operation error="skip">
 			<search index="0"><![CDATA[<?php echo $button_compare; ?>]]></search>
-			<add position="after"><![CDATA[			<?php if ($bus_href_admin) { ?><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_href_admin; ?>" onclick="window.open('<?php echo $bus_href_admin; ?>', '_blank');"><i class="fa fa-pencil"></i></button><?php } ?>]]></add>
+			<add position="after"><![CDATA[			<?php if ($pro_href_admin) { ?><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_pro_href_admin; ?>" onclick="window.open('<?php echo $pro_href_admin; ?>', '_blank');"><i class="fa fa-pencil"></i></button><?php } ?>]]></add>
 		</operation>
 	</file>
 </modification>
