@@ -34,24 +34,27 @@ class ControllerStartupSeoPro extends Controller {
 	public function __construct($registry) {
 		parent::__construct($registry);
 		$this->valid_server = (bool)(parse_url(HTTPS_SERVER, PHP_URL_SCHEME)=='https');
-			if (!$this->valid_server && $this->request->server['HTTPS']) {
-				$r = isset($this->request->get['route'])?$this->request->get['route']:'';
-				$this->response->redirect(str_replace('&amp;', '&', $this->url->link($r, $this->getQueryString(array('route')))), 301);
-			}
+		if (!$this->valid_server && $this->request->server['HTTPS']) {
+			$r = isset($this->request->get['route'])?$this->request->get['route']:'';
+			$this->response->redirect(str_replace('&amp;', '&', $this->url->link($r, $this->getQueryString(array('route')))), 301);
+		}
 		$ssl_mode = (bool)$this->config->get('config_secure') + $this->valid_server;
-			switch ($ssl_mode) {
-				case '2':
-				$this->url_sheme = 'https';
-				break;
-				case '1':
-				$this->url_sheme = ($this->request->server['HTTPS'])?'https':'http';
-				break;
-				case '0':
-				default:
-				$this->url_sheme = 'http';
-				break;
-			}
-		$this->cache_data = $this->cache->get('seo_pro');
+		switch ($ssl_mode) {
+			case '2':
+			$this->url_sheme = 'https';
+			break;
+			case '1':
+			$this->url_sheme = ($this->request->server['HTTPS'])?'https':'http';
+			break;
+			case '0':
+			default:
+			$this->url_sheme = 'http';
+			break;
+		}
+		$cache = $this->config->get('config_seo_url_cache');
+		if ($cache) {
+			$this->cache_data = $this->cache->get('seo_pro');
+		}
 		if (!$this->cache_data) {
 			$query = $this->db->query("SELECT LOWER(`keyword`) as 'keyword', `query` FROM " . DB_PREFIX . "url_alias");
 			$this->cache_data = array();
@@ -63,7 +66,9 @@ class ControllerStartupSeoPro extends Controller {
 				$this->cache_data['queries']['common/home'] = '';
 				$this->cache_data['keywords'][''] = 'common/home';
 			}
-			$this->cache->set('seo_pro', $this->cache_data);
+			if ($cache) {
+				$this->cache->set('seo_pro', $this->cache_data);
+			}
 		}
 		$query = $this->db->query("SELECT `value` FROM `" . DB_PREFIX . "setting` WHERE `key` = 'config_language'");
 		$this->config_language = $query->row['value'];
