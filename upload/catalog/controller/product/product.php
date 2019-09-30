@@ -756,7 +756,7 @@ class ControllerProductProduct extends Controller {
 			//$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 			//$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 403 Forbidden');
 			header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden');
-			echo 'ЖЭСТАЧАЙША ЗАПРЫШЧАЮ!';
+			echo 'ЖЭСТАЧАЙШЭ ЗАПРЫШЧАЮ!';
 		}
 	}
 
