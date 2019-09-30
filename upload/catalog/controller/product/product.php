@@ -424,11 +424,11 @@ class ControllerProductProduct extends Controller {
 			$this->user = new Cart\User($this->registry);
 
 			if ($this->user->isLogged()) {
-				$data['button_pro_href_admin'] = $this->language->get('button_edit');
-				$data['pro_href_admin'] = ($this->config->get('config_pro_href_admin') ? $this->config->get('config_pro_href_admin') : 'admin/') . 'index.php?route=catalog/product/edit' . '&token=' . $this->session->data['token'] . '&product_id=' . $product_info['product_id'];
+				$data['button_bus_href_admin'] = $this->language->get('button_edit');
+				$data['bus_href_admin'] = $this->url->link('product/product/proEdit', 'product_id=' . $product_info['product_id']);
 			} else {
-				$data['button_pro_href_admin'] = false;
-				$data['pro_href_admin'] = false;
+				$data['button_bus_href_admin'] = false;
+				$data['bus_href_admin'] = false;
 			}
 
 			$data['sticker'] = $this->getProStickers($product_info['product_id']);
@@ -745,6 +745,19 @@ class ControllerProductProduct extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function proEdit() {
+		$this->user = new Cart\User($this->registry);
+
+		if ($this->user->isLogged() && isset($this->request->get['product_id'])) {
+			$this->response->redirect(($this->config->get('config_bus_href_admin') ? $this->config->get('config_bus_href_admin') : 'admin/') . 'index.php?route=catalog/product/edit' . '&token=' . $this->session->data['token'] . '&product_id=' . (int)$this->request->get['product_id']);
+		} else {
+			//$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+			//$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 403 Forbidden');
+			header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden');
+			echo 'ЖЭСТАЧАЙША ЗАПРЫШЧАЮ!';
+		}
 	}
 
 	private function getProStickers($product_id) {
