@@ -75,13 +75,15 @@ class ControllerInformationSitemap extends Controller {
 			);
 		}
 
-		if (1 == 1) { //$this->config->get('configblog_sitemap');
+		$this->config->set('configblog_sitemap') = 1;
+		if ($this->config->get('configblog_sitemap')) {
 			$this->load->model('blog/category');
 
 			$data['pro_blog_categories'] = $this->getProBlogCategories(0);
 		}
 
-		if (1 == 1) {
+		$this->config->set('config_manufacturers_sitemap') = 1;
+		if ($this->config->get('config_manufacturers_sitemap')) {
 			$this->load->model('catalog/manufacturer');
 
 			$data['pro_manufacturers'] = $this->getProManufacturers(0);
