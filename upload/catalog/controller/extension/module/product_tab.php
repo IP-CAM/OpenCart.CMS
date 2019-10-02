@@ -10,7 +10,7 @@ class ControllerExtensionModuleProductTab extends Controller {
 		$cache = true;
 
 		if ($cache) {
-			$data = $this->cache->get('product.product_tab.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$setting['limit']);
+			$data = $this->cache->get('product.product_tab.' . (int)$setting['limit'] . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'));
 
 			if ($data) {
 				return  $this->load-> view( 'extension/module/' . 'product_tab' , $data );
@@ -288,7 +288,7 @@ class ControllerExtensionModuleProductTab extends Controller {
 		}
 
 		if ($cache) {
-			$this->cache->set('product.product_tab.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$setting['limit'], $data);
+			$this->cache->set('product.product_tab.' . (int)$setting['limit'] . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'), $data);
 		}
 
 		return $this->load->view('extension/module/product_tab', $data);
