@@ -75,7 +75,6 @@ class ControllerInformationSitemap extends Controller {
 			);
 		}
 
-		$this->config->set('configblog_sitemap', 1);
 		if ($this->config->get('configblog_sitemap')) {
 			$this->load->model('blog/category');
 
