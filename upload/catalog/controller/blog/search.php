@@ -429,7 +429,7 @@ class ControllerBlogSearch extends Controller {
 			}
 
 			if (isset($this->request->get['search']) && $this->config->get('configblog_customer_blog_search')) {
-				$this->load->model('account/search');
+				$this->load->model('blog/search');
 
 				if ($this->customer->isLogged()) {
 					$customer_id = $this->customer->getId();
@@ -453,7 +453,7 @@ class ControllerBlogSearch extends Controller {
 					'ip'               => $ip
 				);
 
-				$this->model_account_search->addBlogSearch($search_data);
+				$this->model_blog_search->addSearch($search_data);
 			}
 		}
 
