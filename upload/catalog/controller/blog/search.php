@@ -28,12 +28,6 @@ class ControllerBlogSearch extends Controller {
 			$tag = '';
 		}
 
-		if (isset($this->request->get['description'])) {
-			$description = $this->request->get['description'];
-		} else {
-			$description = '';
-		}
-
 		if (isset($this->request->get['blog_category_id'])) {
 			$blog_category_id = $this->request->get['blog_category_id'];
 		} else {
@@ -41,9 +35,15 @@ class ControllerBlogSearch extends Controller {
 		}
 
 		if (isset($this->request->get['sub_category'])) {
-			$sub_category = $this->request->get['sub_category'];
+			$sub_category = 1;
 		} else {
-			$sub_category = '';
+			$sub_category = 0;
+		}
+
+		if (isset($this->request->get['description'])) {
+			$description = 1;
+		} else {
+			$description = 0;
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -95,16 +95,16 @@ class ControllerBlogSearch extends Controller {
 			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
 		}
 
-		if (isset($this->request->get['description'])) {
-			$url .= '&description=' . $this->request->get['description'];
-		}
-
 		if (isset($this->request->get['blog_category_id'])) {
 			$url .= '&blog_category_id=' . $this->request->get['blog_category_id'];
 		}
 
 		if (isset($this->request->get['sub_category'])) {
 			$url .= '&sub_category=' . $this->request->get['sub_category'];
+		}
+
+		if (isset($this->request->get['description'])) {
+			$url .= '&description=' . $this->request->get['description'];
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -251,16 +251,16 @@ class ControllerBlogSearch extends Controller {
 				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
 			}
 
-			if (isset($this->request->get['description'])) {
-				$url .= '&description=' . $this->request->get['description'];
-			}
-
 			if (isset($this->request->get['blog_category_id'])) {
 				$url .= '&blog_category_id=' . $this->request->get['blog_category_id'];
 			}
 
 			if (isset($this->request->get['sub_category'])) {
 				$url .= '&sub_category=' . $this->request->get['sub_category'];
+			}
+
+			if (isset($this->request->get['description'])) {
+				$url .= '&description=' . $this->request->get['description'];
 			}
 
 			if (isset($this->request->get['limit'])) {
@@ -337,16 +337,16 @@ class ControllerBlogSearch extends Controller {
 				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
 			}
 
-			if (isset($this->request->get['description'])) {
-				$url .= '&description=' . $this->request->get['description'];
-			}
-
 			if (isset($this->request->get['blog_category_id'])) {
 				$url .= '&blog_category_id=' . $this->request->get['blog_category_id'];
 			}
 
 			if (isset($this->request->get['sub_category'])) {
 				$url .= '&sub_category=' . $this->request->get['sub_category'];
+			}
+
+			if (isset($this->request->get['description'])) {
+				$url .= '&description=' . $this->request->get['description'];
 			}
 
 			if (isset($this->request->get['sort'])) {
@@ -381,16 +381,16 @@ class ControllerBlogSearch extends Controller {
 				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
 			}
 
-			if (isset($this->request->get['description'])) {
-				$url .= '&description=' . $this->request->get['description'];
-			}
-
 			if (isset($this->request->get['blog_category_id'])) {
 				$url .= '&blog_category_id=' . $this->request->get['blog_category_id'];
 			}
 
 			if (isset($this->request->get['sub_category'])) {
 				$url .= '&sub_category=' . $this->request->get['sub_category'];
+			}
+
+			if (isset($this->request->get['description'])) {
+				$url .= '&description=' . $this->request->get['description'];
 			}
 
 			if (isset($this->request->get['sort'])) {
@@ -458,9 +458,9 @@ class ControllerBlogSearch extends Controller {
 		}
 
 		$data['search'] = $search;
-		$data['description'] = $description;
 		$data['blog_category_id'] = $blog_category_id;
 		$data['sub_category'] = $sub_category;
+		$data['description'] = $description;
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;
