@@ -40,8 +40,7 @@ class ModelBlogArticle extends Model {
 
 	public function getArticles($data = array()) {
 		$article_data = array();
-		//$cache = $this->config->get('configblog_cache_status');
-		$cache = true;
+		$cache = $this->config->get('configblog_cache_status');
 
 		if ($cache) {
 			$cache = 'article.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . md5(http_build_query($data));
@@ -175,8 +174,7 @@ class ModelBlogArticle extends Model {
 
 	public function getLatestArticles($limit) {
 		$article_data = array();
-		//$cache = $this->config->get('configblog_cache_status');
-		$cache = true;
+		$cache = $this->config->get('configblog_cache_status');
 
 		if ($cache) {
 			$cache = 'article.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$this->config->get('config_customer_group_id') . '.' . (int)$limit;
