@@ -166,6 +166,75 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_customer_blog_search; ?>"><?php echo $entry_customer_blog_search; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($configblog_customer_blog_search) { ?>
+                      <input type="radio" name="configblog_customer_blog_search" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="configblog_customer_blog_search" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$configblog_customer_blog_search) { ?>
+                      <input type="radio" name="configblog_customer_blog_search" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="configblog_customer_blog_search" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_sitemap; ?>"><?php echo $entry_sitemap; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($configblog_sitemap) { ?>
+                      <input type="radio" name="configblog_sitemap" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="configblog_sitemap" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$configblog_sitemap) { ?>
+                      <input type="radio" name="configblog_sitemap" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="configblog_sitemap" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_cache_status; ?>"><?php echo $entry_cache_status; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($configblog_cache_status) { ?>
+                      <input type="radio" name="configblog_cache_status" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="configblog_cache_status" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$configblog_cache_status) { ?>
+                      <input type="radio" name="configblog_cache_status" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="configblog_cache_status" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label"><?php echo $entry_article_download; ?></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
