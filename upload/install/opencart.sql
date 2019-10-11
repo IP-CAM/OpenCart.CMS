@@ -1315,6 +1315,28 @@ CREATE TABLE `oc_customer_search` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_customer_blog_search`
+--
+
+DROP TABLE IF EXISTS `oc_customer_blog_search`;
+CREATE TABLE `oc_customer_blog_search` (
+  `customer_blog_search_id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `keyword` varchar(255) NOT NULL,
+  `blog_category_id` int(11),
+  `sub_category` tinyint(1) NOT NULL,
+  `description` tinyint(1) NOT NULL,
+  `articles` int(11) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_blog_search_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_customer_wishlist`
 --
 
