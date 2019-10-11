@@ -37,6 +37,9 @@ class ControllerBlogSetting extends Controller {
 		$data['entry_article_count'] = $this->language->get('entry_article_count');
 		$data['entry_blog_menu'] = $this->language->get('entry_blog_menu');
 		$data['entry_blog_search'] = $this->language->get('entry_blog_search');
+		$data['entry_customer_blog_search'] = $this->language->get('entry_customer_blog_search');
+		$data['entry_sitemap'] = $this->language->get('entry_sitemap');
+		$data['entry_cache_status'] = $this->language->get('entry_cache_status');
 		$data['entry_article_download'] = $this->language->get('entry_article_download');
 		$data['entry_review'] = $this->language->get('entry_review');
 		$data['entry_review_guest'] = $this->language->get('entry_review_guest');
@@ -59,6 +62,9 @@ class ControllerBlogSetting extends Controller {
 		$data['help_article_count'] = $this->language->get('help_article_count');
 		$data['help_blog_menu'] = $this->language->get('help_blog_menu');
 		$data['help_blog_search'] = $this->language->get('help_blog_search');
+		$data['help_customer_blog_search'] = $this->language->get('help_customer_blog_search');
+		$data['help_sitemap'] = $this->language->get('help_sitemap');
+		$data['help_cache_status'] = $this->language->get('help_cache_status');
 		$data['help_review'] = $this->language->get('help_review');
 		$data['help_review_guest'] = $this->language->get('help_review_guest');
 		$data['help_review_mail'] = $this->language->get('help_review_mail');
@@ -172,6 +178,12 @@ class ControllerBlogSetting extends Controller {
 			$data['configblog_blog_search'] = $this->request->post['configblog_blog_search'];
 		} else {
 			$data['configblog_blog_search'] = $this->config->get('configblog_blog_search');
+		}
+
+		if (isset($this->request->post['configblog_customer_blog_search'])) {
+			$data['configblog_customer_blog_search'] = $this->request->post['configblog_customer_blog_search'];
+		} else {
+			$data['configblog_customer_blog_search'] = $this->config->get('configblog_customer_blog_search');
 		}
 
 		if (isset($this->request->post['configblog_sitemap'])) {
