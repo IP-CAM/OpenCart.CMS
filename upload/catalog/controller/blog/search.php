@@ -428,7 +428,7 @@ class ControllerBlogSearch extends Controller {
 				$this->document->addLink($this->url->link('blog/search', $url . '&page='. ($page + 1), true), 'next');
 			}
 
-			if (isset($this->request->get['search']) && $this->config->get('config_customer_search')) {
+			if (isset($this->request->get['search']) && $this->config->get('configblog_customer_blog_search')) {
 				$this->load->model('account/search');
 
 				if ($this->customer->isLogged()) {
@@ -453,7 +453,7 @@ class ControllerBlogSearch extends Controller {
 					'ip'               => $ip
 				);
 
-				$this->model_account_search->addSearch($search_data);
+				$this->model_account_search->addBlogSearch($search_data);
 			}
 		}
 
