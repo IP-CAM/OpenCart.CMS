@@ -7,6 +7,10 @@
 class ControllerReportCustomerBlogSearch extends Controller {
 	private $error = array();
 
+	public function index() {
+		$this->report();
+	}
+
 	public function clear() {
 		$this->load->language('report/customer_blog_search');
 
@@ -19,10 +23,6 @@ class ControllerReportCustomerBlogSearch extends Controller {
 		}
 
 		$this->response->redirect($this->url->link('report/customer_blog_search', 'token=' . $this->session->data['token'], true));
-	}
-
-	public function index() {
-		$this->report();
 	}
 
 	protected function report() {
