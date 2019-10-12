@@ -32,6 +32,11 @@ class ControllerReportCustomerBlogSearch extends Controller {
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
+		$data['text_list'] = $this->language->get('text_list');
+		$data['text_all'] = $this->language->get('text_all');
+		$data['text_no_results'] = $this->language->get('text_no_results');
+		$data['text_confirm'] = $this->language->get('text_confirm');
+
 		$data['column_keyword'] = $this->language->get('column_keyword');
 		$data['column_products'] = $this->language->get('column_products');
 		$data['column_store'] = $this->language->get('column_store');
@@ -42,11 +47,6 @@ class ControllerReportCustomerBlogSearch extends Controller {
 		$data['column_customer'] = $this->language->get('column_customer');
 		$data['column_ip'] = $this->language->get('column_ip');
 		$data['column_date_added'] = $this->language->get('column_date_added');
-
-		$data['text_list'] = $this->language->get('text_list');
-		$data['text_all'] = $this->language->get('text_all');
-		$data['text_no_results'] = $this->language->get('text_no_results');
-		$data['text_confirm'] = $this->language->get('text_confirm');
 
 		$data['entry_date_start'] = $this->language->get('entry_date_start');
 		$data['entry_date_end'] = $this->language->get('entry_date_end');
