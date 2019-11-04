@@ -1,6 +1,6 @@
 <footer id="footer"><?php echo $text_footer; ?><br /><?php echo $text_version; ?></footer></div>
 <script type="text/javascript"><!--
-function codeViewBusPro() {
+function getCodeViewBus() {
 	summernote = $('.summernote');
 	if ($(summernote).css('display') == 'none') {
 		summernote.show().css('height', 300);
@@ -11,18 +11,24 @@ function codeViewBusPro() {
 	}
 }
 
-$(document).ready(function() {
+function addCodeViewBus() {
 	if ($('.summernote').length) {
-		$('.btn-codeview').after('<button type="button" onclick="codeViewBusPro();" class="note-btn btn btn-warning btn-sm btn-codeview-bus" title="" data-original-title="Code View Bus"><i class="note-icon-code"></i></button>');
-
-		jopa = document.getElementsByClassName('note-editable');
-
-		for (i=0; i<jopa.length; i++) {
-			if (jopa[i].innerHTML == '<p><br></p>') {
-				jopa[i].innerHTML = '';
-			}
-		}
+		$('.btn-codeview').after('<button type="button" onclick="getCodeViewBus();" class="note-btn btn btn-warning btn-sm btn-codeview-bus" title="" data-original-title="Code View Bus"><i class="note-icon-code"></i></button>');
 	}
-});
+}
+
+if (window.addEventListener) {
+	window.addEventListener("load", function() {
+		addCodeViewBus();
+	}, false);
+} else if (window.attachEvent) {
+	window.attachEvent("onload", function() {
+		addCodeViewBus();
+	});
+} else {
+	window.onload = function() {
+		addCodeViewBus();
+	}
+}
 //--></script>
 </body></html>
