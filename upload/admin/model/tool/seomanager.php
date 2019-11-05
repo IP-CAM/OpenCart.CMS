@@ -199,7 +199,7 @@ class ModelToolSeoManager extends Model {
 
 		foreach ($query->rows as $result) {
 			$seo_tag_meta_data[$result['language_id']] = array(
-				'meta_h1'      	     => $result['meta_h1'],
+				'meta_h1'            => $result['meta_h1'],
 				'meta_title'         => $result['meta_title'],
 				'meta_description'   => $result['meta_description'],
 				'meta_keyword'       => $result['meta_keyword'],
