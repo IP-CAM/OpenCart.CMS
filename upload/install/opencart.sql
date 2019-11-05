@@ -1315,28 +1315,6 @@ CREATE TABLE `oc_customer_search` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oc_customer_blog_search`
---
-
-DROP TABLE IF EXISTS `oc_customer_blog_search`;
-CREATE TABLE `oc_customer_blog_search` (
-  `customer_blog_search_id` int(11) NOT NULL AUTO_INCREMENT,
-  `store_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `keyword` varchar(255) NOT NULL,
-  `blog_category_id` int(11),
-  `sub_category` tinyint(1) NOT NULL,
-  `description` tinyint(1) NOT NULL,
-  `articles` int(11) NOT NULL,
-  `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_blog_search_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `oc_customer_wishlist`
 --
 
@@ -9274,5 +9252,76 @@ INSERT INTO `oc_custommenu_child_to_store` (`custommenu_child_id`, `store_id`) V
 (63, 0),
 (67, 0),
 (77, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_customer_blog_search`
+--
+
+DROP TABLE IF EXISTS `oc_customer_blog_search`;
+CREATE TABLE `oc_customer_blog_search` (
+  `customer_blog_search_id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `keyword` varchar(255) NOT NULL,
+  `blog_category_id` int(11),
+  `sub_category` tinyint(1) NOT NULL,
+  `description` tinyint(1) NOT NULL,
+  `articles` int(11) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_blog_search_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_pro_seo_tag`
+--
+
+DROP TABLE IF EXISTS `oc_pro_seo_tag`;
+CREATE TABLE `oc_pro_seo_tag` (
+  `seo_tag_id` int(11) NOT NULL AUTO_INCREMENT,
+  `route` varchar(500) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`seo_tag_id`),
+  KEY `route` (`route`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_pro_seo_tag_description`
+--
+
+DROP TABLE IF EXISTS `oc_pro_seo_tag_description`;
+CREATE TABLE `oc_pro_seo_tag_description` (
+  `seo_tag_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `meta_h1` varchar(255) NOT NULL,
+  `meta_title` varchar(300) NOT NULL,
+  `meta_description` varchar(300) NOT NULL,
+  `meta_keyword` varchar(300) NOT NULL,
+  `description` text NOT NULL,
+  `description_bottom` text NOT NULL,
+  PRIMARY KEY (`seo_tag_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_pro_seo_tag_to_store`
+--
+
+DROP TABLE IF EXISTS `oc_pro_seo_tag_to_store`;
+CREATE TABLE `oc_pro_seo_tag_to_store` (
+  `seo_tag_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`seo_tag_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
