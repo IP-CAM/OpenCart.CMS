@@ -192,9 +192,9 @@ class ControllerToolSeoManager extends Controller {
 				$this->session->data['success'] = $this->language->get('success_delete_tag');
 
 				$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '#tab_seotag', true));
+			} else {
+				$this->session->data['info'] = $this->language->get('info_hz');
 			}
-
-			$this->session->data['info'] = $this->language->get('info_hz');
 		}
 
 		$this->getList();
