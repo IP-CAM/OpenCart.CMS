@@ -201,8 +201,6 @@ class ControllerToolSeoManager extends Controller {
 	}
 
 	protected function getList() {
-		$this->updateModule();
-
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_all'] = $this->language->get('text_all');
@@ -689,6 +687,9 @@ class ControllerToolSeoManager extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 
 		$this->response->setOutput($this->load->view('tool/seomanager', $data));
+
+		// удалить в версии 2.3.0.2.7
+		$this->updateModule();
 	}
 
 	protected function validateForm() {
@@ -773,8 +774,10 @@ class ControllerToolSeoManager extends Controller {
 
 	// удалить в версии 2.3.0.2.7
 	private function updateModule() {
-		if ($this->config->get('seomanager_meta_title_bestseller') && $this->config->get('seomanager_meta_title_latest') && $this->config->get('seomanager_meta_title_mostviewed') && $this->config->get('seomanager_meta_title_special')) {
+		if ($this->config->get('seomanager_meta_title_bestseller') || $this->config->get('seomanager_meta_title_latest') || $this->config->get('seomanager_meta_title_mostviewed') || $this->config->get('seomanager_meta_title_special')) {
 			$this->load->model('localisation/language');
+
+			$this->load->model('setting/setting');
 
 			$languages = $this->model_localisation_language->getLanguages();
 			
@@ -792,14 +795,15 @@ class ControllerToolSeoManager extends Controller {
 					);
 				}
 
-				$data = array(
-					'route'  => 'information/bestseller',
-					'status' => 1,
-					'meta'   => $meta,
-					'store'  => array(0)
+				$up = array(
+					'seo_tag_id' => 0,
+					'route'      => 'information/bestseller',
+					'status'     => 1,
+					'meta'       => $meta,
+					'store'      => array(0)
 				);
 
-				$this->model_tool_seomanager->updateSeoTag($data);
+				$this->model_tool_seomanager->updateSeoTag($up);
 			}
 
 			if ($this->config->get('seomanager_meta_title_latest')) {
@@ -816,14 +820,15 @@ class ControllerToolSeoManager extends Controller {
 					);
 				}
 
-				$data = array(
-					'route'  => 'information/bestseller',
-					'status' => 1,
-					'meta'   => $meta,
-					'store'  => array(0)
+				$up = array(
+					'seo_tag_id' => 0,
+					'route'      => 'information/latest',
+					'status'     => 1,
+					'meta'       => $meta,
+					'store'      => array(0)
 				);
 
-				$this->model_tool_seomanager->updateSeoTag($data);
+				$this->model_tool_seomanager->updateSeoTag($up);
 			}
 
 			if ($this->config->get('seomanager_meta_title_mostviewed')) {
@@ -840,14 +845,15 @@ class ControllerToolSeoManager extends Controller {
 					);
 				}
 
-				$data = array(
-					'route'  => 'information/bestseller',
-					'status' => 1,
-					'meta'   => $meta,
-					'store'  => array(0)
+				$up = array(
+					'seo_tag_id' => 0,
+					'route'      => 'information/mostviewed',
+					'status'     => 1,
+					'meta'       => $meta,
+					'store'      => array(0)
 				);
 
-				$this->model_tool_seomanager->updateSeoTag($data);
+				$this->model_tool_seomanager->updateSeoTag($up);
 			}
 
 			if ($this->config->get('seomanager_meta_title_special')) {
@@ -864,21 +870,20 @@ class ControllerToolSeoManager extends Controller {
 					);
 				}
 
-				$data = array(
-					'route'  => 'information/bestseller',
-					'status' => 1,
-					'meta'   => $meta,
-					'store'  => array(0)
+				$up = array(
+					'seo_tag_id' => 0,
+					'route'      => 'information/special',
+					'status'     => 1,
+					'meta'       => $meta,
+					'store'      => array(0)
 				);
 
-				$this->model_tool_seomanager->updateSeoTag($data);
+				$this->model_tool_seomanager->updateSeoTag($up);
 			}
 
-			$this->session->data['success'] = $this->language->get('success_update');
+			$this->model_setting_setting->deleteSetting('seomanager');
 
-			$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '#tab_seotag', true));
-
-			//$this->model_setting_setting->deleteSetting('seomanager');
+			$this->session->data['success'] = $this->language->get('success');			
 		}
 	}
 }
