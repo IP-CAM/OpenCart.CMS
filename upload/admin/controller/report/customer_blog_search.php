@@ -38,7 +38,7 @@ class ControllerReportCustomerBlogSearch extends Controller {
 		$data['text_confirm'] = $this->language->get('text_confirm');
 
 		$data['column_keyword'] = $this->language->get('column_keyword');
-		$data['column_products'] = $this->language->get('column_products');
+		$data['column_articles'] = $this->language->get('column_articles');
 		$data['column_store'] = $this->language->get('column_store');
 		$data['column_language'] = $this->language->get('column_language');
 		$data['column_category'] = $this->language->get('column_category');
