@@ -93,7 +93,7 @@
                 <td class="text-left"><?php echo $column_store; ?></td>
 				<td class="text-left"><?php echo $column_language; ?></td>
 				<td class="text-left"><?php echo $column_keyword; ?></td>
-                <td class="text-left"><?php echo $column_products; ?></td>
+                <td class="text-left"><?php echo $column_articles; ?></td>
                 <td class="text-left"><?php echo $column_category; ?></td>
 				<td class="text-left"><?php echo $column_sub_category; ?></td>
 				<td class="text-left"><?php echo $column_description; ?></td>
