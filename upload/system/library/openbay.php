@@ -39,13 +39,7 @@ final class Openbay {
 			}
 		}
 	}
-	public function encrypt($value, $key, $iv, $json = true) {
 
-		if ($base64) {
-			//$msg = base64_encode($msg);
-		}
-		return $msg;
-	}
 	public function encrypt($msg, $key, $base64 = false) {
 		if (version_compare(phpversion(), '7.1.0', '<=') == true) {
 			$td = mcrypt_module_open('rijndael-256', '', 'ctr', '');
