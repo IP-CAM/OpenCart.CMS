@@ -17,7 +17,7 @@ $_['text_customer']       = '<a href="%s">%s</a>';
 $_['column_store']        = 'Магазин';
 $_['column_language']     = 'Язык';
 $_['column_keyword']      = 'Запрос';
-$_['column_products']     = 'Найденные товары';
+$_['column_articles']     = 'Найденные статьи';
 $_['column_category']     = 'Категория';
 $_['column_sub_category'] = 'Подкатегория';
 $_['column_description']  = 'Описание';
