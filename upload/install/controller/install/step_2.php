@@ -142,8 +142,9 @@ class ControllerInstallStep2 extends Controller {
 			$this->error['warning'] = $this->language->get('error_curl');
 		}
 
-		if (!function_exists('mcrypt_encrypt') && !function_exists('openssl_encrypt')) {
+		if (version_compare(phpversion(), '7.1.0', '<=') == true && !function_exists('mcrypt_encrypt')) {
 			$this->error['warning'] = $this->language->get('error_mcrypt');
+		} else if (version_compare(phpversion(), '7.1.0', '>') == true && !function_exists('openssl_encrypt')) {
 			$this->error['warning'] = $this->language->get('error_openssl');
 		}
 
