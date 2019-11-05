@@ -105,7 +105,7 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+                  <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('#form-url-delete input[name*=\'selected\']').attr('checked', this.checked);" /></td>
                   <td class="center">
 				    <?php if ($sort == 'ua.query') { ?>
                     <a href="<?php echo $sort_query; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_query; ?></a>
@@ -288,7 +288,7 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+                  <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('#form-tag-delete input[name*=\'selected\']').attr('checked', this.checked);" /></td>
                   <td class="center">
 				    <?php if ($sort == 'st.store') { ?>
                     <a href="<?php echo $sort_store; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_store; ?></a>
