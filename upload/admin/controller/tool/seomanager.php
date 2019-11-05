@@ -62,7 +62,7 @@ class ControllerToolSeoManager extends Controller {
 			if (isset($this->request->post['query'])) {
 				$this->model_tool_seomanager->updateUrlAlias($this->request->post);
 
-				$this->session->data['success'] = $this->language->get('success_update');
+				$this->session->data['success'] = $this->language->get('success_update_url');
 
 				$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, true));
 			} elseif (isset($this->request->post['route'])) {
