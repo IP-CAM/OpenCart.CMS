@@ -70,7 +70,7 @@
             </div>
             <div class="col-sm-12 text-right">
               <button type="button" id="button-url-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
-              <button type="button" id="button-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
+              <button type="button" id="button-url-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@
             </div>
             <div class="col-sm-12 text-right">
               <button type="button" id="button-tag-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
-              <button type="button" id="button-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
+              <button type="button" id="button-url-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
             </div>
           </div>
         </div>
@@ -502,6 +502,10 @@ $('#button-tag-filter').on('click', function() {
 	url +='#tab_seotag';
 
 	location = url;
+});
+
+$('#button-url-clear-filter, #button-tag-clear-filter').on('click', function() {
+	location = 'index.php?route=tool/seomanager&token=<?php echo $token; ?>';
 });
 //--></script> 
 <script type="text/javascript"><!--
