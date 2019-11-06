@@ -1,14 +1,54 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
 class ControllerReportCustomerSearch extends Controller {
+	private $error = array();
+
+	public function clear() {
+		$this->load->language('report/customer_search');
+
+		if ($this->validate()) {
+			$this->load->model('report/customer');
+
+			$this->model_report_customer->clear();
+
+			$this->session->data['success'] = $this->language->get('success_clear');
+		}
+
+		$this->response->redirect($this->url->link('report/customer_search', 'token=' . $this->session->data['token'], true));
+	}
+
 	public function index() {
 		$this->load->language('report/customer_search');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$data['text_list'] = $this->language->get('text_list');
+		$data['text_no_results'] = $this->language->get('text_no_results');
+		$data['text_confirm'] = $this->language->get('text_confirm');
+
+		$data['column_keyword'] = $this->language->get('column_keyword');
+		$data['column_products'] = $this->language->get('column_products');
+		$data['column_category'] = $this->language->get('column_category');
+		$data['column_customer'] = $this->language->get('column_customer');
+		$data['column_ip'] = $this->language->get('column_ip');
+		$data['column_date_added'] = $this->language->get('column_date_added');
+
+		$data['entry_date_start'] = $this->language->get('entry_date_start');
+		$data['entry_date_end'] = $this->language->get('entry_date_end');
+		$data['entry_keyword'] = $this->language->get('entry_keyword');
+		$data['entry_customer'] = $this->language->get('entry_customer');
+		$data['entry_ip'] = $this->language->get('entry_ip');
+
+		$data['button_clear'] = $this->language->get('button_clear');
+		$data['button_filter'] = $this->language->get('button_filter');
+
+		$data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->get['filter_date_start'])) {
 			$filter_date_start = $this->request->get['filter_date_start'];
@@ -72,6 +112,8 @@ class ControllerReportCustomerSearch extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		$data['clear'] = $this->url->link('report/customer_search/clear', 'token=' . $this->session->data['token'] . $url, true);
+
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -84,19 +126,37 @@ class ControllerReportCustomerSearch extends Controller {
 			'text' => $this->language->get('heading_title')
 		);
 
+		if (isset($this->session->data['error'])) {
+			$data['error'] = $this->session->data['error'];
+
+			unset($this->session->data['error']);
+		} elseif (isset($this->error['error'])) {
+			$data['error'] = $this->error['error'];
+		} else {
+			$data['error'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$data['success'] = '';
+		}
+
 		$this->load->model('report/customer');
 		$this->load->model('catalog/category');
 
 		$data['searches'] = array();
 
 		$filter_data = array(
-			'filter_date_start'	=> $filter_date_start,
-			'filter_date_end'	=> $filter_date_end,
+			'filter_date_start' => $filter_date_start,
+			'filter_date_end'   => $filter_date_end,
 			'filter_keyword'    => $filter_keyword,
 			'filter_customer'   => $filter_customer,
 			'filter_ip'         => $filter_ip,
-			'start'             => ($page - 1) * 20,
-			'limit'             => 20
+			'start'             => ($page - 1) * $this->config->get('config_limit_admin'),
+			'limit'             => $this->config->get('config_limit_admin')
 		);
 
 		$search_total = $this->model_report_customer->getTotalCustomerSearches($filter_data);
@@ -128,29 +188,6 @@ class ControllerReportCustomerSearch extends Controller {
 			);
 		}
 
-		$data['heading_title'] = $this->language->get('heading_title');
-
-		$data['text_list'] = $this->language->get('text_list');
-		$data['text_no_results'] = $this->language->get('text_no_results');
-		$data['text_confirm'] = $this->language->get('text_confirm');
-
-		$data['column_keyword'] = $this->language->get('column_keyword');
-		$data['column_products'] = $this->language->get('column_products');
-		$data['column_category'] = $this->language->get('column_category');
-		$data['column_customer'] = $this->language->get('column_customer');
-		$data['column_ip'] = $this->language->get('column_ip');
-		$data['column_date_added'] = $this->language->get('column_date_added');
-
-		$data['entry_date_start'] = $this->language->get('entry_date_start');
-		$data['entry_date_end'] = $this->language->get('entry_date_end');
-		$data['entry_keyword'] = $this->language->get('entry_keyword');
-		$data['entry_customer'] = $this->language->get('entry_customer');
-		$data['entry_ip'] = $this->language->get('entry_ip');
-
-		$data['button_filter'] = $this->language->get('button_filter');
-
-		$data['token'] = $this->session->data['token'];
-
 		$url = '';
 
 		if (isset($this->request->get['filter_date_start'])) {
@@ -171,10 +208,6 @@ class ControllerReportCustomerSearch extends Controller {
 
 		if (isset($this->request->get['filter_ip'])) {
 			$url .= '&filter_ip=' . $this->request->get['filter_ip'];
-		}
-
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
 		}
 
 		$pagination = new Pagination();
@@ -198,5 +231,14 @@ class ControllerReportCustomerSearch extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 
 		$this->response->setOutput($this->load->view('report/customer_search', $data));
+	}
+
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'report/customer_search')) {
+			$this->error['error'] = $this->language->get('error_permission');
+			$this->session->data['error'] =  $this->language->get('error_permission');
+		}
+
+		return !$this->error;
 	}
 }
