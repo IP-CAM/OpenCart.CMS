@@ -56,6 +56,11 @@ class ModelToolSeoManager extends Model {
 					foreach ($keywords->rows as $keyword) {
 						$implode[] = "ua.keyword = '" . $this->db->escape($keyword['keyword']) . "'";
 					}
+
+					if (!$implode) {
+						$singl = " AND ";
+						$implode[] = "ua.keyword = 'BuslikDrev'";
+					}
 				} else {
 					$implode[] = "ua.seomanager = '" . (int)$data['filter_additional'] . "'";
 				}
@@ -126,6 +131,11 @@ class ModelToolSeoManager extends Model {
 
 				foreach ($keywords->rows as $keyword) {
 					$implode[] = "ua.keyword = '" . $this->db->escape($keyword['keyword']) . "'";
+				}
+
+				if (!$implode) {
+					$singl = " AND ";
+					$implode[] = "ua.keyword = 'BuslikDrev'";
 				}
 			} else {
 				$implode[] = "ua.seomanager = '" . (int)$data['filter_additional'] . "'";
