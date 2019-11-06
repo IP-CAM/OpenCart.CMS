@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -57,6 +57,10 @@ class ModelCustomerCustomer extends Model {
 
 	public function editToken($customer_id, $token) {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET token = '" . $this->db->escape($token) . "' WHERE customer_id = '" . (int)$customer_id . "'");
+	}
+
+	public function clearSearch() {
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_search` WHERE customer_search_id");
 	}
 
 	public function deleteCustomer($customer_id) {
@@ -191,7 +195,7 @@ class ModelCustomerCustomer extends Model {
 			$language = new Language($language_code);
 			$language->load($language_code);
 			$language->load('mail/customer');
-				
+
 			$message  = sprintf($language->get('text_approve_welcome'), html_entity_decode($store_name, ENT_QUOTES, 'UTF-8')) . "\n\n";
 			$message .= $language->get('text_approve_login') . "\n";
 			$message .= $store_url . "\n\n";
