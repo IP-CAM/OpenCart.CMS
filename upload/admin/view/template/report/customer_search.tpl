@@ -141,7 +141,7 @@ $('#button-filter').on('click', function() {
 		url += '&filter_ip=' + encodeURIComponent(filter_ip);
 	}
 
-	location.href = url;
+	location = url;
 });
 //--></script> 
   <script type="text/javascript"><!--
