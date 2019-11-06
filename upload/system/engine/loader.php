@@ -82,6 +82,9 @@ final class Loader {
 			if ($seomanager) {
 				$seomanager_desc = $this->registry->get('db')->query("SELECT * FROM `" . DB_PREFIX . "pro_seo_tag_description` WHERE seo_tag_id = '" . (int)$seomanager['seo_tag_id'] . "' AND language_id = '" . (int)$this->registry->get('config')->get('config_language_id') . "'")->row;
 
+				if (isset($data['footer']) && $seomanager['view']) {
+					$route = $seomanager['view'];
+				}
 				if ($seomanager_desc['meta_h1']) {
 					$data['heading_title'] = $seomanager_desc['meta_h1'];
 				}
