@@ -6,6 +6,8 @@
 
 class ControllerExtensionModuleBlogSearch extends Controller {
 	public function index() {
+		static $module_id = 1;
+
 		$this->load->language('extension/module/blog_search');
 
 		$data['text_search'] = $this->language->get('text_search');
@@ -15,6 +17,8 @@ class ControllerExtensionModuleBlogSearch extends Controller {
 		} else {
 			$data['search'] = '';
 		}
+
+		$data['module_id'] = $module_id++;
 
 		return $this->load->view('extension/module/blog_search', $data);
 	}
