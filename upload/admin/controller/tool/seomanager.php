@@ -224,6 +224,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['entry_additional'] = $this->language->get('entry_additional');
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_route'] = $this->language->get('entry_route');
+		$data['entry_route_view'] = $this->language->get('entry_route_view');
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_meta_h1'] = $this->language->get('entry_meta_h1');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
@@ -234,6 +235,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['entry_status'] = $this->language->get('entry_status');
 
 		$data['help_route'] = $this->language->get('help_route');
+		$data['help_route_view'] = $this->language->get('help_route_view');
 		$data['help_parameter'] = $this->language->get('help_parameter');
 		$data['help_keyword'] = $this->language->get('help_keyword');
 
@@ -328,6 +330,12 @@ class ControllerToolSeoManager extends Controller {
 			$data['error_route'] = '';
 		}
 
+		if (isset($this->error['route_view'])) {
+			$data['error_route_view'] = $this->error['route_view'];
+		} else {
+			$data['error_route_view'] = '';
+		}
+
 		if (isset($this->error['meta_h1'])) {
 			$data['error_meta_h1'] = $this->error['meta_h1'];
 		} else {
@@ -414,6 +422,12 @@ class ControllerToolSeoManager extends Controller {
 			$data['route'] = $this->request->post['route'];
 		} else {
 			$data['route'] = false;
+		}
+
+		if (isset($this->request->post['route_view'])) {
+			$data['route_view'] = $this->request->post['route_view'];
+		} else {
+			$data['route_view'] = false;
 		}
 
 		if (isset($this->request->post['meta'])) {
@@ -588,8 +602,9 @@ class ControllerToolSeoManager extends Controller {
 				'store_id'     => $store_id,
 				'store'        => $store_data,
 				'route'        => $result['route'],
-				'keyword'      => $result['keyword'],
+				'route_view'   => $result['route_view'],
 				'meta'         => $this->model_tool_seomanager->getSeoTagMeta($result['seo_tag_id']),
+				'keyword'      => $result['keyword'],
 				'status'       => $result['status'],
 				'selected_tag' => isset($this->request->post['selected_tag']) && in_array($result['seo_tag_id'], $this->request->post['selected_tag']), 
 				'action_text'  => $this->language->get('text_edit')
@@ -798,9 +813,10 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'information/bestseller',
-					'status'     => 1,
+					'route'      => 'product/bestseller',
+					'route_view' => 'product/special',
 					'meta'       => $meta,
+					'status'     => 1,
 					'store'      => array(0)
 				);
 
@@ -823,9 +839,10 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'information/latest',
-					'status'     => 1,
+					'route'      => 'product/latest',
+					'route_view' => 'product/special',
 					'meta'       => $meta,
+					'status'     => 1,
 					'store'      => array(0)
 				);
 
@@ -848,9 +865,10 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'information/mostviewed',
-					'status'     => 1,
+					'route'      => 'product/mostviewed',
+					'route_view' => 'product/special',
 					'meta'       => $meta,
+					'status'     => 1,
 					'store'      => array(0)
 				);
 
@@ -873,9 +891,10 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'information/special',
-					'status'     => 1,
+					'route'      => 'product/special',
+					'route_view' => 'product/special',
 					'meta'       => $meta,
+					'status'     => 1,
 					'store'      => array(0)
 				);
 
