@@ -200,13 +200,6 @@
                     <div class="text-danger"><?php echo $error_route; ?></div>
                     <?php } ?>
                   </div>
-		  <div class="form-group required">
-                    <label class="control-label" for="input-query"><span title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
-                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" />
-                    <?php if ($error_route_view) { ?>
-                    <div class="text-danger"><?php echo $error_route_view; ?></div>
-                    <?php } ?>
-                  </div>
                   <ul class="tab-language nav nav-tabs">
                     <?php foreach ($languages as $language) { ?>
                     <li><a href="#language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
@@ -353,13 +346,6 @@
                     <input type="text" name="route" value="<?php echo $seo_tag['route']; ?>" class="form-control" />
                     <?php if ($error_route) { ?>
                     <div class="text-danger"><?php echo $error_route; ?></div>
-                    <?php } ?>
-                  </div>
-		  <div class="form-group required">
-                    <label class="control-label" for="input-query"><span title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
-                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" />
-                    <?php if ($error_route_view) { ?>
-                    <div class="text-danger"><?php echo $error_route_view; ?></div>
                     <?php } ?>
                   </div>
                   <ul class="tab-language nav nav-tabs">
