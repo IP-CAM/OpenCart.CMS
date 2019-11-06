@@ -307,7 +307,7 @@
                     <?php } ?>
                   </td>
                   <td class="center">
-                    <?php if ($sort == 'st.route') { ?>
+                    <?php if ($sort == 'st.query') { ?>
                     <a href="<?php echo $sort_route; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_route; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_route; ?>"><?php echo $column_route; ?></a>
