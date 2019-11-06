@@ -195,14 +195,8 @@ class ControllerInformationSitemap extends Controller {
 			}
 
 			if (!$current_path) {
-				if ($this->config->get('seomanager_html_h1_manufacturer')) {
-					$output .= '<li><a href="' . $this->url->link('product/manufacturer') . '">' . $this->config->get('seomanager_html_h1_manufacturer') . '</a>';
-					$output .= "\n";
-				} else {
-					$output .= '<li><a href="' . $this->url->link('product/manufacturer') . '">' . $this->language->get('text_manufacturers') . '</a>';
-					$output .= "\n";
-				}
-
+				$output .= '<li><a href="' . $this->url->link('product/manufacturer') . '">' . $this->language->get('text_manufacturers') . '</a>';
+				$output .= "\n";
 				$output .= '              <ul>';
 				$output .= "\n";
 			}
@@ -216,7 +210,6 @@ class ControllerInformationSitemap extends Controller {
 
 				$output .= '                <li><a href="' . $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $new_path) . '">' . $manufacturer['name'] . '</a>';
 				$output .= "\n";
-				//$output .= $this->getProManufacturers($manufacturer['manufacturer_id'], $new_path);
 				$output .= '                </li>';
 				$output .= "\n";
 			}
