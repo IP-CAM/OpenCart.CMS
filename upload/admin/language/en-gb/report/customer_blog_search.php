@@ -35,8 +35,8 @@ $_['entry_customer']      = 'Customer';
 $_['entry_ip']            = 'IP';
 
 // Success
-$_['success']             = 'Данные успешно обновлены!';
-$_['success_clear']       = 'Список поисковых запросов успешно очищен!';
+$_['success']             = 'Data successfully updated!';
+$_['success_clear']       = 'The list of search queries has been cleared successfully!';
 
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to reset products viewed report!';
