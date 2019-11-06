@@ -152,6 +152,7 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_password'] = $this->language->get('entry_password');
 		$data['entry_encryption'] = $this->language->get('entry_encryption');
 		$data['entry_seo_url'] = $this->language->get('entry_seo_url');
+		$data['entry_seo_url_cache'] = $this->language->get('entry_seo_url_cache');
 		$data['entry_seo_url_include_path'] = $this->language->get('entry_seo_url_include_path');
 		$data['entry_blog_full_path'] = $this->language->get('entry_blog_full_path');
 		$data['entry_manufacturers_full_path'] = $this->language->get('entry_manufacturers_full_path');
@@ -216,6 +217,7 @@ class ControllerSettingSetting extends Controller {
 		$data['help_shared'] = $this->language->get('help_shared');
 		$data['help_robots'] = $this->language->get('help_robots');
 		$data['help_seo_url'] = $this->language->get('help_seo_url');
+		$data['help_seo_url_cache'] = $this->language->get('help_seo_url_cache');
 		$data['help_seo_url_include_path'] = $this->language->get('help_seo_url_include_path');
 		$data['help_blog_full_path'] = $this->language->get('help_blog_full_path');
 		$data['help_manufacturers_full_path'] = $this->language->get('help_manufacturers_full_path');
@@ -1093,6 +1095,12 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seo_url'] = $this->request->post['config_seo_url'];
 		} else {
 			$data['config_seo_url'] = $this->config->get('config_seo_url');
+		}
+
+		if (isset($this->request->post['config_seo_url_cache'])) {
+			$data['config_seo_url_cache'] = $this->request->post['config_seo_url_cache'];
+		} else {
+			$data['config_seo_url_cache'] = $this->config->get('config_seo_url_cache');
 		}
 
 		if (isset($this->request->post['config_seo_url_include_path'])) {
