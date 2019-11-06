@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="col-sm-12 text-right">
-              <button type="button" id="button-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+              <button type="button" id="button-url-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
               <button type="button" id="button-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
             </div>
           </div>
@@ -181,7 +181,10 @@
                 <label class="control-label" for="input-filter-keyword"><?php echo $entry_keyword; ?></label>
                 <input type="text" name="filter_keyword" value="<?php echo $filter_keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-filter-keyword" class="form-control" />
               </div>
-              <button type="button" id="button-tag-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+            </div>
+            <div class="col-sm-12 text-right">
+              <button type="button" id="button-tag-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+              <button type="button" id="button-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
             </div>
           </div>
         </div>
