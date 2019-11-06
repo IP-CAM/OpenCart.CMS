@@ -9284,13 +9284,13 @@ CREATE TABLE `oc_customer_blog_search` (
 DROP TABLE IF EXISTS `oc_pro_seo_tag`;
 CREATE TABLE `oc_pro_seo_tag` (
   `seo_tag_id` int(11) NOT NULL AUTO_INCREMENT,
-  `route` varchar(500) NOT NULL,
-  `route_view` varchar(500) NOT NULL,
+  `query` varchar(500) NOT NULL,
+  `view` varchar(500) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`seo_tag_id`),
-  KEY `route` (`route`)
+  KEY `route` (`query`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
