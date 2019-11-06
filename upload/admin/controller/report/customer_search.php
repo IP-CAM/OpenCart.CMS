@@ -13,7 +13,7 @@ class ControllerReportCustomerSearch extends Controller {
 		if ($this->validate()) {
 			$this->load->model('report/customer');
 
-			$this->model_report_customer->clear();
+			$this->model_report_customer->clearSearch();
 
 			$this->session->data['success'] = $this->language->get('success_clear');
 		}
