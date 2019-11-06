@@ -598,7 +598,7 @@ $(document).ready(function() {
 		location = location.href.replace('#', '') + '#tab_seourl';
 	}
 
-	$('#form-tag-add').show();
+	$('#form-url-add').show();
 <?php } ?>
 <?php foreach ($languages as $language) { ?>
 <?php if (isset($error_meta_h1[$language['language_id']]) || isset($error_meta_title[$language['language_id']]) || isset($error_meta_description[$language['language_id']]) || isset($error_meta_keyword[$language['language_id']])) { ?>
