@@ -59,10 +59,6 @@ class ModelCustomerCustomer extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET token = '" . $this->db->escape($token) . "' WHERE customer_id = '" . (int)$customer_id . "'");
 	}
 
-	public function clearSearch() {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_search` WHERE customer_search_id");
-	}
-
 	public function deleteCustomer($customer_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_activity WHERE customer_id = '" . (int)$customer_id . "'");
