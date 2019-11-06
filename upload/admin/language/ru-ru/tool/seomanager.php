@@ -29,8 +29,7 @@ $_['entry_keyword']            = 'SEO URL';
 $_['entry_additional']         = 'Дополнительно';
 $_['entry_store']              = 'Магазин';
 $_['entry_route']              = 'Роут';
-$_['entry_route_view']         = 'Роут шаблона';
-$_['entry_parameter']          = 'Параметр';
+$_['entry_view']               = 'Роут шаблона';
 $_['entry_meta_title']         = 'Мета-тег Title';
 $_['entry_meta_h1']            = 'HTML-тег H1';
 $_['entry_meta_description']   = 'Мета-тег Description';
@@ -44,10 +43,10 @@ $_['tab_seourl']               = 'SEO URL';
 $_['tab_seotag']               = 'SEO META-TAG';
 
 // Help
-$_['help_route']               = 'Роут имеет следующий вид: information/contact - это расположение контроллера начиная от catalog/controller/';
-$_['help_route_view']          = 'Роут имеет следующий вид: information/contact - это расположение шаблона начиная от catalog/view/theme/%s/template/';
-$_['help_parameter']           = 'Параметр имеет следующий вид: information_id=1<br />';
-$_['help_keyword']             = 'Должно быть уникальным на всю систему, без пробелов и спецсимволов, и на латинице.';
+$_['help_query']               = 'Роут или параметр нужен для привязки SEO URL и META-TAGS к определённой странице. Роут имеет следующий вид: information/contact - это расположение контроллера начиная от catalog/controller/&lt;br /&gt;Параметр имеет вид типа: product_id=1';
+$_['help_route']               = 'Роут нужен для привязки мета-тегов к определённой странице. Роут имеет следующий вид: information/contact - это расположение контроллера начиная от catalog/controller/';
+$_['help_view']                = 'Роут шаблона нужен если вы хотите изменить шаблон для указанной страницы. Роут шаблона имеет следующий вид: information/contact - это расположение шаблона начиная от catalog/view/theme/%s/template/';
+$_['help_keyword']             = 'SEO URL должен быть уникальным на всю систему, без пробелов и спецсимволов, и на латинице.';
 
 // Button
 $_['button_clear_cache']       = 'Сбросить кэш';
@@ -59,7 +58,6 @@ $_['error_permission']         = 'У вас недостаточно прав д
 $_['error_query']              = 'Укажите Роут или параметр!';
 $_['error_keyword']            = 'SEO URL уже используется!';
 $_['error_route']              = 'Укажите Роут!';
-$_['error_route_view']         = 'Укажите Роут шаблона!';
 $_['error_meta_h1']            = 'HTML-тег H1 должен содержать от 0 до 300 символов!';
 $_['error_meta_title']         = 'Мета-тег Title должен содержать от 0 до 300 символов!';
 $_['error_meta_description']   = 'Мета-тег Description должен содержать от 0 до 300 символов!';
