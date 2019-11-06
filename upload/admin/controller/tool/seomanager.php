@@ -330,12 +330,6 @@ class ControllerToolSeoManager extends Controller {
 			$data['error_route'] = '';
 		}
 
-		if (isset($this->error['route_view'])) {
-			$data['error_route_view'] = $this->error['route_view'];
-		} else {
-			$data['error_route_view'] = '';
-		}
-
 		if (isset($this->error['meta_h1'])) {
 			$data['error_meta_h1'] = $this->error['meta_h1'];
 		} else {
@@ -611,12 +605,34 @@ class ControllerToolSeoManager extends Controller {
 			);
 		}
 
+		$url = '';
+
+		if (isset($this->request->get['filter_query'])) {
+			$url .= '&filter_query=' . urlencode($this->request->get['filter_query']);
+		}
+
+		if (isset($this->request->get['filter_keyword'])) {
+			$url .= '&filter_keyword=' . urlencode($this->request->get['filter_keyword']);
+		}
+
+		if (isset($this->request->get['filter_additional'])) {
+			$url .= '&filter_additional=' . urlencode($this->request->get['filter_additional']);
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
 		$pagination = new Pagination();
 		$pagination->total = $url_alias_total;
 		$pagination->page = $page_url;
 		$pagination->limit = $this->config->get('config_limit_admin');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . ($page_url == 1 ? '&page_url={page}' : false), true);
+		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '&page_url={page}', true);
 
 		$data['filter_query'] = $filter_query;
 		$data['filter_keyword'] = $filter_keyword;
@@ -627,12 +643,34 @@ class ControllerToolSeoManager extends Controller {
 		$data['pagination_url'] = $pagination->render();
 		$data['results_url'] = sprintf($this->language->get('text_pagination'), ($url_alias_total) ? (($page_url - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page_url - 1) * $this->config->get('config_limit_admin')) > ($url_alias_total - $this->config->get('config_limit_admin'))) ? $url_alias_total : ((($page_url - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $url_alias_total, ceil($url_alias_total / $this->config->get('config_limit_admin')));
 
+		$url = '';
+
+		if (isset($this->request->get['filter_store'])) {
+			$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
+		}
+
+		if (isset($this->request->get['filter_route'])) {
+			$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
+		}
+
+		if (isset($this->request->get['filter_keyword'])) {
+			$url .= '&filter_keyword=' . urlencode($this->request->get['filter_keyword']);
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
 		$pagination = new Pagination();
 		$pagination->total = $seo_tags_total;
 		$pagination->page = $page_tag;
 		$pagination->limit = $this->config->get('config_limit_admin');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . ($page_tag == 1 ? '&page_tag={page}' : false) . '#tab_seotag', true);
+		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '&page_tag={page}' . '#tab_seotag', true);
 
 		$data['filter_store'] = $filter_store;
 		$data['filter_route'] = $filter_route;
@@ -814,7 +852,6 @@ class ControllerToolSeoManager extends Controller {
 				$up = array(
 					'seo_tag_id' => 0,
 					'route'      => 'product/bestseller',
-					'route_view' => 'product/special',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
@@ -840,7 +877,6 @@ class ControllerToolSeoManager extends Controller {
 				$up = array(
 					'seo_tag_id' => 0,
 					'route'      => 'product/latest',
-					'route_view' => 'product/special',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
@@ -866,7 +902,6 @@ class ControllerToolSeoManager extends Controller {
 				$up = array(
 					'seo_tag_id' => 0,
 					'route'      => 'product/mostviewed',
-					'route_view' => 'product/special',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
@@ -892,7 +927,6 @@ class ControllerToolSeoManager extends Controller {
 				$up = array(
 					'seo_tag_id' => 0,
 					'route'      => 'product/special',
-					'route_view' => 'product/special',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
