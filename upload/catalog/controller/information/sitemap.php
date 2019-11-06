@@ -131,7 +131,7 @@ class ControllerInformationSitemap extends Controller {
 		$pro_blog_categories = $this->model_blog_category->getCategories($parent_id);
 
 		if ($pro_blog_categories) {
-			$output .= '<br/>';
+			//$output .= '<br/>';
 
 			if ($current_path) {
 				$output .= '                <ul>';
@@ -187,7 +187,7 @@ class ControllerInformationSitemap extends Controller {
 		$pro_manufacturers = $this->model_catalog_manufacturer->getManufacturers($parent_id);
 
 		if ($pro_manufacturers) {
-			$output .= '<br/>';
+			//$output .= '<br/>';
 
 			if ($current_path) {
 				$output .= '                <ul>';
