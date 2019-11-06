@@ -153,6 +153,8 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_encryption'] = $this->language->get('entry_encryption');
 		$data['entry_seo_url'] = $this->language->get('entry_seo_url');
 		$data['entry_seo_url_include_path'] = $this->language->get('entry_seo_url_include_path');
+		$data['entry_blog_full_path'] = $this->language->get('entry_blog_full_path');
+		$data['entry_manufacturers_full_path'] = $this->language->get('entry_manufacturers_full_path');
 		$data['entry_seo_url_postfix'] = $this->language->get('entry_seo_url_postfix');
 		$data['entry_compression'] = $this->language->get('entry_compression');
 		$data['entry_error_display'] = $this->language->get('entry_error_display');
@@ -215,6 +217,8 @@ class ControllerSettingSetting extends Controller {
 		$data['help_robots'] = $this->language->get('help_robots');
 		$data['help_seo_url'] = $this->language->get('help_seo_url');
 		$data['help_seo_url_include_path'] = $this->language->get('help_seo_url_include_path');
+		$data['help_blog_full_path'] = $this->language->get('help_blog_full_path');
+		$data['help_manufacturers_full_path'] = $this->language->get('help_manufacturers_full_path');
 		$data['help_seo_url_postfix'] = $this->language->get('help_seo_url_postfix');
 		$data['help_file_max_size'] = $this->language->get('help_file_max_size');
 		$data['help_file_ext_allowed'] = $this->language->get('help_file_ext_allowed');
@@ -1095,6 +1099,18 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seo_url_include_path'] = $this->request->post['config_seo_url_include_path'];
 		} else {
 			$data['config_seo_url_include_path'] = $this->config->get('config_seo_url_include_path');
+		}
+
+		if (isset($this->request->post['config_blog_full_path'])) {
+			$data['config_blog_full_path'] = $this->request->post['config_blog_full_path'];
+		} else {
+			$data['config_blog_full_path'] = $this->config->get('config_blog_full_path');
+		}
+
+		if (isset($this->request->post['config_manufacturers_full_path'])) {
+			$data['config_manufacturers_full_path'] = $this->request->post['config_manufacturers_full_path'];
+		} else {
+			$data['config_manufacturers_full_path'] = $this->config->get('config_manufacturers_full_path');
 		}
 
 		if (isset($this->request->post['config_seo_url_postfix'])) {
