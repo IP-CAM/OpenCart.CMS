@@ -111,23 +111,23 @@
 $('#button-filter').on('click', function() {
 	url = 'index.php?route=report/customer_search&token=<?php echo $token; ?>';
 
-  var filter_date_start = $('input[name=\'filter_date_start\']').val();
+	var filter_date_start = $('input[name=\'filter_date_start\']').val();
 
-  if (filter_date_start) {
-    url += '&filter_date_start=' + encodeURIComponent(filter_date_start);
-  }
+	if (filter_date_start) {
+		url += '&filter_date_start=' + encodeURIComponent(filter_date_start);
+	}
 
-  var filter_date_end = $('input[name=\'filter_date_end\']').val();
+	var filter_date_end = $('input[name=\'filter_date_end\']').val();
 
-  if (filter_date_end) {
-    url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
-  }
+	if (filter_date_end) {
+		url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
+	}
 
-  var filter_keyword = $('input[name=\'filter_keyword\']').val();
+	var filter_keyword = $('input[name=\'filter_keyword\']').val();
 
-  if (filter_keyword) {
-    url += '&filter_keyword=' + encodeURIComponent(filter_keyword);
-  }
+	if (filter_keyword) {
+		url += '&filter_keyword=' + encodeURIComponent(filter_keyword);
+	}
 
 	var filter_customer = $('input[name=\'filter_customer\']').val();
 
