@@ -9285,6 +9285,7 @@ DROP TABLE IF EXISTS `oc_pro_seo_tag`;
 CREATE TABLE `oc_pro_seo_tag` (
   `seo_tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `route` varchar(500) NOT NULL,
+  `route_view` varchar(500) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
