@@ -169,7 +169,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-sm-4 text-right">
+            <div class="col-sm-12 text-right">
               <button type="button" id="button-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
               <button type="button" id="button-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
             </div>
