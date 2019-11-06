@@ -33,18 +33,6 @@ class ControllerToolSeoManager extends Controller {
 				$url .= '&filter_keyword=' . urlencode($this->request->get['filter_keyword']);
 			}
 
-			if (isset($this->request->get['filter_additional'])) {
-				$url .= '&filter_additional=' . urlencode($this->request->get['filter_additional']);
-			}
-
-			if (isset($this->request->get['filter_store'])) {
-				$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
-			}
-
-			if (isset($this->request->get['filter_route'])) {
-				$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
-			}
-
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -59,16 +47,24 @@ class ControllerToolSeoManager extends Controller {
 				$url .= '&page_tag=' . $this->request->get['page_tag'];
 			}
 
-			if (isset($this->request->post['query'])) {
+			if (isset($this->request->post['query']) && !isset($this->request->post['meta'])) {
 				$this->model_tool_seomanager->updateUrlAlias($this->request->post);
 
 				$this->session->data['success'] = $this->language->get('success_update_url');
 
+				if (isset($this->request->get['filter_additional'])) {
+					$url .= '&filter_additional=' . urlencode($this->request->get['filter_additional']);
+				}
+
 				$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, true));
-			} elseif (isset($this->request->post['route'])) {
+			} elseif (isset($this->request->post['meta'])) {
 				$this->model_tool_seomanager->updateSeoTag($this->request->post);
 
 				$this->session->data['success'] = $this->language->get('success');
+
+				if (isset($this->request->get['filter_store'])) {
+					$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
+				}
 
 				$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '#tab_seotag', true));
 			}
@@ -106,10 +102,6 @@ class ControllerToolSeoManager extends Controller {
 
 			if (isset($this->request->get['filter_store'])) {
 				$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
-			}
-
-			if (isset($this->request->get['filter_route'])) {
-				$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
 			}
 
 			if (isset($this->request->get['sort'])) {
@@ -150,18 +142,6 @@ class ControllerToolSeoManager extends Controller {
 				$url .= '&filter_keyword=' . urlencode($this->request->get['filter_keyword']);
 			}
 
-			if (isset($this->request->get['filter_additional'])) {
-				$url .= '&filter_additional=' . urlencode($this->request->get['filter_additional']);
-			}
-
-			if (isset($this->request->get['filter_store'])) {
-				$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
-			}
-
-			if (isset($this->request->get['filter_route'])) {
-				$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
-			}
-
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -183,6 +163,10 @@ class ControllerToolSeoManager extends Controller {
 
 				$this->session->data['success'] = $this->language->get('success_delete_url');
 
+				if (isset($this->request->get['filter_additional'])) {
+					$url .= '&filter_additional=' . urlencode($this->request->get['filter_additional']);
+				}
+
 				$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, true));
 			} elseif (isset($this->request->post['selected_tag'])) {
 				foreach ($this->request->post['selected_tag'] as $seo_tag_id) {
@@ -190,6 +174,10 @@ class ControllerToolSeoManager extends Controller {
 				}
 
 				$this->session->data['success'] = $this->language->get('success_delete_tag');
+
+				if (isset($this->request->get['filter_store'])) {
+					$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
+				}
 
 				$this->response->redirect($this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '#tab_seotag', true));
 			} else {
@@ -216,7 +204,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['column_query'] = $this->language->get('column_query');
 		$data['column_keyword'] = $this->language->get('column_keyword');
 		$data['column_store'] = $this->language->get('column_store');
-		$data['column_route'] = $this->language->get('column_route');
+		$data['column_query'] = $this->language->get('column_query');
 		$data['column_action'] = $this->language->get('column_action');
 
 		$data['entry_query'] = $this->language->get('entry_query');
@@ -224,7 +212,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['entry_additional'] = $this->language->get('entry_additional');
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_route'] = $this->language->get('entry_route');
-		$data['entry_route_view'] = $this->language->get('entry_route_view');
+		$data['entry_view'] = $this->language->get('entry_view');
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_meta_h1'] = $this->language->get('entry_meta_h1');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
@@ -235,7 +223,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['entry_status'] = $this->language->get('entry_status');
 
 		$data['help_route'] = $this->language->get('help_route');
-		$data['help_route_view'] = sprintf($this->language->get('help_route_view'), $this->config->get('theme_' . str_replace('theme_', '', $this->config->get('config_theme')) . '_directory'));
+		$data['help_view'] = sprintf($this->language->get('help_view'), $this->config->get('theme_' . str_replace('theme_', '', $this->config->get('config_theme')) . '_directory'));
 		$data['help_parameter'] = $this->language->get('help_parameter');
 		$data['help_keyword'] = $this->language->get('help_keyword');
 
@@ -269,10 +257,6 @@ class ControllerToolSeoManager extends Controller {
 
 		if (isset($this->request->get['filter_store'])) {
 			$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
-		}
-
-		if (isset($this->request->get['filter_route'])) {
-			$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -322,12 +306,6 @@ class ControllerToolSeoManager extends Controller {
 			$data['error_keyword_url'] = $this->error['keyword_url'];
 		} else {
 			$data['error_keyword_url'] = '';
-		}
-
-		if (isset($this->error['route'])) {
-			$data['error_route'] = $this->error['route'];
-		} else {
-			$data['error_route'] = '';
 		}
 
 		if (isset($this->error['meta_h1'])) {
@@ -412,16 +390,10 @@ class ControllerToolSeoManager extends Controller {
 			$data['selected_tag'] = array();
 		}
 
-		if (isset($this->request->post['route'])) {
-			$data['route'] = $this->request->post['route'];
+		if (isset($this->request->post['view'])) {
+			$data['view'] = $this->request->post['view'];
 		} else {
-			$data['route'] = false;
-		}
-
-		if (isset($this->request->post['route_view'])) {
-			$data['route_view'] = $this->request->post['route_view'];
-		} else {
-			$data['route_view'] = false;
+			$data['view'] = false;
 		}
 
 		if (isset($this->request->post['meta'])) {
@@ -530,30 +502,6 @@ class ControllerToolSeoManager extends Controller {
 			$filter_store = -1;
 		}
 
-		if (isset($this->request->get['filter_route'])) {
-			$filter_route = $this->request->get['filter_route'];
-		} else {
-			$filter_route = null;
-		}
-
-		if (isset($this->request->get['filter_keyword'])) {
-			$filter_keyword = $this->request->get['filter_keyword'];
-		} else {
-			$filter_keyword = null;
-		}
-
-		if (isset($this->request->get['sort'])) {
-			$sort = $this->request->get['sort'];
-		} else {
-			$sort = false;
-		}
-
-		if (isset($this->request->get['order'])) {
-			$order = $this->request->get['order'];
-		} else {
-			$order = 'ASC';
-		}
-
 		if (isset($this->request->get['page_tag'])) {
 			$page_tag = $this->request->get['page_tag'];
 		} else {
@@ -562,7 +510,7 @@ class ControllerToolSeoManager extends Controller {
 
 		$filterdata = array(
 			'filter_store'      => $filter_store,
-			'filter_route'      => $filter_route,
+			'filter_query'      => $filter_query,
 			'filter_keyword'    => $filter_keyword,
 			'sort'              => $sort, 
 			'order'             => $order, 
@@ -595,8 +543,8 @@ class ControllerToolSeoManager extends Controller {
 				'seo_tag_id'   => $result['seo_tag_id'],
 				'store_id'     => $store_id,
 				'store'        => $store_data,
-				'route'        => $result['route'],
-				'route_view'   => $result['route_view'],
+				'query'        => $result['query'],
+				'view'         => $result['view'],
 				'meta'         => $this->model_tool_seomanager->getSeoTagMeta($result['seo_tag_id']),
 				'keyword'      => $result['keyword'],
 				'status'       => $result['status'],
@@ -649,8 +597,8 @@ class ControllerToolSeoManager extends Controller {
 			$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
 		}
 
-		if (isset($this->request->get['filter_route'])) {
-			$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
+		if (isset($this->request->get['filter_query'])) {
+			$url .= '&filter_query=' . urlencode($this->request->get['filter_query']);
 		}
 
 		if (isset($this->request->get['filter_keyword'])) {
@@ -673,10 +621,6 @@ class ControllerToolSeoManager extends Controller {
 		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '&page_tag={page}' . '#tab_seotag', true);
 
 		$data['filter_store'] = $filter_store;
-		$data['filter_route'] = $filter_route;
-		$data['filter_keyword'] = $filter_keyword;
-		$data['sort'] = $sort;
-		$data['order'] = $order;
 
 		$data['pagination_tag'] = $pagination->render();
 		$data['results_tag'] = sprintf($this->language->get('text_pagination'), ($seo_tags_total) ? (($page_tag - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page_tag - 1) * $this->config->get('config_limit_admin')) > ($seo_tags_total - $this->config->get('config_limit_admin'))) ? $seo_tags_total : ((($page_tag - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $seo_tags_total, ceil($seo_tags_total / $this->config->get('config_limit_admin')));
@@ -705,8 +649,8 @@ class ControllerToolSeoManager extends Controller {
 			$url .= '&page_url=' . $this->request->get['page_url'];
 		}
 
-		$data['sort_query'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=ua.query' . $url, true);
-		$data['sort_keyword'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=ua.keyword' . $url, true);
+		$data['sort_query_url'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=ua.query' . $url, true);
+		$data['sort_keyword_url'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=ua.keyword' . $url, true);
 
 		$url = '';
 
@@ -714,8 +658,8 @@ class ControllerToolSeoManager extends Controller {
 			$url .= '&filter_store=' . urlencode($this->request->get['filter_store']);
 		}
 
-		if (isset($this->request->get['filter_route'])) {
-			$url .= '&filter_route=' . urlencode($this->request->get['filter_route']);
+		if (isset($this->request->get['filter_query'])) {
+			$url .= '&filter_query=' . urlencode($this->request->get['filter_query']);
 		}
 
 		if (isset($this->request->get['filter_keyword'])) {
@@ -733,7 +677,7 @@ class ControllerToolSeoManager extends Controller {
 		}
 
 		$data['sort_store'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=st.store' . $url . '#tab_seotag', true);
-		$data['sort_route'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=st.route' . $url . '#tab_seotag', true);
+		$data['sort_query_tag'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=st.query' . $url . '#tab_seotag', true);
 		$data['sort_keyword_tag'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=st.keyword' . $url . '#tab_seotag', true);
 
 		$data['header'] = $this->load->controller('common/header');
@@ -758,9 +702,9 @@ class ControllerToolSeoManager extends Controller {
 			}
 		}
 
-		if (isset($this->request->post['route'])) {
-			if (!$this->request->post['route']) {
-				$this->error['route'] = $this->language->get('error_route');
+		if (isset($this->request->post['query']) && isset($this->request->post['meta'])) {
+			if (!$this->request->post['query']) {
+				$this->error['query'] = $this->language->get('error_query');
 				$this->error['warning'] = $this->language->get('error_warning');
 			}
 		}
@@ -796,21 +740,13 @@ class ControllerToolSeoManager extends Controller {
 				$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
 
 				if ($url_alias_info && $url_alias_info['query'] != $this->request->post['query']) {
-					$this->error['keyword_url'] = sprintf($this->language->get('error_keyword')) . ' <a href="' . $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&filter_query=' . $url_alias_info['query'], true) . '" target="_blank">' . $url_alias_info['query'] . '</a>';
-					$this->error['warning'] = $this->language->get('error_warning');
-				}
-			}
-		}
-
-		if (isset($this->request->post['route']) && isset($this->request->post['keyword'])) {
-			if (utf8_strlen($this->request->post['keyword']) > 0) {
-				$this->load->model('catalog/url_alias');
-
-				$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-
-				if ($url_alias_info && $url_alias_info['query'] != $this->request->post['route']) {
-					$this->error['keyword_tag'] = sprintf($this->language->get('error_keyword')) . ' <a href="' . $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&filter_query=' . $url_alias_info['query'], true) . '" target="_blank">' . $url_alias_info['query'] . '</a>';
-					$this->error['warning'] = $this->language->get('error_warning');
+					if (!isset($this->request->post['meta'])) {
+						$this->error['keyword_url'] = sprintf($this->language->get('error_keyword')) . ' <a href="' . $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&filter_query=' . $url_alias_info['query'], true) . '" target="_blank">' . $url_alias_info['query'] . '</a>';
+						$this->error['warning'] = $this->language->get('error_warning');
+					} else {
+						$this->error['keyword_tag'] = sprintf($this->language->get('error_keyword')) . ' <a href="' . $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&filter_query=' . $url_alias_info['query'], true) . '" target="_blank">' . $url_alias_info['query'] . '</a>';
+						$this->error['warning'] = $this->language->get('error_warning');
+					}
 				}
 			}
 		}
@@ -834,7 +770,7 @@ class ControllerToolSeoManager extends Controller {
 			$this->load->model('setting/setting');
 
 			$languages = $this->model_localisation_language->getLanguages();
-			
+
 			if ($this->config->get('seomanager_meta_title_bestseller')) {
 				$meta = array();
 
@@ -851,7 +787,7 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'product/bestseller',
+					'query'      => 'product/bestseller',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
@@ -876,7 +812,7 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'product/latest',
+					'query'      => 'product/latest',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
@@ -901,7 +837,7 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'product/mostviewed',
+					'query'      => 'product/mostviewed',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
@@ -926,7 +862,7 @@ class ControllerToolSeoManager extends Controller {
 
 				$up = array(
 					'seo_tag_id' => 0,
-					'route'      => 'product/special',
+					'query'      => 'product/special',
 					'meta'       => $meta,
 					'status'     => 1,
 					'store'      => array(0)
