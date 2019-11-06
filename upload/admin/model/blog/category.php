@@ -44,7 +44,7 @@ class ModelBlogCategory extends Model {
 			}
 		}
 
-		if (isset($data['keyword']) && !empty($data['keyword'])) {
+		if (!empty($data['keyword'])) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_category_id=" . (int)$blog_category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
@@ -137,7 +137,7 @@ class ModelBlogCategory extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_category_id=" . (int)$blog_category_id . "'");
 
-		if ($data['keyword']) {
+		if (!empty($data['keyword'])) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_category_id=" . (int)$blog_category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
@@ -298,7 +298,6 @@ class ModelBlogCategory extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog_category_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
 
 		return $query->row['total'];
-
 	}
 
 	public function getCategoriesByParentId($parent_id = 0) {
