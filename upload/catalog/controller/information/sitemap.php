@@ -75,7 +75,7 @@ class ControllerInformationSitemap extends Controller {
 			);
 		}
 
-		$data['pro_blog_categories'] = array();
+		$data['pro_blog_categories'] = false;
 
 		if ($this->config->get('configblog_sitemap')) {
 			$this->load->model('blog/category');
@@ -83,7 +83,7 @@ class ControllerInformationSitemap extends Controller {
 			$data['pro_blog_categories'] = $this->getProBlogCategories(0);
 		}
 
-		$data['pro_manufacturers'] = array();
+		$data['pro_manufacturers'] = false;
 
 		$this->config->set('config_manufacturers_sitemap', 1);
 		if ($this->config->get('config_manufacturers_sitemap')) {
