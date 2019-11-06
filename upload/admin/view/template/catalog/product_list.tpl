@@ -346,6 +346,7 @@ $('#button-filter').on('click', function() {
 
 	location = url;
 });
+
 $('#button-clear-filter').on('click', function() {
 	location = 'index.php?route=catalog/product&token=<?php echo $token; ?>';
 });
@@ -370,6 +371,7 @@ $('input[name=\'filter_name\']').autocomplete({
 		$('input[name=\'filter_name\']').val(item['label']);
 	}
 });
+
 $('#button-clear-input-name').on('click',function(){
 	$('input[name=\'filter_name\']').val('');
 	$('#button-filter').trigger('click');
@@ -399,6 +401,7 @@ $('#button-clear-input-model').on('click',function(){
 	$('input[name=\'filter_model\']').val('');
 	$('#button-filter').trigger('click');
 });
+
 $('input[name=\'filter_category_name\']').autocomplete({
 	'source': function(request, response) {
 		if ($('input[name=\'filter_category_name\']').val().length==0) {
