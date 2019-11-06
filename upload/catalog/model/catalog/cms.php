@@ -166,10 +166,10 @@ class ModelCatalogCms extends Model {
 
 		$this->load->model('catalog/product');
 
-		$product_data = array();
 		$language_id = (int)$this->config->get('config_language_id');
 		$store_id = (int)$this->config->get('config_store_id');
 		$customer_group_id = (int)$this->config->get('config_customer_group_id');
+		$product_data = false;
 		//$cache = $this->config->get('turbo_status');
 		$cache = false;
 
@@ -178,6 +178,8 @@ class ModelCatalogCms extends Model {
 		}
 
 		if (!$product_data) {
+			$product_data = array();
+
 			$sql = "SELECT * FROM (SELECT p.product_id, 
 			(SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = p.product_id 
 			AND r1.status = '1' GROUP BY r1.product_id) AS rating, (SELECT price FROM " . DB_PREFIX . "product_discount pd2 
