@@ -235,7 +235,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['entry_status'] = $this->language->get('entry_status');
 
 		$data['help_route'] = $this->language->get('help_route');
-		$data['help_route_view'] = $this->language->get('help_route_view');
+		$data['help_route_view'] = sprintf($this->language->get('help_route_view'), $this->config->get('theme_' . str_replace('theme_', '', $this->config->get('config_theme')) . '_directory'));
 		$data['help_parameter'] = $this->language->get('help_parameter');
 		$data['help_keyword'] = $this->language->get('help_keyword');
 
