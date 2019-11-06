@@ -145,7 +145,7 @@ class ModelToolSeoManager extends Model {
 
 	public function updateSeoTag($data) {
 		if ((int)$data['seo_tag_id']) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "pro_seo_tag` SET route = '" . $this->db->escape($data['route']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE seo_tag_id = '" . (int)$data['seo_tag_id'] . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "pro_seo_tag` SET route = '" . $this->db->escape($data['route']) . "', route_view = '" . $this->db->escape($data['route_view']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE seo_tag_id = '" . (int)$data['seo_tag_id'] . "'");
 
 			$this->db->query("DELETE FROM " . DB_PREFIX . "pro_seo_tag_description WHERE seo_tag_id = '" . (int)$data['seo_tag_id'] . "'");
 
@@ -153,7 +153,7 @@ class ModelToolSeoManager extends Model {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "pro_seo_tag_description` SET seo_tag_id = '" . (int)$data['seo_tag_id'] . "', language_id = '" . (int)$language_id . "', meta_h1 = '" .  $this->db->escape($meta['meta_h1']) . "', meta_title = '" .  $this->db->escape($meta['meta_title']) . "', meta_description = '" .  $this->db->escape($meta['meta_description']) . "', meta_keyword = '" .  $this->db->escape($meta['meta_keyword']) . "', description = '" .  $this->db->escape($meta['description']) . "', description_bottom = '" .  $this->db->escape($meta['description_bottom']) . "'");
 			}
 		} else {
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "pro_seo_tag` SET route = '" . $this->db->escape($data['route']) . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "pro_seo_tag` SET route = '" . $this->db->escape($data['route']) . "', route_view = '" . $this->db->escape($data['route_view']) . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
 
 			$data['seo_tag_id'] = $this->db->getLastId();
 
