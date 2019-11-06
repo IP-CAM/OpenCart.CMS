@@ -106,13 +106,15 @@
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?></a>
-                    <?php } ?></td>
+                    <?php } ?>
+                  </td>
                   <td class="text-left"><?php if ($sort == 'p.status') { ?>
                     <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
-                    <?php } ?></td>
-				  <td class="text-left"><?php if ($sort == 'p.noindex') { ?>
+                    <?php } ?>
+                  </td>
+                  <td class="text-left"><?php if ($sort == 'p.noindex') { ?>
                     <a href="<?php echo $sort_noindex; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_noindex; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_noindex; ?>"><?php echo $column_noindex; ?></a>
@@ -128,19 +130,21 @@
                     <input type="checkbox" name="selected[]" value="<?php echo $article['article_id']; ?>" checked="checked" />
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $article['article_id']; ?>" />
-                    <?php } ?></td>
+                    <?php } ?>
+                  </td>
                   <td class="text-center"><?php if ($article['image']) { ?>
                     <img src="<?php echo $article['image']; ?>" alt="<?php echo $article['name']; ?>" class="img-thumbnail" />
                     <?php } else { ?>
                     <span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
-                    <?php } ?></td>
+                    <?php } ?>
+                  </td>
                   <td class="text-left"><?php echo $article['name']; ?></td>
                   <td class="text-left"><?php echo $article['status']; ?></td>
-				  <td class="text-left"><?php echo $article['noindex']; ?></td>
+                  <td class="text-left"><?php echo $article['noindex']; ?></td>
                   <td class="text-right">
-				  <a target="_blank" href="<?php echo $article['href_shop']; ?>" data-toggle="tooltip" title="<?php echo $button_shop; ?>" class="btn btn-success"><i class="fa fa-eye"></i></a>
-				  <a href="<?php echo $article['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-				  </td>
+                    <a target="_blank" href="<?php echo $article['href_shop']; ?>" data-toggle="tooltip" title="<?php echo $button_shop; ?>" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                    <a href="<?php echo $article['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                  </td>
                 </tr>
                 <?php } ?>
                 <?php } else { ?>
@@ -195,6 +199,7 @@ $('#button-filter').on('click', function() {
 
 	location = url;
 });
+
 $('#button-clear-filter').on('click', function() {
 	location = 'index.php?route=blog/article&token=<?php echo $token; ?>';
 });
@@ -256,5 +261,6 @@ $('#button-clear-input-category-name').on('click',function(){
 	$('input[name=\'filter_category\']').val(null);
 	$('#button-filter').trigger('click');
 });
-//--></script></div>
+//--></script>
+</div>
 <?php echo $footer; ?>
