@@ -70,13 +70,13 @@ final class Loader {
 	}
 
 	public function view($route, $data = array()) {
+		if (!isset($data['description'])) {
+			$data['description'] = false;
+		}
+		if (!isset($data['description_bottom'])) {
+			$data['description_bottom'] = false;
+		}
 		if (isset($this->registry->get('request')->get['route'])) {
-			if (!isset($data['description'])) {
-				$data['description'] = false;
-			}
-			if (!isset($data['description_bottom'])) {
-				$data['description_bottom'] = false;
-			}
 			if (strpos($route, $this->registry->get('request')->get['route']) !== false/*  || strpos($route, 'common/header') !== false */  || strpos($route, 'common/footer') !== false) {
 				$seomanager = $this->registry->get('db')->query("SELECT * FROM `" . DB_PREFIX . "pro_seo_tag` st LEFT JOIN `" . DB_PREFIX . "pro_seo_tag_to_store` stts ON (st.seo_tag_id = stts.seo_tag_id) WHERE st.status = '1' AND st.route = '" . $this->registry->get('db')->escape($this->registry->get('request')->get['route']) . "' AND stts.store_id = '" . (int)$this->registry->get('config')->get('config_store_id') . "'")->row;
 
