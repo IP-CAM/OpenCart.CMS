@@ -150,13 +150,13 @@
               </tbody>
             </table>
           </div>
-	    </form>
+        </form>
         <div class="row">
           <div class="col-sm-6 text-left"><?php echo $pagination_url; ?></div>
           <div class="col-sm-6 text-right"><?php echo $results_url; ?></div>
         </div>
       </div>
-	  <div class="tab-pane" id="tab_seotag">
+      <div class="tab-pane" id="tab_seotag">
         <div class="well">
           <div class="row">
             <div class="col-sm-4">
@@ -198,6 +198,13 @@
                     <input type="text" name="route" value="<?php echo $route; ?>" class="form-control" />
                     <?php if ($error_route) { ?>
                     <div class="text-danger"><?php echo $error_route; ?></div>
+                    <?php } ?>
+                  </div>
+		  <div class="form-group required">
+                    <label class="control-label" for="input-query"><span data-toggle="tooltip" title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
+                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" />
+                    <?php if ($error_route_view) { ?>
+                    <div class="text-danger"><?php echo $error_route_view; ?></div>
                     <?php } ?>
                   </div>
                   <ul class="tab-language nav nav-tabs">
@@ -348,6 +355,13 @@
                     <div class="text-danger"><?php echo $error_route; ?></div>
                     <?php } ?>
                   </div>
+		  <div class="form-group required">
+                    <label class="control-label" for="input-query"><span data-toggle="tooltip" title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
+                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" />
+                    <?php if ($error_route_view) { ?>
+                    <div class="text-danger"><?php echo $error_route_view; ?></div>
+                    <?php } ?>
+                  </div>
                   <ul class="tab-language nav nav-tabs">
                     <?php foreach ($languages as $language) { ?>
                     <li><a href="#language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
@@ -442,7 +456,7 @@
               </tbody>
             </table>
           </div>
-	    </form>
+        </form>
         <div class="row">
           <div class="col-sm-6 text-left"><?php echo $pagination_tag; ?></div>
           <div class="col-sm-6 text-right"><?php echo $results_tag; ?></div>
