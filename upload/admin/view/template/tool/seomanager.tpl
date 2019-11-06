@@ -478,6 +478,10 @@ $('#button-url-filter').on('click', function() {
 	location = url;
 });
 
+$('#button-url-clear-filter').on('click', function() {
+	location = 'index.php?route=tool/seomanager&token=<?php echo $token; ?>';
+});
+
 $('#button-tag-filter').on('click', function() {
 	url = 'index.php?route=tool/seomanager&token=<?php echo $token; ?>';
 
@@ -504,8 +508,8 @@ $('#button-tag-filter').on('click', function() {
 	location = url;
 });
 
-$('#button-url-clear-filter, #button-tag-clear-filter').on('click', function() {
-	location = 'index.php?route=tool/seomanager&token=<?php echo $token; ?>';
+$('#button-tag-clear-filter').on('click', function() {
+	location = 'index.php?route=tool/seomanager&token=<?php echo $token; ?>#tab_seotag';
 });
 //--></script> 
 <script type="text/javascript"><!--
