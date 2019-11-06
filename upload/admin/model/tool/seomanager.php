@@ -172,7 +172,7 @@ class ModelToolSeoManager extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = '" . $this->db->escape($data['route']) . "'");
 
-		if (isset($data['keyword'])) {
+		if (!empty($data['keyword'])) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = '" . $this->db->escape($data['route']) . "', keyword = '" . $this->db->escape($data['keyword']) . "', seomanager = '1'");
 		}
 
