@@ -44,27 +44,11 @@ class ControllerProductLatest extends Controller {
 			$this->max = $limit;
 		}
 
-		if ($this->config->get('seomanager_meta_title_latest')) {
-			$this->document->setTitle($this->config->get('seomanager_meta_title_latest'));
-		} else {
-			$this->document->setTitle($this->language->get('heading_title'));
-		}
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		if ($this->config->get('seomanager_html_h1_latest')) {
-			$data['heading_title'] = $this->config->get('seomanager_html_h1_latest');
-		} else {
-			$data['heading_title'] = $this->language->get('heading_title');
-		}
+		$data['heading_title'] = $this->language->get('heading_title');
 
-		if ($this->config->get('seomanager_meta_description_latest')) {
-			$this->document->setDescription($this->config->get('seomanager_meta_description_latest'));
-		}
-
-		if ($this->config->get('seomanager_meta_keyword_latest')) {
-			$this->document->setKeywords($this->config->get('seomanager_meta_keyword_latest'));
-		}
-
-		$data['description'] = html_entity_decode(($this->config->get('seomanager_description_latest')), ENT_QUOTES, 'UTF-8');
+		$data['description'] = false;
 
 		$data['breadcrumbs'] = array();
 
