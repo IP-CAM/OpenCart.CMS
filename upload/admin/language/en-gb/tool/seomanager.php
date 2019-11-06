@@ -29,6 +29,7 @@ $_['entry_keyword']            = 'SEO URL';
 $_['entry_additional']         = 'Advanced';
 $_['entry_store']              = 'Store';
 $_['entry_route']              = 'Route';
+$_['entry_route_view']         = 'Template Route';
 $_['entry_parameter']          = 'Parameter';
 $_['entry_meta_title']         = 'Meta-Tag Title';
 $_['entry_meta_h1']            = 'HTML-Tag H1';
@@ -43,7 +44,8 @@ $_['tab_seourl']               = 'SEO URL';
 $_['tab_seotag']               = 'SEO META-TAG';
 
 // Help
-$_['help_route']               = 'The route has the following form: information/contact<br />';
+$_['help_route']               = 'The route has the following form: information/contact is the controller location path starting from catalog/controller/<br />';
+$_['help_route_view']          = 'The template route looks like this: information/contact is the location of the template starting from  catalog/view/theme/%s/template/<br />';
 $_['help_parameter']           = 'The parameter has the following form: information_id=1<br />';
 $_['help_keyword']             = 'Must be unique for the whole system, without spaces and special characters, and in Latin.';
 
@@ -56,7 +58,8 @@ $_['error_warning']            = 'Carefully check the form for errors!';
 $_['error_permission']         = 'You do not have sufficient privileges to make changes!';
 $_['error_query']              = 'Specify a Route or parameter!';
 $_['error_keyword']            = 'SEO URL is already in use!';
-$_['error_route']              = 'Indicate Route!';
+$_['error_route']              = 'Specify Route!';
+$_['error_route_view']         = 'Specify Route Template!';
 $_['error_meta_h1']            = 'The H1 HTML tag must be between 0 and 300 characters!';
 $_['error_meta_title']         = 'Title meta tag must be between 0 and 300 characters!';
 $_['error_meta_description']   = 'Description meta tag must be between 0 and 300 characters!';
