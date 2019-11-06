@@ -173,7 +173,7 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label class="control-label" for="input-filter-route"><?php echo $entry_route; ?></label>
-                <input type="text" name="filter_route" value="<?php echo $filter_route; ?>" placeholder="<?php echo $entry_route; ?>" id="input-filter-query" class="form-control" />
+                <input type="text" name="filter_query" value="<?php echo $filter_query; ?>" placeholder="<?php echo $entry_route; ?>" id="input-filter-route" class="form-control" />
               </div>
             </div>
             <div class="col-sm-4">
@@ -195,14 +195,14 @@
                 <div class="meta">
                   <div class="form-group required">
                     <label class="control-label" for="input-query"><span title="<?php echo $help_route; ?>"><?php echo $entry_route; ?></span>:</label>
-                    <input type="text" name="route" value="<?php echo $route; ?>" class="form-control" />
-                    <?php if ($error_route) { ?>
-                    <div class="text-danger"><?php echo $error_route; ?></div>
+                    <input type="text" name="query" value="<?php echo $query; ?>" class="form-control" />
+                    <?php if ($error_query) { ?>
+                    <div class="text-danger"><?php echo $error_query; ?></div>
                     <?php } ?>
                   </div>
                   <div class="form-group">
-                    <label class="control-label" for="input-query"><span title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
-                    <span title="<?php echo $help_route_view; ?>"><input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" /></span>
+                    <label class="control-label" for="input-view"><span title="<?php echo $help_view; ?>"><?php echo $entry_view; ?></span>:</label>
+                    <span title="<?php echo $help_view; ?>"><input type="text" name="view" value="<?php echo $seo_tag['view']; ?>" class="form-control" /></span>
                   </div>
                   <ul class="tab-language nav nav-tabs">
                     <?php foreach ($languages as $language) { ?>
@@ -308,9 +308,9 @@
                   </td>
                   <td class="center">
                     <?php if ($sort == 'st.query') { ?>
-                    <a href="<?php echo $sort_route; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_route; ?></a>
+                    <a href="<?php echo $sort_query_tag; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_query; ?></a>
                     <?php } else { ?>
-                    <a href="<?php echo $sort_route; ?>"><?php echo $column_route; ?></a>
+                    <a href="<?php echo $sort_query_tag; ?>"><?php echo $column_query; ?></a>
                     <?php } ?>
                   </td>
                   <td class="left">
@@ -337,24 +337,24 @@
                   <td class="left">
                     <?php foreach ($seo_tag['store'] as $key => $store) { ?>
                     <?php if ($key) { ?>,<br /><?php } ?>
-                    <a href="<?php echo $store['url']; ?>index.php?route=<?php echo $seo_tag['route']; ?>" target="_blank"><?php echo $store['name']; ?></a>
+                    <a href="<?php echo $store['url']; ?>index.php?route=<?php echo $seo_tag['query']; ?>" target="_blank"><?php echo $store['name']; ?></a>
                     <?php } ?>
                   </td>
-                  <td class="left"><?php echo $seo_tag['route']; ?></td>
+                  <td class="left"><?php echo $seo_tag['query']; ?></td>
                   <td class="left"><?php echo $seo_tag['keyword']; ?></td>
                   <td class="text-right"><a onclick="editTag(<?php echo $seo_tag['seo_tag_id']; ?>)" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></a></td>
                 </tr>
                 <div class="meta<?php echo $seo_tag['seo_tag_id']; ?>" style="display:none">
                   <div class="form-group required">
                     <label class="control-label" for="input-query"><span title="<?php echo $help_route; ?>"><?php echo $entry_route; ?></span>:</label>
-                    <input type="text" name="route" value="<?php echo $seo_tag['route']; ?>" class="form-control" />
-                    <?php if ($error_route) { ?>
-                    <div class="text-danger"><?php echo $error_route; ?></div>
+                    <input type="text" name="query" value="<?php echo $seo_tag['query']; ?>" class="form-control" />
+                    <?php if ($error_query) { ?>
+                    <div class="text-danger"><?php echo $error_query; ?></div>
                     <?php } ?>
                   </div>
                   <div class="form-group">
-                    <label class="control-label" for="input-query"><span title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
-                    <span title="<?php echo $help_route_view; ?>"><input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" /></span>
+                    <label class="control-label" for="input-query"><span title="<?php echo $help_view; ?>"><?php echo $entry_view; ?></span>:</label>
+                    <span title="<?php echo $help_view; ?>"><input type="text" name="view" value="<?php echo $seo_tag['view']; ?>" class="form-control" /></span>
                   </div>
                   <ul class="tab-language nav nav-tabs">
                     <?php foreach ($languages as $language) { ?>
@@ -499,10 +499,10 @@ $('#button-tag-filter').on('click', function() {
 		url += '&filter_store=' + encodeURIComponent(filter_store);
 	}
 
-	var filter_route = $('#tab_seotag input[name=\'filter_route\']').val();
+	var filter_query = $('#tab_seotag input[name=\'filter_query\']').val();
 
-	if (filter_route) {
-		url += '&filter_route=' + encodeURIComponent(filter_route);
+	if (filter_query) {
+		url += '&filter_query=' + encodeURIComponent(filter_query);
 	}
 
 	var filter_keyword = $('#tab_seotag input[name=\'filter_keyword\']').val();
@@ -536,7 +536,7 @@ function editTag(seo_tag_id) {
 	$('#form-tag-add input[name="seo_tag_id"]').val(seo_tag_id);
 	$('.active #form-tag-add').show();
 	$('#form-tag-add .tab-language a:first').tab('show');
-	$('#form-tag-add input[name="route"]').focus();
+	$('#form-tag-add input[name="query"]').focus();
 	loadSummernote(true);
 
 	return false;
@@ -588,7 +588,7 @@ $(document).ready(function() {
 		}
 	});
 
-<?php if ($error_query || $error_keyword_url) { ?>
+<?php if ($error_query_url || $error_keyword_url) { ?>
 	hash = window.location.hash;
 
 	if (hash != '#tab_seourl') {
@@ -612,7 +612,7 @@ $(document).ready(function() {
 	loadSummernote();
 <?php } ?>	  
 <?php } ?>
-<?php if ($error_route || $error_keyword_tag) { ?>
+<?php if ($error_query || $error_keyword_tag) { ?>
 	hash = window.location.hash;
 
 	if (hash != '#tab_seotag') {
