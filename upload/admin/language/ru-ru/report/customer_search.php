@@ -1,6 +1,6 @@
 <?php
-// *	@copyright	OPENCART.PRO 2011 - 2017.
-// *	@forum	http://forum.opencart.pro
+// *	@copyright	OPENCART.PRO 2011 - 2020.
+// *	@forum		http://forum.opencart.pro
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -26,3 +26,10 @@ $_['entry_date_end']      = 'Дата окончания';
 $_['entry_keyword']       = 'Запрос';
 $_['entry_customer']      = 'Покупатель';
 $_['entry_ip']            = 'IP';
+
+// Success
+$_['success']             = 'Данные успешно обновлены!';
+$_['success_clear']       = 'Список поисковых запросов успешно очищен!';
+
+// Error
+$_['error_permission']    = 'У вас недостаточно прав для внесения изменений!';
