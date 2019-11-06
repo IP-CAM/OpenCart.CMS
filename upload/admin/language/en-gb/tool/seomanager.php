@@ -13,8 +13,8 @@ $_['text_module']              = 'Modules';
 $_['text_additional_1']        = 'Links consisting of routes with parameters';
 $_['text_additional_2']        = 'Links consisting of routes without parameters';
 $_['text_additional_3']        = 'Links with duplicates seo_url';
-$_['text_description']         = '- Установите в шаблоне этот код вывода описания: "<b>&lt;?php echo $description; ?&gt;</b>" в нужное вам место.';
-$_['text_description_bottom']  = '- Установите в шаблоне этот код вывода описания: "<b>&lt;?php echo $description_bottom; ?&gt;</b>" в нужное вам место.';
+$_['text_description']         = '- Set this description output code in the template: "<b>&lt;?php echo $description; ?&gt;</b>" to the place you need.';
+$_['text_description_bottom']  = '- Set this description output code in the template: "<b>&lt;?php echo $description_bottom; ?&gt;</b>" to the place you need.';
 
 // Column
 $_['column_query']             = 'Link (route or parameter)';
@@ -29,8 +29,7 @@ $_['entry_keyword']            = 'SEO URL';
 $_['entry_additional']         = 'Advanced';
 $_['entry_store']              = 'Store';
 $_['entry_route']              = 'Route';
-$_['entry_route_view']         = 'Template Route';
-$_['entry_parameter']          = 'Parameter';
+$_['entry_view']               = 'Template Route';
 $_['entry_meta_title']         = 'Meta-Tag Title';
 $_['entry_meta_h1']            = 'HTML-Tag H1';
 $_['entry_meta_description']   = 'Meta-Tag Description';
@@ -44,9 +43,9 @@ $_['tab_seourl']               = 'SEO URL';
 $_['tab_seotag']               = 'SEO META-TAG';
 
 // Help
-$_['help_route']               = 'The route has the following form: information/contact is the controller location path starting from catalog/controller/<br />';
-$_['help_route_view']          = 'The template route looks like this: information/contact is the location of the template starting from  catalog/view/theme/%s/template/<br />';
-$_['help_parameter']           = 'The parameter has the following form: information_id=1<br />';
+$_['help_query']               = 'A route or parameter is needed to bind SEO URLs and META-TAGS to a specific page. The route has the following form: information / contact - this is the location of the controller starting from catalog/controller/&lt;br /&gt;The parameter is of the type: product_id=1';
+$_['help_route']               = 'The route has the following form: information/contact is the controller location path starting from catalog/controller/';
+$_['help_view']                = 'The template route looks like this: information/contact is the location of the template starting from  catalog/view/theme/%s/template/';
 $_['help_keyword']             = 'Must be unique for the whole system, without spaces and special characters, and in Latin.';
 
 // Button
@@ -59,7 +58,6 @@ $_['error_permission']         = 'You do not have sufficient privileges to make 
 $_['error_query']              = 'Specify a Route or parameter!';
 $_['error_keyword']            = 'SEO URL is already in use!';
 $_['error_route']              = 'Specify Route!';
-$_['error_route_view']         = 'Specify Route Template!';
 $_['error_meta_h1']            = 'The H1 HTML tag must be between 0 and 300 characters!';
 $_['error_meta_title']         = 'Title meta tag must be between 0 and 300 characters!';
 $_['error_meta_description']   = 'Description meta tag must be between 0 and 300 characters!';
