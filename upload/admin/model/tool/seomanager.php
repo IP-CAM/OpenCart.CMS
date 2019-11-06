@@ -145,7 +145,7 @@ class ModelToolSeoManager extends Model {
 
 	public function updateSeoTag($data) {
 		if ((int)$data['seo_tag_id']) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "pro_seo_tag` SET route = '" . $this->db->escape($data['route']) . "', route_view = '" . $this->db->escape($data['route_view']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE seo_tag_id = '" . (int)$data['seo_tag_id'] . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "pro_seo_tag` SET query = '" . $this->db->escape($data['route']) . "', route_view = '" . $this->db->escape($data['route_view']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE seo_tag_id = '" . (int)$data['seo_tag_id'] . "'");
 
 			$this->db->query("DELETE FROM " . DB_PREFIX . "pro_seo_tag_description WHERE seo_tag_id = '" . (int)$data['seo_tag_id'] . "'");
 
@@ -153,7 +153,7 @@ class ModelToolSeoManager extends Model {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "pro_seo_tag_description` SET seo_tag_id = '" . (int)$data['seo_tag_id'] . "', language_id = '" . (int)$language_id . "', meta_h1 = '" .  $this->db->escape($meta['meta_h1']) . "', meta_title = '" .  $this->db->escape($meta['meta_title']) . "', meta_description = '" .  $this->db->escape($meta['meta_description']) . "', meta_keyword = '" .  $this->db->escape($meta['meta_keyword']) . "', description = '" .  $this->db->escape($meta['description']) . "', description_bottom = '" .  $this->db->escape($meta['description_bottom']) . "'");
 			}
 		} else {
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "pro_seo_tag` SET route = '" . $this->db->escape($data['route']) . "', route_view = '" . $this->db->escape($data['route_view']) . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "pro_seo_tag` SET query = '" . $this->db->escape($data['route']) . "', route_view = '" . $this->db->escape($data['route_view']) . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
 
 			$data['seo_tag_id'] = $this->db->getLastId();
 
@@ -224,7 +224,7 @@ class ModelToolSeoManager extends Model {
 	}
 
 	public function getSeoTags($data = array()) {
-		$sql = "SELECT *, (SELECT DISTINCT keyword FROM `" . DB_PREFIX . "url_alias` WHERE query = st.route LIMIT 1) AS keyword FROM `" . DB_PREFIX . "pro_seo_tag` st LEFT JOIN `" . DB_PREFIX . "pro_seo_tag_description` std ON (st.seo_tag_id = std.seo_tag_id)";
+		$sql = "SELECT *, (SELECT DISTINCT keyword FROM `" . DB_PREFIX . "url_alias` WHERE query = st.query LIMIT 1) AS keyword FROM `" . DB_PREFIX . "pro_seo_tag` st LEFT JOIN `" . DB_PREFIX . "pro_seo_tag_description` std ON (st.seo_tag_id = std.seo_tag_id)";
 
 		$implode = array();
 		$singl = " AND ";
@@ -237,11 +237,11 @@ class ModelToolSeoManager extends Model {
 		}
 
 		if (!empty($data['filter_route'])) {
-			$implode[] = "st.route = '" . $this->db->escape($data['filter_route']) . "'";
+			$implode[] = "st.query = '" . $this->db->escape($data['filter_route']) . "'";
 		}
 
 		if (!empty($data['filter_keyword'])) {
-			$sql .= " LEFT JOIN (SELECT DISTINCT keyword, query FROM `" . DB_PREFIX . "url_alias`) ua ON (ua.query = st.route)";
+			$sql .= " LEFT JOIN (SELECT DISTINCT keyword, query FROM `" . DB_PREFIX . "url_alias`) ua ON (ua.query = st.query)";
 			$implode[] = "ua.keyword = '" . $this->db->escape($data['filter_keyword']) . "'";
 		}
 
@@ -251,7 +251,7 @@ class ModelToolSeoManager extends Model {
 			}
 		}
 
-		$sort_data = array('st.store, st.route, st.keyword');
+		$sort_data = array('st.store, st.query, st.keyword');
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
@@ -283,7 +283,7 @@ class ModelToolSeoManager extends Model {
 	}
 
 	public function getTotalSeoTags($data = array()) {
-		$sql = "SELECT COUNT(*) AS total, (SELECT DISTINCT keyword FROM `" . DB_PREFIX . "url_alias` WHERE query = st.route LIMIT 1) AS keyword FROM `" . DB_PREFIX . "pro_seo_tag` st LEFT JOIN `" . DB_PREFIX . "pro_seo_tag_description` std ON (st.seo_tag_id = std.seo_tag_id)";
+		$sql = "SELECT COUNT(*) AS total, (SELECT DISTINCT keyword FROM `" . DB_PREFIX . "url_alias` WHERE query = st.query LIMIT 1) AS keyword FROM `" . DB_PREFIX . "pro_seo_tag` st LEFT JOIN `" . DB_PREFIX . "pro_seo_tag_description` std ON (st.seo_tag_id = std.seo_tag_id)";
 
 		$implode = array();
 		$singl = " AND ";
@@ -296,11 +296,11 @@ class ModelToolSeoManager extends Model {
 		}
 
 		if (!empty($data['filter_route'])) {
-			$implode[] = "st.route = '" . $this->db->escape($data['filter_route']) . "'";
+			$implode[] = "st.query = '" . $this->db->escape($data['filter_route']) . "'";
 		}
 
 		if (!empty($data['filter_keyword'])) {
-			$sql .= " LEFT JOIN (SELECT DISTINCT keyword, query FROM `" . DB_PREFIX . "url_alias`) ua ON (ua.query = st.route)";
+			$sql .= " LEFT JOIN (SELECT DISTINCT keyword, query FROM `" . DB_PREFIX . "url_alias`) ua ON (ua.query = st.query)";
 			$implode[] = "ua.keyword = '" . $this->db->escape($data['filter_keyword']) . "'";
 		}
 
