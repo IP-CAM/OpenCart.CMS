@@ -237,6 +237,7 @@ class ControllerStartupSeoPro extends Controller {
 				break;
 			//blog
 			case 'blog/article/review':
+			case 'product/product/proEdit':
 			case 'product/product/review':
 			case 'information/information/info':
 			case 'information/information/agree':
