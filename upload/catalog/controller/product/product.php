@@ -424,11 +424,11 @@ class ControllerProductProduct extends Controller {
 			$this->user = new Cart\User($this->registry);
 
 			if ($this->user->isLogged()) {
-				$data['button_bus_href_admin'] = $this->language->get('button_edit');
-				$data['bus_href_admin'] = $this->url->link('product/product/proEdit', 'product_id=' . $product_info['product_id']);
+				$data['button_pro_href_admin'] = $this->language->get('button_edit');
+				$data['pro_href_admin'] = $this->url->link('product/product/proEdit', 'product_id=' . $product_info['product_id']);
 			} else {
-				$data['button_bus_href_admin'] = false;
-				$data['bus_href_admin'] = false;
+				$data['button_pro_href_admin'] = false;
+				$data['pro_href_admin'] = false;
 			}
 
 			$data['sticker'] = $this->getProStickers($product_info['product_id']);
