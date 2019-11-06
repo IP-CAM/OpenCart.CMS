@@ -204,7 +204,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['column_query'] = $this->language->get('column_query');
 		$data['column_keyword'] = $this->language->get('column_keyword');
 		$data['column_store'] = $this->language->get('column_store');
-		$data['column_query'] = $this->language->get('column_query');
+		$data['column_route'] = $this->language->get('column_route');
 		$data['column_action'] = $this->language->get('column_action');
 
 		$data['entry_query'] = $this->language->get('entry_query');
@@ -222,9 +222,9 @@ class ControllerToolSeoManager extends Controller {
 		$data['entry_description_bottom'] = $this->language->get('entry_description_bottom');
 		$data['entry_status'] = $this->language->get('entry_status');
 
+		$data['help_query'] = $this->language->get('help_query');
 		$data['help_route'] = $this->language->get('help_route');
 		$data['help_view'] = sprintf($this->language->get('help_view'), $this->config->get('theme_' . str_replace('theme_', '', $this->config->get('config_theme')) . '_directory'));
-		$data['help_parameter'] = $this->language->get('help_parameter');
 		$data['help_keyword'] = $this->language->get('help_keyword');
 
 		$data['button_insert'] = $this->language->get('button_insert');
@@ -296,16 +296,22 @@ class ControllerToolSeoManager extends Controller {
 			$data['error'] = '';
 		}
 
-		if (isset($this->error['query'])) {
-			$data['error_query'] = $this->error['query'];
+		if (isset($this->error['query_url'])) {
+			$data['error_query_url'] = $this->error['query_url'];
 		} else {
-			$data['error_query'] = '';
+			$data['error_query_url'] = '';
 		}
 
 		if (isset($this->error['keyword_url'])) {
 			$data['error_keyword_url'] = $this->error['keyword_url'];
 		} else {
 			$data['error_keyword_url'] = '';
+		}
+
+		if (isset($this->error['query_tag'])) {
+			$data['error_query_tag'] = $this->error['query_tag'];
+		} else {
+			$data['error_query_tag'] = '';
 		}
 
 		if (isset($this->error['meta_h1'])) {
@@ -580,7 +586,7 @@ class ControllerToolSeoManager extends Controller {
 		$pagination->page = $page_url;
 		$pagination->limit = $this->config->get('config_limit_admin');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '&page_url={page}', true);
+		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . ($page_url == 1 ? '&page_url={page}' : false), true);
 
 		$data['filter_query'] = $filter_query;
 		$data['filter_keyword'] = $filter_keyword;
@@ -618,7 +624,7 @@ class ControllerToolSeoManager extends Controller {
 		$pagination->page = $page_tag;
 		$pagination->limit = $this->config->get('config_limit_admin');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . '&page_tag={page}' . '#tab_seotag', true);
+		$pagination->url = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url . ($page_tag == 1 ? '&page_url={page}' : false) . '#tab_seotag', true);
 
 		$data['filter_store'] = $filter_store;
 
@@ -697,14 +703,14 @@ class ControllerToolSeoManager extends Controller {
 
 		if (isset($this->request->post['query'])) {
 			if (!$this->request->post['query']) {
-				$this->error['query'] = $this->language->get('error_query');
+				$this->error['query_url'] = $this->language->get('error_query');
 				$this->error['warning'] = $this->language->get('error_warning');
 			}
 		}
 
 		if (isset($this->request->post['query']) && isset($this->request->post['meta'])) {
 			if (!$this->request->post['query']) {
-				$this->error['query'] = $this->language->get('error_query');
+				$this->error['query_tag'] = $this->language->get('error_route');
 				$this->error['warning'] = $this->language->get('error_warning');
 			}
 		}
@@ -776,7 +782,7 @@ class ControllerToolSeoManager extends Controller {
 
 				foreach ($languages as $result) {
 					$meta[$result['language_id']] = array(
-						'meta_h1'      	     => $this->config->get('seomanager_meta_h1_bestseller'),
+						'meta_h1'            => $this->config->get('seomanager_meta_h1_bestseller'),
 						'meta_title'         => $this->config->get('seomanager_meta_title_bestseller'),
 						'meta_description'   => $this->config->get('seomanager_meta_description_bestseller'),
 						'meta_keyword'       => $this->config->get('seomanager_meta_keyword_bestseller'),
@@ -801,7 +807,7 @@ class ControllerToolSeoManager extends Controller {
 
 				foreach ($languages as $result) {
 					$meta[$result['language_id']] = array(
-						'meta_h1'      	     => $this->config->get('seomanager_meta_h1_latest'),
+						'meta_h1'            => $this->config->get('seomanager_meta_h1_latest'),
 						'meta_title'         => $this->config->get('seomanager_meta_title_latest'),
 						'meta_description'   => $this->config->get('seomanager_meta_description_latest'),
 						'meta_keyword'       => $this->config->get('seomanager_meta_keyword_latest'),
@@ -826,7 +832,7 @@ class ControllerToolSeoManager extends Controller {
 
 				foreach ($languages as $result) {
 					$meta[$result['language_id']] = array(
-						'meta_h1'      	     => $this->config->get('seomanager_meta_h1_mostviewed'),
+						'meta_h1'            => $this->config->get('seomanager_meta_h1_mostviewed'),
 						'meta_title'         => $this->config->get('seomanager_meta_title_mostviewed'),
 						'meta_description'   => $this->config->get('seomanager_meta_description_mostviewed'),
 						'meta_keyword'       => $this->config->get('seomanager_meta_keyword_mostviewed'),
@@ -851,7 +857,7 @@ class ControllerToolSeoManager extends Controller {
 
 				foreach ($languages as $result) {
 					$meta[$result['language_id']] = array(
-						'meta_h1'      	     => $this->config->get('seomanager_meta_h1_special'),
+						'meta_h1'            => $this->config->get('seomanager_meta_h1_special'),
 						'meta_title'         => $this->config->get('seomanager_meta_title_special'),
 						'meta_description'   => $this->config->get('seomanager_meta_description_special'),
 						'meta_keyword'       => $this->config->get('seomanager_meta_keyword_special'),
