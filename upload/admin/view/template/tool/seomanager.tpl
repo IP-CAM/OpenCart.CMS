@@ -3,9 +3,9 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-	    <a id="insert" data-toggle="tooltip" title="<?php echo $button_insert; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-		<a href="<?php echo $clear; ?>" data-toggle="tooltip" title="<?php echo $button_clear_cache; ?>" class="btn btn-default"><i class="fa fa-refresh"></i></a>
-		<a id="delete" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+        <a id="insert" data-toggle="tooltip" title="<?php echo $button_insert; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        <a href="<?php echo $clear; ?>" data-toggle="tooltip" title="<?php echo $button_clear_cache; ?>" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+        <a id="delete" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
         <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a>
       </div>
       <h1><?php echo $heading_title; ?></h1>
@@ -32,16 +32,16 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
     </div>
     <?php } ?>
-	<div class="panel panel-default">
+    <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-list"></i> <?php echo $heading_title; ?></h3>
       </div>
     <div class="panel-body">
-	<ul class="nav nav-tabs">
+    <ul class="nav nav-tabs">
       <li class="active"><a href="#tab_seourl" data-toggle="tab"><?php echo $tab_seourl; ?></a></li>
       <li><a href="#tab_seotag" data-toggle="tab"><?php echo $tab_seotag; ?></a></li>
     </ul>
-	<div class="tab-content">
+    <div class="tab-content">
       <div class="tab-pane active" id="tab_seourl">
         <div class="well">
           <div class="row">
@@ -62,12 +62,15 @@
                 <label class="control-label" for="input-filter-additional"><?php echo $entry_additional; ?></label>
                 <select name="filter_additional" id="input-filter-additional" class="form-control">
                   <option value=""<?php if (!$filter_additional) { ?> selected="selected"<?php } ?>><?php echo $text_all; ?></option>
-				  <option value="0"<?php if ($filter_additional == 0) { ?> selected="selected"<?php } ?>><?php echo $text_additional_1; ?></option>
-				  <option value="1"<?php if ($filter_additional == 1) { ?> selected="selected"<?php } ?>><?php echo $text_additional_2; ?></option>
-				  <option value="2"<?php if ($filter_additional == 2) { ?> selected="selected"<?php } ?>><?php echo $text_additional_3; ?></option>
+                  <option value="0"<?php if ($filter_additional == 0) { ?> selected="selected"<?php } ?>><?php echo $text_additional_1; ?></option>
+                  <option value="1"<?php if ($filter_additional == 1) { ?> selected="selected"<?php } ?>><?php echo $text_additional_2; ?></option>
+                  <option value="2"<?php if ($filter_additional == 2) { ?> selected="selected"<?php } ?>><?php echo $text_additional_3; ?></option>
                 </select>
               </div>
-              <button type="button" id="button-url-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+            </div>
+            <div class="col-sm-12 text-right">
+              <button type="button" id="button-filter" class="btn btn-primary"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+              <button type="button" id="button-clear-filter" class="btn btn-default"><i class="fa fa-times"></i><span class="hidden-sm"> <?php echo $button_clear; ?></span></button>
             </div>
           </div>
         </div>
@@ -107,14 +110,14 @@
                 <tr>
                   <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('#form-url-delete input[name*=\'selected\']').attr('checked', this.checked);" /></td>
                   <td class="center">
-				    <?php if ($sort == 'ua.query') { ?>
+                    <?php if ($sort == 'ua.query') { ?>
                     <a href="<?php echo $sort_query; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_query; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_query; ?>"><?php echo $column_query; ?></a>
                     <?php } ?>
                   </td>
                   <td class="left">
-				    <?php if ($sort == 'ua.keyword') { ?>
+                    <?php if ($sort == 'ua.keyword') { ?>
                     <a href="<?php echo $sort_keyword; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_keyword; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_keyword; ?>"><?php echo $column_keyword; ?></a>
@@ -128,7 +131,7 @@
                 <?php foreach ($url_aliases as $url_alias) { ?>
                 <tr class="tr<?php echo $url_alias['url_alias_id']; ?>">
                   <td style="text-align: center;">
-				    <?php if ($url_alias['selected_url']) { ?>
+                    <?php if ($url_alias['selected_url']) { ?>
                     <input type="checkbox" name="selected_url[]" value="<?php echo $url_alias['url_alias_id']; ?>" checked="checked" />
                     <?php } else { ?>
                     <input type="checkbox" name="selected_url[]" value="<?php echo $url_alias['url_alias_id']; ?>" />
@@ -161,9 +164,9 @@
                 <label class="control-label" for="input-filter-store"><?php echo $entry_store; ?></label>
                 <select name="filter_store" id="input-filter-store" class="form-control">
                   <option value=""><?php echo $text_all; ?></option>
-				  <?php foreach ($stores as $store) { ?>
+                  <?php foreach ($stores as $store) { ?>
                   <option value="<?php echo $store['store_id']; ?>"<?php if ($store['store_id'] == $filter_store) { ?> selected="selected"<?php } ?>><?php echo $store['name']; ?></option>
-				  <?php } ?>
+                  <?php } ?>
                 </select>
               </div>
             </div>
@@ -178,7 +181,7 @@
                 <label class="control-label" for="input-filter-keyword"><?php echo $entry_keyword; ?></label>
                 <input type="text" name="filter_keyword" value="<?php echo $filter_keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-filter-keyword" class="form-control" />
               </div>
-			  <button type="button" id="button-tag-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+              <button type="button" id="button-tag-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
         </div>
@@ -186,7 +189,7 @@
           <div class="row">
             <form action="<?php echo $save; ?>" method="post" enctype="multipart/form-data">
               <div class="col-sm-12">
-				<div class="meta">
+                <div class="meta">
                   <div class="form-group required">
                     <label class="control-label" for="input-query"><span data-toggle="tooltip" title="<?php echo $help_route; ?>"><?php echo $entry_route; ?></span>:</label>
                     <input type="text" name="route" value="<?php echo $route; ?>" class="form-control" />
@@ -197,19 +200,19 @@
                   <ul class="tab-language nav nav-tabs">
                     <?php foreach ($languages as $language) { ?>
                     <li><a href="#language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
-					<?php } ?>
+                    <?php } ?>
                   </ul>
                   <div class="tab-content">
                     <?php foreach ($languages as $language) { ?>
                     <div class="tab-pane" id="language<?php echo $language['language_id']; ?>">
-				      <div class="form-group">
+                      <div class="form-group">
                         <label class="control-label" for="input-meta-h1<?php echo $language['language_id']; ?>"><?php echo $entry_meta_h1; ?></label>
                         <input type="text" name="meta[<?php echo $language['language_id']; ?>][meta_h1]" value="<?php echo isset($meta[$language['language_id']]) ? $meta[$language['language_id']]['meta_h1'] : ''; ?>" placeholder="<?php echo $entry_meta_h1; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
                         <?php if (isset($error_meta_h1[$language['language_id']])) { ?>
                         <div class="text-danger"><?php echo $error_meta_h1[$language['language_id']]; ?></div>
                         <?php } ?>
-				      </div>
-				      <div class="form-group">
+                      </div>
+                      <div class="form-group">
                         <label class="control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                         <input type="text" name="meta[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($meta[$language['language_id']]) ? $meta[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
                         <?php if (isset($error_meta_title[$language['language_id']])) { ?>
@@ -219,22 +222,22 @@
                       <div class="form-group">
                         <label class="control-label" for="input-meta-description<?php echo $language['language_id']; ?>"><?php echo $entry_meta_description; ?></label>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][meta_description]" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($meta[$language['language_id']]) ? $meta[$language['language_id']]['meta_description'] : ''; ?></textarea>
-						<?php if (isset($error_meta_description[$language['language_id']])) { ?>
+                        <?php if (isset($error_meta_description[$language['language_id']])) { ?>
                         <div class="text-danger"><?php echo $error_meta_description[$language['language_id']]; ?></div>
                         <?php } ?>
-					  </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label" for="input-meta-keyword<?php echo $language['language_id']; ?>"><?php echo $entry_meta_keyword; ?></label>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][meta_keyword]" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($meta[$language['language_id']]) ? $meta[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
-						<?php if (isset($error_meta_keyword[$language['language_id']])) { ?>
+                        <?php if (isset($error_meta_keyword[$language['language_id']])) { ?>
                         <div class="text-danger"><?php echo $error_meta_keyword[$language['language_id']]; ?></div>
                         <?php } ?>
-					  </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label>  <?php echo $text_description; ?>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($meta[$language['language_id']]) ? $meta[$language['language_id']]['description'] : ''; ?></textarea>
                       </div>
-				      <div class="form-group">
+                      <div class="form-group">
                         <label class="control-label" for="input-description_bottom<?php echo $language['language_id']; ?>"><?php echo $entry_description_bottom; ?></label>  <?php echo $text_description_bottom; ?>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][description_bottom]" placeholder="<?php echo $entry_description_bottom; ?>" id="input-description_bottom<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($meta[$language['language_id']]) ? $meta[$language['language_id']]['description_bottom'] : ''; ?></textarea>
                       </div>
@@ -266,14 +269,14 @@
                       <?php } ?>
                     </div>
                   </div>
-				  <div class="form-group">
+                  <div class="form-group">
                     <label class="control-label" for="input-status"><?php echo $entry_status; ?></label>
                     <select name="status" id="input-status" class="form-control">
                       <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                       <option value="0"><?php echo $text_disabled; ?></option>
                     </select>
                   </div>
-				</div>
+                </div>
                 <div class="pull-right">
                   <a onclick="$('#form-tag-add form').submit();" class="button"><span data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></span></a>
                   <a onclick="fnCancel();" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a>
@@ -290,19 +293,19 @@
                 <tr>
                   <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('#form-tag-delete input[name*=\'selected\']').attr('checked', this.checked);" /></td>
                   <td class="center">
-				    <?php if ($sort == 'st.store') { ?>
+                    <?php if ($sort == 'st.store') { ?>
                     <a href="<?php echo $sort_store; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_store; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_store; ?>"><?php echo $column_store; ?></a>
                     <?php } ?>
                   </td>
                   <td class="center">
-				    <?php if ($sort == 'st.route') { ?>
+                    <?php if ($sort == 'st.route') { ?>
                     <a href="<?php echo $sort_route; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_route; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_route; ?>"><?php echo $column_route; ?></a>
                     <?php } ?>
-				  </td>
+                  </td>
                   <td class="left">
                     <?php if ($sort == 'st.keyword') { ?>
                     <a href="<?php echo $sort_keyword_tag; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_keyword; ?></a>
@@ -318,23 +321,23 @@
                 <?php foreach ($seo_tags as $seo_tag) { ?>
                 <tr class="tr<?php echo $seo_tag['seo_tag_id']; ?>">
                   <td style="text-align: center;">
-				    <?php if ($seo_tag['selected_tag']) { ?>
+                    <?php if ($seo_tag['selected_tag']) { ?>
                     <input type="checkbox" name="selected_tag[]" value="<?php echo $seo_tag['seo_tag_id']; ?>" checked="checked" />
                     <?php } else { ?>
                     <input type="checkbox" name="selected_tag[]" value="<?php echo $seo_tag['seo_tag_id']; ?>" />
                     <?php } ?>
                   </td>
                   <td class="left">
-				    <?php foreach ($seo_tag['store'] as $key => $store) { ?>
-				    <?php if ($key) { ?>,<br /><?php } ?>
-				    <a href="<?php echo $store['url']; ?>index.php?route=<?php echo $seo_tag['route']; ?>" target="_blank"><?php echo $store['name']; ?></a>
-				    <?php } ?>
-				  </td>
+                    <?php foreach ($seo_tag['store'] as $key => $store) { ?>
+                    <?php if ($key) { ?>,<br /><?php } ?>
+                    <a href="<?php echo $store['url']; ?>index.php?route=<?php echo $seo_tag['route']; ?>" target="_blank"><?php echo $store['name']; ?></a>
+                    <?php } ?>
+                  </td>
                   <td class="left"><?php echo $seo_tag['route']; ?></td>
                   <td class="left"><?php echo $seo_tag['keyword']; ?></td>
                   <td class="text-right"><a onclick="editTag(<?php echo $seo_tag['seo_tag_id']; ?>)" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></a></td>
                 </tr>
-				<div class="meta<?php echo $seo_tag['seo_tag_id']; ?>" style="display:none">
+                <div class="meta<?php echo $seo_tag['seo_tag_id']; ?>" style="display:none">
                   <div class="form-group required">
                     <label class="control-label" for="input-query"><span data-toggle="tooltip" title="<?php echo $help_route; ?>"><?php echo $entry_route; ?></span>:</label>
                     <input type="text" name="route" value="<?php echo $seo_tag['route']; ?>" class="form-control" />
@@ -345,19 +348,19 @@
                   <ul class="tab-language nav nav-tabs">
                     <?php foreach ($languages as $language) { ?>
                     <li><a href="#language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
-					<?php } ?>
+                    <?php } ?>
                   </ul>
                   <div class="tab-content">
                     <?php foreach ($languages as $language) { ?>
                     <div class="tab-pane" id="language<?php echo $language['language_id']; ?>">
-				      <div class="form-group">
+                      <div class="form-group">
                         <label class="control-label" for="input-meta-h1<?php echo $language['language_id']; ?>"><?php echo $entry_meta_h1; ?></label>
                         <input type="text" name="meta[<?php echo $language['language_id']; ?>][meta_h1]" value="<?php echo isset($seo_tag['meta'][$language['language_id']]) ? $seo_tag['meta'][$language['language_id']]['meta_h1'] : ''; ?>" placeholder="<?php echo $entry_meta_h1; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
                         <?php if (isset($error_meta_h1[$language['language_id']])) { ?>
                         <div class="text-danger"><?php echo $error_meta_h1[$language['language_id']]; ?></div>
                         <?php } ?>
-				      </div>
-				      <div class="form-group">
+                      </div>
+                      <div class="form-group">
                         <label class="control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                         <input type="text" name="meta[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($seo_tag['meta'][$language['language_id']]) ? $seo_tag['meta'][$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
                         <?php if (isset($error_meta_title[$language['language_id']])) { ?>
@@ -367,22 +370,22 @@
                       <div class="form-group">
                         <label class="control-label" for="input-meta-description<?php echo $language['language_id']; ?>"><?php echo $entry_meta_description; ?></label>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][meta_description]" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($seo_tag['meta'][$language['language_id']]) ? $seo_tag['meta'][$language['language_id']]['meta_description'] : ''; ?></textarea>
-						<?php if (isset($error_meta_description[$language['language_id']])) { ?>
+                        <?php if (isset($error_meta_description[$language['language_id']])) { ?>
                         <div class="text-danger"><?php echo $error_meta_description[$language['language_id']]; ?></div>
                         <?php } ?>
-					  </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label" for="input-meta-keyword<?php echo $language['language_id']; ?>"><?php echo $entry_meta_keyword; ?></label>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][meta_keyword]" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($seo_tag['meta'][$language['language_id']]) ? $seo_tag['meta'][$language['language_id']]['meta_keyword'] : ''; ?></textarea>
-						<?php if (isset($error_meta_keyword[$language['language_id']])) { ?>
+                        <?php if (isset($error_meta_keyword[$language['language_id']])) { ?>
                         <div class="text-danger"><?php echo $error_meta_keyword[$language['language_id']]; ?></div>
                         <?php } ?>
-					  </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label> <?php echo $text_description; ?>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($seo_tag['meta'][$language['language_id']]) ? $seo_tag['meta'][$language['language_id']]['description'] : ''; ?></textarea>
                       </div>
-				      <div class="form-group">
+                      <div class="form-group">
                         <label class="control-label" for="input-description_bottom<?php echo $language['language_id']; ?>"><?php echo $entry_description_bottom; ?></label> <?php echo $text_description_bottom; ?>
                         <textarea name="meta[<?php echo $language['language_id']; ?>][description_bottom]" placeholder="<?php echo $entry_description_bottom; ?>" id="input-description_bottom<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($seo_tag['meta'][$language['language_id']]) ? $seo_tag['meta'][$language['language_id']]['description_bottom'] : ''; ?></textarea>
                       </div>
@@ -469,7 +472,7 @@ $('#button-url-filter').on('click', function() {
 
 	url +='#tab_seourl';
 
-	location.href = url;
+	location = url;
 });
 
 $('#button-tag-filter').on('click', function() {
@@ -495,7 +498,7 @@ $('#button-tag-filter').on('click', function() {
 
 	url +='#tab_seotag';
 
-	location.href = url;
+	location = url;
 });
 //--></script> 
 <script type="text/javascript"><!--
