@@ -211,8 +211,8 @@ class ControllerReportCustomerBlogSearch extends Controller {
 			'filter_keyword'    => $filter_keyword,
 			'filter_customer'   => $filter_customer,
 			'filter_ip'         => $filter_ip,
-			'start'             => ($page - 1) * 20,
-			'limit'             => 20
+			'start'				=> ($page - 1) * $this->config->get('config_limit_admin'),
+			'limit'				=> $this->config->get('config_limit_admin')
 		);
 
 		$this->load->model('blog/category');
@@ -290,15 +290,11 @@ class ControllerReportCustomerBlogSearch extends Controller {
 			$url .= '&filter_ip=' . $this->request->get['filter_ip'];
 		}
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		$pagination = new Pagination();
 		$pagination->total = $search_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('configblog_limit_admin');
-		$pagination->url = $this->url->link('report/customer_search', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('report/customer_blog_search', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
