@@ -45,7 +45,7 @@ $_['tab_seotag']               = 'SEO META-TAG';
 
 // Help
 $_['help_route']               = 'Роут имеет следующий вид: information/contact - это расположение контроллера начиная от catalog/controller/';
-$_['help_route']               = 'Роут имеет следующий вид: information/contact - это расположение шаблона начиная от catalog/view/theme/%s/template/';
+$_['help_route_view']          = 'Роут имеет следующий вид: information/contact - это расположение шаблона начиная от catalog/view/theme/%s/template/';
 $_['help_parameter']           = 'Параметр имеет следующий вид: information_id=1<br />';
 $_['help_keyword']             = 'Должно быть уникальным на всю систему, без пробелов и спецсимволов, и на латинице.';
 
