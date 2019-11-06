@@ -2,7 +2,7 @@
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
-	  <div class="pull-right">
+      <div class="pull-right">
         <a href="<?php echo $clear; ?>" data-toggle="tooltip" title="<?php echo $button_clear; ?>" class="btn btn-danger"><i class="fa fa-eraser"></i></a>
       </div>
       <h1><?php echo $heading_title; ?></h1>
@@ -36,18 +36,18 @@
                 <label class="control-label" for="input-store"><?php echo $entry_store; ?></label>
                 <select name="filter_store" id="input-store" class="form-control">
                   <option value=""><?php echo $text_all; ?></option>
-				  <?php foreach ($stores as $store) { ?>
+                  <?php foreach ($stores as $store) { ?>
                   <option value="<?php echo $store['store_id']; ?>"<?php if ($store['store_id'] == $filter_store) { ?> selected="selected"<?php } ?>><?php echo $store['name']; ?></option>
-				  <?php } ?>
+                  <?php } ?>
                 </select>
               </div>
               <div class="form-group">
                 <label class="control-label" for="input-language"><?php echo $entry_language; ?></label>
                 <select name="filter_language" id="input-language" class="form-control">
                   <option value=""><?php echo $text_all; ?></option>
-				  <?php foreach ($languages as $language) { ?>
+                  <?php foreach ($languages as $language) { ?>
                   <option value="<?php echo $language['language_id']; ?>"<?php if ($language['language_id'] == $filter_language) { ?> selected="selected"<?php } ?>><?php echo $language['name']; ?></option>
-				  <?php } ?>
+                  <?php } ?>
                 </select>
               </div>
               <div class="form-group">
@@ -91,12 +91,12 @@
             <thead>
               <tr>
                 <td class="text-left"><?php echo $column_store; ?></td>
-				<td class="text-left"><?php echo $column_language; ?></td>
-				<td class="text-left"><?php echo $column_keyword; ?></td>
+                <td class="text-left"><?php echo $column_language; ?></td>
+                <td class="text-left"><?php echo $column_keyword; ?></td>
                 <td class="text-left"><?php echo $column_articles; ?></td>
                 <td class="text-left"><?php echo $column_category; ?></td>
-				<td class="text-left"><?php echo $column_sub_category; ?></td>
-				<td class="text-left"><?php echo $column_description; ?></td>
+                <td class="text-left"><?php echo $column_sub_category; ?></td>
+                <td class="text-left"><?php echo $column_description; ?></td>
                 <td class="text-left"><?php echo $column_customer; ?></td>
                 <td class="text-left"><?php echo $column_ip; ?></td>
                 <td class="text-left"><?php echo $column_date_added; ?></td>
@@ -107,12 +107,12 @@
               <?php foreach ($searches as $search) { ?>
               <tr>
                 <td class="text-left"><a href="<?php echo $search['store']['url']; ?>"><?php echo $search['store']['url']; ?></a></td>
-				<td class="text-left"><img src="language/<?php echo $search['language']['code']; ?>/<?php echo $search['language']['code']; ?>.png" title="<?php echo $search['language']['name']; ?>" /><?php //echo $search['language']['name']; ?></td>
-				<td class="text-left"><?php echo $search['keyword']; ?></td>
+                <td class="text-left"><img src="language/<?php echo $search['language']['code']; ?>/<?php echo $search['language']['code']; ?>.png" title="<?php echo $search['language']['name']; ?>" /><?php //echo $search['language']['name']; ?></td>
+                <td class="text-left"><?php echo $search['keyword']; ?></td>
                 <td class="text-left"><?php echo $search['articles']; ?></td>
                 <td class="text-left"><a href="<?php echo $search['category_href']; ?>"><?php echo $search['category']; ?></a></td>
-				<td class="text-left"><?php echo $search['sub_category']; ?></td>
-				<td class="text-left"><?php echo $search['description']; ?></td>
+                <td class="text-left"><?php echo $search['sub_category']; ?></td>
+                <td class="text-left"><?php echo $search['description']; ?></td>
                 <td class="text-left"><?php echo $search['customer']; ?></td>
                 <td class="text-left"><?php echo $search['ip']; ?></td>
                 <td class="text-left"><?php echo $search['date_added']; ?></td>
@@ -179,7 +179,7 @@ $('#button-filter').on('click', function() {
 		url += '&filter_ip=' + encodeURIComponent(filter_ip);
 	}
 
-	location = url;
+	location.href = url;
 });
 //--></script> 
 <script type="text/javascript"><!--
