@@ -294,6 +294,42 @@ class ControllerBlogArticle extends Controller {
 	}
 
 	protected function getList() {
+
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$data['text_list'] = $this->language->get('text_list');
+		$data['text_all'] = $this->language->get('text_all');
+		$data['text_none_category'] = $this->language->get('text_none_category');
+		$data['text_enabled'] = $this->language->get('text_enabled');
+		$data['text_disabled'] = $this->language->get('text_disabled');
+		$data['text_no_results'] = $this->language->get('text_no_results');
+		$data['text_confirm'] = $this->language->get('text_confirm');
+
+		$data['column_image'] = $this->language->get('column_image');
+		$data['column_name'] = $this->language->get('column_name');
+		$data['column_status'] = $this->language->get('column_status');
+		$data['column_noindex'] = $this->language->get('column_noindex');
+		$data['column_action'] = $this->language->get('column_action');
+
+		$data['entry_name'] = $this->language->get('entry_name');
+		$data['entry_category'] = $this->language->get('entry_category');
+		$data['entry_category_filter'] = $this->language->get('entry_category_filter');
+		$data['entry_sub_category'] = $this->language->get('entry_sub_category');
+		$data['entry_status'] = $this->language->get('entry_status');
+		$data['entry_noindex'] = $this->language->get('entry_noindex');
+
+		$data['button_copy'] = $this->language->get('button_copy');
+		$data['button_add'] = $this->language->get('button_add');
+		$data['button_edit'] = $this->language->get('button_edit');
+		$data['button_shop'] = $this->language->get('button_shop');
+		$data['button_delete'] = $this->language->get('button_delete');
+		$data['button_filter'] = $this->language->get('button_filter');
+		$data['button_clear'] = $this->language->get('button_clear');
+		$data['button_enable'] = $this->language->get('button_enable');
+		$data['button_disable'] = $this->language->get('button_disable');
+
+		$data['token'] = $this->session->data['token'];
+
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
 		} else {
@@ -453,41 +489,6 @@ class ControllerBlogArticle extends Controller {
 				'edit'       => $this->url->link('blog/article/edit', 'token=' . $this->session->data['token'] . '&article_id=' . $result['article_id'] . $url, true)
 			);
 		}
-
-		$data['heading_title'] = $this->language->get('heading_title');
-
-		$data['text_list'] = $this->language->get('text_list');
-		$data['text_all'] = $this->language->get('text_all');
-		$data['text_none_category'] = $this->language->get('text_none_category');
-		$data['text_enabled'] = $this->language->get('text_enabled');
-		$data['text_disabled'] = $this->language->get('text_disabled');
-		$data['text_no_results'] = $this->language->get('text_no_results');
-		$data['text_confirm'] = $this->language->get('text_confirm');
-
-		$data['column_image'] = $this->language->get('column_image');
-		$data['column_name'] = $this->language->get('column_name');
-		$data['column_status'] = $this->language->get('column_status');
-		$data['column_noindex'] = $this->language->get('column_noindex');
-		$data['column_action'] = $this->language->get('column_action');
-
-		$data['entry_name'] = $this->language->get('entry_name');
-		$data['entry_category'] = $this->language->get('entry_category');
-		$data['entry_category_filter'] = $this->language->get('entry_category_filter');
-		$data['entry_sub_category'] = $this->language->get('entry_sub_category');
-		$data['entry_status'] = $this->language->get('entry_status');
-		$data['entry_noindex'] = $this->language->get('entry_noindex');
-
-		$data['button_copy'] = $this->language->get('button_copy');
-		$data['button_add'] = $this->language->get('button_add');
-		$data['button_edit'] = $this->language->get('button_edit');
-		$data['button_shop'] = $this->language->get('button_shop');
-		$data['button_delete'] = $this->language->get('button_delete');
-		$data['button_filter'] = $this->language->get('button_filter');
-
-		$data['button_enable'] = $this->language->get('button_enable');
-		$data['button_disable'] = $this->language->get('button_disable');
-
-		$data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
