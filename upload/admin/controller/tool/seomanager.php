@@ -244,6 +244,7 @@ class ControllerToolSeoManager extends Controller {
 		$data['button_clear_cache'] = $this->language->get('button_clear_cache');
 		$data['button_edit'] = $this->language->get('button_edit');
 		$data['button_filter'] = $this->language->get('button_filter');
+		$data['button_clear'] = $this->language->get('button_clear');
 
 		$data['tab_seourl'] = $this->language->get('tab_seourl');
 		$data['tab_seotag'] = $this->language->get('tab_seotag');
