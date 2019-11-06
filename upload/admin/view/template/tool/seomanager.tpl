@@ -195,14 +195,14 @@
                 <div class="meta">
                   <div class="form-group required">
                     <label class="control-label" for="input-query"><span title="<?php echo $help_route; ?>"><?php echo $entry_route; ?></span>:</label>
-                    <input type="text" name="route" value="<?php echo $route; ?>" class="form-control" data-toggle="tooltip" title="<?php echo $help_route; ?>" />
+                    <input type="text" name="route" value="<?php echo $route; ?>" class="form-control" />
                     <?php if ($error_route) { ?>
                     <div class="text-danger"><?php echo $error_route; ?></div>
                     <?php } ?>
                   </div>
 		  <div class="form-group required">
                     <label class="control-label" for="input-query"><span title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
-                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" data-toggle="tooltip" title="<?php echo $help_route_view; ?>" />
+                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" />
                     <?php if ($error_route_view) { ?>
                     <div class="text-danger"><?php echo $error_route_view; ?></div>
                     <?php } ?>
@@ -256,7 +256,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="input-keyword"><span title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span>:</label>
-                    <input type="text" name="keyword" value="<?php echo $keyword; ?>" class="form-control" data-toggle="tooltip" title="<?php echo $help_keyword; ?>" />
+                    <input type="text" name="keyword" value="<?php echo $keyword; ?>" class="form-control" />
                     <?php if ($error_keyword_tag) { ?>
                     <div class="text-danger"><?php echo $error_keyword_tag; ?></div>
                     <?php } ?>
@@ -350,14 +350,14 @@
                 <div class="meta<?php echo $seo_tag['seo_tag_id']; ?>" style="display:none">
                   <div class="form-group required">
                     <label class="control-label" for="input-query"><span title="<?php echo $help_route; ?>"><?php echo $entry_route; ?></span>:</label>
-                    <input type="text" name="route" value="<?php echo $seo_tag['route']; ?>" class="form-control" data-toggle="tooltip" title="<?php echo $help_route; ?>" />
+                    <input type="text" name="route" value="<?php echo $seo_tag['route']; ?>" class="form-control" />
                     <?php if ($error_route) { ?>
                     <div class="text-danger"><?php echo $error_route; ?></div>
                     <?php } ?>
                   </div>
 		  <div class="form-group required">
                     <label class="control-label" for="input-query"><span title="<?php echo $help_route_view; ?>"><?php echo $entry_route_view; ?></span>:</label>
-                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" data-toggle="tooltip" title="<?php echo $help_route_view; ?>" />
+                    <input type="text" name="route_view" value="<?php echo $seo_tag['route_view']; ?>" class="form-control" />
                     <?php if ($error_route_view) { ?>
                     <div class="text-danger"><?php echo $error_route_view; ?></div>
                     <?php } ?>
@@ -411,7 +411,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="input-keyword"><span title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span>:</label>
-                    <input type="text" name="keyword" value="<?php echo $seo_tag['keyword']; ?>" class="form-control" data-toggle="tooltip" title="<?php echo $help_keyword; ?>" />
+                    <input type="text" name="keyword" value="<?php echo $seo_tag['keyword']; ?>" class="form-control" />
                     <?php if ($error_keyword_tag) { ?>
                     <div class="text-danger"><?php echo $error_keyword_tag; ?></div>
                     <?php } ?>
