@@ -454,19 +454,19 @@ class ModelCatalogProduct extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_tab WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($query->rows as $result) {
-			$querys = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_tab_desc WHERE product_tab_id = '" . (int)$result['product_tab_id']. "'");
+			$querys = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_tab_desc WHERE product_tab_id = '" . (int)$result['product_tab_id'] . "'");
 
 			foreach($querys->rows as $row){
 				$description[$row['language_id']] = array(
 					'heading'     => $row['heading'],
-					'description' => $row['description'],
+					'description' => $row['description']
 				);
 			}
 
 			$product_tab_data[] = array(
 				'status'      => $result['status'],
 				'sort_order'  => $result['sort_order'],
-				'description' => $description,
+				'description' => $description
 			);
 		}
 
