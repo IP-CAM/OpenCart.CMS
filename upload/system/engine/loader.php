@@ -70,7 +70,7 @@ final class Loader {
 	}
 
 	public function view($route, $data = array()) {
-		if (!isset(DIR_CATALOG)) {
+		if (!defined('DIR_CATALOG')) {
 			if (!isset($data['description'])) {
 				$data['description'] = false;
 			}
