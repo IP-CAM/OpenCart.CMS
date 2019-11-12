@@ -1321,6 +1321,52 @@
                     <input class="form-control" type="text" name="config_seo_url_postfix" value="<?php echo $config_seo_url_postfix; ?>" />
                   </div>
                 </div>
+		<div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_valide_get_params_status; ?>"><?php echo $entry_valide_get_params_status; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($config_valide_get_params_status) { ?>
+                      <input type="radio" name="config_manufacturers_full_path" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_manufacturers_full_path" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$config_manufacturers_full_path) { ?>
+                      <input type="radio" name="config_manufacturers_full_path" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_manufacturers_full_path" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+		<div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_valide_get_params; ?>"><?php echo $entry_valide_get_params; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($config_valide_get_params) { ?>
+                      <input type="radio" name="config_valide_get_params" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_valide_get_params" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$config_valide_get_params) { ?>
+                      <input type="radio" name="config_valide_get_params" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_valide_get_params" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-file-max-size"><span data-toggle="tooltip" title="<?php echo $help_file_max_size; ?>"><?php echo $entry_file_max_size; ?></span></label>
                   <div class="col-sm-10">
