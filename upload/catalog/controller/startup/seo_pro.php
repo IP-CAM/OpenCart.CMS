@@ -197,18 +197,18 @@ class ControllerStartupSeoPro extends Controller {
 					}
 					$data['product_id'] = $tmp['product_id'];
 					// --- add valide get-param
-					if ($this->config->get('config_seo_url_valide_get_params_status')) {
-						$config_seo_url_valide_get_params = $this->config->get('config_seo_url_valide_get_params');
-						if ($config_seo_url_valide_get_params) {
-							$this->valide_get_params = explode("\r\n", $config_seo_url_valide_get_params);
+					if ($this->config->get('config_valide_get_params_status')) {
+						$config_valide_get_params = $this->config->get('config_valide_get_params');
+						if ($config_valide_get_params) {
+							$this->valide_get_params = explode("\r\n", $config_valide_get_params);
 						}
 						foreach($this->valide_get_params as $valide_param) {
 							if (isset($tmp[$valide_param])) {
 								$data[$valide_param] = $tmp[$valide_param];
-								$valide_noindex_param = $tmp[$valide_param];
+								$config_valide_get_params_noindex = true;
 							}
 						}
-						if (isset($valide_noindex_param)) {
+						if (isset($config_valide_get_params_noindex)) {
 							$this->response->addHeader('X-Robots-Tag: noindex');
 						}
 					}
