@@ -104,7 +104,7 @@ class ControllerExtensionFeedYandexMarket extends Controller {
 		$data['help_image'] = $this->language->get('help_image');
 		$data['help_image_resize'] = $this->language->get('help_image_resize');
 		$data['help_image_quantity'] = $this->language->get('help_image_quantity');
-		$data['help_desc_html'] = $this->language->get('help_desc_html');
+		$data['help_desc_html'] = htmlspecialchars($this->language->get('help_desc_html'));
 		$data['help_param'] = $this->language->get('help_param');
 		$data['help_main_category'] = $this->language->get('help_main_category');
 		$data['help_category'] = $this->language->get('help_category');
