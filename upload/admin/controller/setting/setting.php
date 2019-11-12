@@ -1127,6 +1127,26 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seo_url_postfix'] = $this->config->get('config_seo_url_postfix');
 		}
 
+		if (isset($this->request->post['config_seo_url_valide_get_params_status'])) {
+			$data['config_seo_url_valide_get_params_status'] = $this->request->post['config_seo_url_valide_get_params_status'];
+		// удалить в 2.3.0.2.7
+		} elseif ($this->config->get('config_seo_url_valide_get_params_status') == null) {
+			$data['config_seo_url_valide_get_params_status'] = 1;
+		// удалить в 2.3.0.2.7
+		} else {
+			$data['config_seo_url_valide_get_params_status'] = $this->config->get('config_seo_url_valide_get_params_status');
+		}
+
+		if (isset($this->request->post['config_seo_url_valide_get_params'])) {
+			$data['config_seo_url_valide_get_params'] = $this->request->post['config_seo_url_valide_get_params'];
+		// удалить в 2.3.0.2.7
+		} elseif ($this->config->get('config_seo_url_valide_get_params') == null) {
+			$data['config_seo_url_valide_get_params'] = 'tracking\r\nutm_source\r\nutm_campaign\r\nutm_medium\r\ntype\r\nsource\r\nblock\r\nposition\r\nkeyword\r\nyclid\r\ngclid';
+		// удалить в 2.3.0.2.7
+		} else {
+			$data['config_seo_url_valide_get_params'] = $this->config->get('config_seo_url_valide_get_params');
+		}
+
 		if (isset($this->request->post['config_file_max_size'])) {
 			$data['config_file_max_size'] = $this->request->post['config_file_max_size'];
 		} elseif ($this->config->get('config_file_max_size')) {
