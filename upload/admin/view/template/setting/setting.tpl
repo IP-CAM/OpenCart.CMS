@@ -1326,45 +1326,28 @@
                   <div class="col-sm-10">
                     <label class="radio-inline">
                       <?php if ($config_valide_get_params_status) { ?>
-                      <input type="radio" name="config_manufacturers_full_path" value="1" checked="checked" />
+                      <input type="radio" name="config_valide_get_params_status" value="1" checked="checked" />
                       <?php echo $text_yes; ?>
                       <?php } else { ?>
-                      <input type="radio" name="config_manufacturers_full_path" value="1" />
+                      <input type="radio" name="config_valide_get_params_status" value="1" />
                       <?php echo $text_yes; ?>
                       <?php } ?>
                     </label>
                     <label class="radio-inline">
-                      <?php if (!$config_manufacturers_full_path) { ?>
-                      <input type="radio" name="config_manufacturers_full_path" value="0" checked="checked" />
+                      <?php if (!$config_valide_get_params_status) { ?>
+                      <input type="radio" name="config_valide_get_params_status" value="0" checked="checked" />
                       <?php echo $text_no; ?>
                       <?php } else { ?>
-                      <input type="radio" name="config_manufacturers_full_path" value="0" />
+                      <input type="radio" name="config_valide_get_params_status" value="0" />
                       <?php echo $text_no; ?>
                       <?php } ?>
                     </label>
                   </div>
                 </div>
 		<div class="form-group">
-                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_valide_get_params; ?>"><?php echo $entry_valide_get_params; ?></span></label>
+                  <label class="col-sm-2 control-label" for="input-valide-get-params"><span data-toggle="tooltip" title="<?php echo $help_valide_get_params; ?>"><?php echo $entry_valide_get_params; ?></span></label>
                   <div class="col-sm-10">
-                    <label class="radio-inline">
-                      <?php if ($config_valide_get_params) { ?>
-                      <input type="radio" name="config_valide_get_params" value="1" checked="checked" />
-                      <?php echo $text_yes; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_valide_get_params" value="1" />
-                      <?php echo $text_yes; ?>
-                      <?php } ?>
-                    </label>
-                    <label class="radio-inline">
-                      <?php if (!$config_valide_get_params) { ?>
-                      <input type="radio" name="config_valide_get_params" value="0" checked="checked" />
-                      <?php echo $text_no; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_valide_get_params" value="0" />
-                      <?php echo $text_no; ?>
-                      <?php } ?>
-                    </label>
+                    <textarea name="config_valide_get_params" rows="10" placeholder="<?php echo $entry_valide_get_params; ?>" id="input-valide-get-params" class="form-control"><?php echo $config_valide_get_params; ?></textarea>
                   </div>
                 </div>
                 <div class="form-group">
