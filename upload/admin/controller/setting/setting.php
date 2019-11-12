@@ -1145,7 +1145,7 @@ class ControllerSettingSetting extends Controller {
 			$data['config_valide_get_params'] = $this->request->post['config_valide_get_params'];
 		// удалить в 2.3.0.2.7
 		} elseif ($this->config->get('config_valide_get_params') == null) {
-			$data['config_valide_get_params'] = 'tracking\r\nutm_source\r\nutm_campaign\r\nutm_medium\r\ntype\r\nsource\r\nblock\r\nposition\r\nkeyword\r\nyclid\r\ngclid';
+			$data['config_valide_get_params'] = "tracking\r\nutm_source\r\nutm_campaign\r\nutm_medium\r\ntype\r\nsource\r\nblock\r\nposition\r\nkeyword\r\nyclid\r\ngclid";
 		// удалить в 2.3.0.2.7
 		} else {
 			$data['config_valide_get_params'] = $this->config->get('config_valide_get_params');
