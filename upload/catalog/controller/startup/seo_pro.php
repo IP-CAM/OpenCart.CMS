@@ -11,12 +11,10 @@ class ControllerStartupSeoPro extends Controller {
 	private $valid_server = false;
 	private $url_sheme = 'http';
 	private $ssl_routes = array(
-	'checkout/',
-	'account/',
-	'affiliate/',
+		'checkout/',
+		'account/',
+		'affiliate/',
 	);
-
-	// Добавлять нужные роуты для исключений здесь!
 	private $valide_routes = array(
 		'tracking',
 		'utm_source',
@@ -198,13 +196,23 @@ class ControllerStartupSeoPro extends Controller {
 						if (!$data['path']) return $link;
 					}
 					$data['product_id'] = $tmp['product_id'];
-					// --- add valide routes
-					foreach($this->valide_routes as $valide_route) {
-						if (isset($tmp[$valide_route])) {
-							$data[$valide_route] = $tmp[$valide_route];
+					// --- add valide get-param
+					if ($this->config->get('config_seo_url_valide_get_params_status')) {
+						$config_seo_url_valide_get_params = $this->config->get('config_seo_url_valide_get_params');
+						if ($config_seo_url_valide_get_params) {
+							$this->valide_get_params = explode("\r\n", $config_seo_url_valide_get_params);
+						}
+						foreach($this->valide_get_params as $valide_param) {
+							if (isset($tmp[$valide_param])) {
+								$data[$valide_param] = $tmp[$valide_param];
+								$valide_noindex_param = $tmp[$valide_param];
+							}
+						}
+						if (isset($valide_noindex_param)) {
+							$this->response->addHeader('X-Robots-Tag: noindex');
 						}
 					}
-					// --- add valide routes
+					// --- add valide get-param
 				}
 				break;
 			case 'product/category':
