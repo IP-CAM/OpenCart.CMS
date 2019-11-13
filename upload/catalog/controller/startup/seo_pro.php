@@ -202,14 +202,10 @@ class ControllerStartupSeoPro extends Controller {
 						if ($config_valide_get_params) {
 							$this->valide_get_params = explode("\r\n", $config_valide_get_params);
 						}
-						foreach($this->valide_get_params as $valide_param) {
+						foreach ($this->valide_get_params as $valide_param) {
 							if (isset($tmp[$valide_param])) {
 								$data[$valide_param] = $tmp[$valide_param];
-								$config_valide_get_params_noindex = true;
 							}
-						}
-						if (isset($config_valide_get_params_noindex)) {
-							$this->response->addHeader('X-Robots-Tag: noindex');
 						}
 					}
 					// --- add valide get-param
@@ -472,7 +468,7 @@ class ControllerStartupSeoPro extends Controller {
 
 		//Remove negative page count
 		if (isset($this->request->get['page'])) {
-			if((float)$this->request->get['page'] < 1) {
+			if ((float)$this->request->get['page'] < 1) {
 				unset($this->request->get['page']);
 			};
 		};
