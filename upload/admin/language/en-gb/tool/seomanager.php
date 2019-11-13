@@ -41,6 +41,8 @@ $_['entry_status']             = 'Status';
 // Tab
 $_['tab_seourl']               = 'SEO URL';
 $_['tab_seotag']               = 'SEO META-TAG';
+$_['tab_generation']           = 'SEO GENERATION';
+$_['tab_settings']             = 'SETTINGS';
 
 // Help
 $_['help_query']               = 'A route or parameter is needed to bind SEO URLs and META-TAGS to a specific page. The route has the following form: information / contact - this is the location of the controller starting from catalog/controller/&lt;br /&gt;The parameter is of the type: product_id=1';
