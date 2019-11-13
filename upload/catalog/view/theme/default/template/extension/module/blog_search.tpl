@@ -1,3 +1,19 @@
+<style type="text/css">
+#blog-search {
+	margin-bottom: 10px;
+}
+#blog-search .input-lg {
+	height: 40px;
+	line-height: 20px;
+	padding: 0 10px;
+}
+#blog-search .btn-lg {
+	font-size: 15px;
+	line-height: 18px;
+	padding: 10px 35px;
+	text-shadow: 0 1px 0 #FFF;
+}
+</style>
 <div id="blog-search" class="blog-search<?php echo $module_id; ?> input-group">
   <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_search; ?>" class="form-control input-lg" />
   <span class="input-group-btn">
