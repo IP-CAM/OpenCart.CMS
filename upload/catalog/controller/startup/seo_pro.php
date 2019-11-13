@@ -13,7 +13,7 @@ class ControllerStartupSeoPro extends Controller {
 	private $ssl_routes = array(
 		'checkout/',
 		'account/',
-		'affiliate/',
+		'affiliate/'
 	);
 	private $valide_routes = array(
 		'tracking',
