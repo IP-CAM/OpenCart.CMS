@@ -41,6 +41,8 @@ $_['entry_status']             = 'Статус';
 // Tab
 $_['tab_seourl']               = 'SEO URL';
 $_['tab_seotag']               = 'SEO META-TAG';
+$_['tab_generation']           = 'SEO ГЕНЕРАЦИЯ';
+$_['tab_setting']              = 'НАСТРОЙКИ';
 
 // Help
 $_['help_query']               = 'Роут или параметр нужен для привязки SEO URL и META-TAGS к определённой странице. Роут имеет следующий вид: information/contact - это расположение контроллера начиная от catalog/controller/&lt;br /&gt;Параметр имеет вид типа: product_id=1';
