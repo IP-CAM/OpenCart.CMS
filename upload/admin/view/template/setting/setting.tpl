@@ -310,12 +310,6 @@
               <fieldset>
                 <legend><?php echo $text_product; ?></legend>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-pro-href-admin"><span data-toggle="tooltip" title="<?php echo $help_pro_href_admin; ?>"><?php echo $entry_pro_href_admin; ?></span></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="config_pro_href_admin" value="<?php echo $config_pro_href_admin; ?>" placeholder="<?php echo $entry_pro_href_admin; ?>" id="input-pro-href-admin" class="form-control" />
-                  </div>
-                </div>
-                <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_product_count; ?>"><?php echo $entry_product_count; ?></span></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
