@@ -86,7 +86,6 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$data['entry_length_class'] = $this->language->get('entry_length_class');
 		$data['entry_weight_class'] = $this->language->get('entry_weight_class');
-		$data['entry_pro_href_admin'] = $this->language->get('entry_pro_href_admin');
 		$data['entry_limit_admin'] = $this->language->get('entry_limit_admin');
 		$data['entry_product_count'] = $this->language->get('entry_product_count');
 		$data['entry_review'] = $this->language->get('entry_review');
@@ -171,7 +170,6 @@ class ControllerSettingSetting extends Controller {
 		$data['help_location'] = $this->language->get('help_location');
 		$data['help_currency'] = $this->language->get('help_currency');
 		$data['help_currency_auto'] = $this->language->get('help_currency_auto');
-		$data['help_pro_href_admin'] = $this->language->get('help_pro_href_admin');
 		$data['help_limit_admin'] = $this->language->get('help_limit_admin');
 		$data['help_product_count'] = $this->language->get('help_product_count');
 		$data['help_review'] = $this->language->get('help_review');
@@ -615,12 +613,6 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
-
-		if (isset($this->request->post['config_pro_href_admin'])) {
-			$data['config_pro_href_admin'] = $this->request->post['config_pro_href_admin'];
-		} else {
-			$data['config_pro_href_admin'] = $this->config->get('config_pro_href_admin');
-		}
 
 		if (isset($this->request->post['config_limit_admin'])) {
 			$data['config_limit_admin'] = $this->request->post['config_limit_admin'];
