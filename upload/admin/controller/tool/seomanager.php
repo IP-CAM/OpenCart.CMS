@@ -290,8 +290,8 @@ class ControllerToolSeoManager extends Controller {
 			'href' => $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
-		if (isset($this->error['warning'])) {
-			$data['error'] = $this->error['warning'];
+		if (isset($this->error['error'])) {
+			$data['error'] = $this->error['error'];
 		} else {
 			$data['error'] = '';
 		}
@@ -698,20 +698,20 @@ class ControllerToolSeoManager extends Controller {
 
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'tool/seomanager')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['error'] = $this->language->get('error_permission');
 		}
 
 		if (isset($this->request->post['query'])) {
 			if (!$this->request->post['query']) {
 				$this->error['query_url'] = $this->language->get('error_query');
-				$this->error['warning'] = $this->language->get('error_warning');
+				$this->error['error'] = $this->language->get('error_warning');
 			}
 		}
 
 		if (isset($this->request->post['query']) && isset($this->request->post['meta'])) {
 			if (!$this->request->post['query']) {
 				$this->error['query_tag'] = $this->language->get('error_route');
-				$this->error['warning'] = $this->language->get('error_warning');
+				$this->error['error'] = $this->language->get('error_warning');
 			}
 		}
 
@@ -719,22 +719,22 @@ class ControllerToolSeoManager extends Controller {
 			foreach ($this->request->post['meta'] as $language_id => $value) {
 				if ((utf8_strlen($value['meta_h1']) < 0) || (utf8_strlen($value['meta_h1']) > 300)) {
 					$this->error['meta_h1'][$language_id] = $this->language->get('error_meta_h1');
-					$this->error['warning'] = $this->language->get('error_warning');
+					$this->error['error'] = $this->language->get('error_warning');
 				}
 
 				if ((utf8_strlen($value['meta_title']) < 0) || (utf8_strlen($value['meta_title']) > 300)) {
 					$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-					$this->error['warning'] = $this->language->get('error_warning');
+					$this->error['error'] = $this->language->get('error_warning');
 				}
 
 				if ((utf8_strlen($value['meta_description']) < 0) || (utf8_strlen($value['meta_description']) > 300)) {
 					$this->error['meta_description'][$language_id] = $this->language->get('error_meta_description');
-					$this->error['warning'] = $this->language->get('error_warning');
+					$this->error['error'] = $this->language->get('error_warning');
 				}
 
 				if ((utf8_strlen($value['meta_keyword']) < 0) || (utf8_strlen($value['meta_keyword']) > 300)) {
 					$this->error['meta_keyword'][$language_id] = $this->language->get('error_meta_keyword');
-					$this->error['warning'] = $this->language->get('error_warning');
+					$this->error['error'] = $this->language->get('error_warning');
 				}
 			}
 		}
@@ -748,10 +748,10 @@ class ControllerToolSeoManager extends Controller {
 				if ($url_alias_info && $url_alias_info['query'] != $this->request->post['query']) {
 					if (!isset($this->request->post['meta'])) {
 						$this->error['keyword_url'] = sprintf($this->language->get('error_keyword')) . ' <a href="' . $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&filter_query=' . $url_alias_info['query'], true) . '" target="_blank">' . $url_alias_info['query'] . '</a>';
-						$this->error['warning'] = $this->language->get('error_warning');
+						$this->error['error'] = $this->language->get('error_warning');
 					} else {
 						$this->error['keyword_tag'] = sprintf($this->language->get('error_keyword')) . ' <a href="' . $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&filter_query=' . $url_alias_info['query'], true) . '" target="_blank">' . $url_alias_info['query'] . '</a>';
-						$this->error['warning'] = $this->language->get('error_warning');
+						$this->error['error'] = $this->language->get('error_warning');
 					}
 				}
 			}
@@ -762,7 +762,7 @@ class ControllerToolSeoManager extends Controller {
 
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'tool/seomanager')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['error'] = $this->language->get('error_permission');
 		}
 
 		return !$this->error;
