@@ -6,6 +6,10 @@
 
 class ControllerSearchSearch extends Controller {
 	public function index() {
+		if (empty($this->session->data['token'])) {	
+			return;	
+		}
+
 		$this->load->language('search/search');
 
 		$data['text_search_options'] = $this->language->get('text_search_options');
