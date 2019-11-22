@@ -34,6 +34,7 @@ class ControllerInformationSitemap extends Controller {
 		$data['text_cart'] = $this->language->get('text_cart');
 		$data['text_checkout'] = $this->language->get('text_checkout');
 		$data['text_search'] = $this->language->get('text_search');
+		$data['text_blog_search'] = $this->language->get('text_blog_search');
 		$data['text_information'] = $this->language->get('text_information');
 		$data['text_contact'] = $this->language->get('text_contact');
 
@@ -102,6 +103,7 @@ class ControllerInformationSitemap extends Controller {
 		$data['cart'] = $this->url->link('checkout/cart');
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 		$data['search'] = $this->url->link('product/search');
+		$data['blog_search'] = ($this->config->get('configblog_sitemap') ? $this->url->link('blog/search') : false);
 		$data['contact'] = $this->url->link('information/contact');
 
 		$this->load->model('catalog/information');
