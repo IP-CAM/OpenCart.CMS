@@ -18,6 +18,7 @@ $_['text_download']      = 'Файлы для скачивания';
 $_['text_cart']          = 'Корзина покупок';
 $_['text_checkout']      = 'Оформление заказа';
 $_['text_search']        = 'Поиск';
+$_['text_blog_search']   = 'Поиск по блогу';
 $_['text_information']   = 'Информация';
 $_['text_contact']       = 'Связаться с нами';
 $_['text_blog']          = 'Блог';
