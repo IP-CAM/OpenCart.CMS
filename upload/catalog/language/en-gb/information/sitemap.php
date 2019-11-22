@@ -18,6 +18,7 @@ $_['text_download']      = 'Downloads';
 $_['text_cart']          = 'Shopping Cart';
 $_['text_checkout']      = 'Checkout';
 $_['text_search']        = 'Search';
+$_['text_blog_search']   = 'Blog Search';
 $_['text_information']   = 'Information';
 $_['text_contact']       = 'Contact Us';
 $_['text_blog']          = 'Blog';
