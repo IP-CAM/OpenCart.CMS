@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Аўтар: "БуслікДрэў" ( http://buslikdrev.by/ )
+© 2016-2020; BuslikDrev - Усе правы захаваныя.
+Спецыяльна для сайта: "OpenCart.pro" ( http://opencart.pro/ ) -->
+
+<modification>
+	<code>01000048</code>
+    <name>Удобный Редактор - "Convenient Editor"</name>
+    <version>Pro</version>
+    <author>BuslikDrev.by</author>
+    <link>https://liveopencart.ru/buslikdrev</link>
+	<!-- ↓ АДМИНКА КОНТРОЛЛЕРЫ ↓ -->
+	<!-- ↑ АДМИНКА КОНТРОЛЛЕРЫ ↑ -->
+	<!-- ↓ САЙТ КОНТРОЛЛЕРЫ ↓ -->
+	<file path="catalog/controller/blog/category.php">
+		<operation error="skip">
+			<search index="0"><![CDATA[function index(]]></search>
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+				$this->user = new Cart\User($this->registry);
+				if ($this->user->isLogged()) {
+					$data['button_bus_editor_href'] = $this->language->get('button_edit');
+					$data['bus_editor_href'] = $this->url->link('extension/module/bus_editor', 'blog_category=' . $this->request->get['blog_category_id']);
+				}
+			}]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/blog/article.php">
+		<operation error="skip">
+			<search index="0"><![CDATA[function index(]]></search>
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+				$this->user = new Cart\User($this->registry);
+				if ($this->user->isLogged()) {
+					$data['button_bus_editor_href'] = $this->language->get('button_edit');
+					$data['bus_editor_href'] = $this->url->link('extension/module/bus_editor', 'article=' . $this->request->get['article_id']);
+				}
+			}]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/category.php">
+		<operation error="skip">
+			<search index="0"><![CDATA[function index(]]></search>
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+				$this->user = new Cart\User($this->registry);
+				if ($this->user->isLogged()) {
+					$data['button_bus_editor_href'] = $this->language->get('button_edit');
+					$data['bus_editor_href'] = $this->url->link('extension/module/bus_editor', 'category=' . $this->request->get['path']);
+				}
+			}]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/information/information.php">
+		<operation error="skip">
+			<search index="0"><![CDATA[function index(]]></search>
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+				$this->user = new Cart\User($this->registry);
+				if ($this->user->isLogged()) {
+					$data['button_bus_editor_href'] = $this->language->get('button_edit');
+					$data['bus_editor_href'] = $this->url->link('extension/module/bus_editor', 'information=' . $this->request->get['information_id']);
+				}
+			}]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/manufacturer.php">
+		<operation error="skip">
+			<search index="0"><![CDATA[function info(]]></search>
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+				$this->user = new Cart\User($this->registry);
+				if ($this->user->isLogged()) {
+					$data['button_bus_editor_href'] = $this->language->get('button_edit');
+					$data['bus_editor_href'] = $this->url->link('extension/module/bus_editor', 'manufacturer=' . $this->request->get['manufacturer_id']);
+				}
+			}]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/product.php">
+		<operation error="skip">
+			<search index="0"><![CDATA[function index(]]></search>
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+				$this->user = new Cart\User($this->registry);
+				if ($this->user->isLogged()) {
+					$data['button_bus_editor_href'] = $this->language->get('button_edit');
+					$data['bus_editor_href'] = $this->url->link('extension/module/bus_editor', 'product=' . $this->request->get['product_id']);
+				}
+			}]]></add>
+		</operation>
+	</file>
+	<!-- ↑ САЙТ КОНТРОЛЛЕРЫ ↑ -->
+	<!-- ↓ САЙТ ЯЗЫКОВЫЕ ФАЙЛЫ ↓ -->
+	<file path="catalog/language/{belarusian,be-by,by-by}/{belarusian,be-by,by-by}.php">
+        <operation error="skip">
+            <search trim="false" index="0">
+			<![CDATA[?php]]>
+            </search>
+            <add position="after">
+			<![CDATA[// Convenient Editor
+$_['error_bus_editor_href'] = 'ЖЭСТАЧАЙШЭ ЗАПРЫШЧАЮ!';
+// Convenient Editor
+]]>
+            </add>
+        </operation>
+    </file>
+	<file path="catalog/language/{english,en-gb}/{english,en-gb}.php">
+        <operation error="skip">
+            <search trim="false" index="0">
+			<![CDATA[?php]]>
+            </search>
+            <add position="after">
+			<![CDATA[// Convenient Editor
+$_['error_bus_editor_href'] = 'ЖЭСТАЧАЙШЭ ЗАПРЫШЧАЮ!';
+// Convenient Editor
+]]>
+            </add>
+        </operation>
+    </file>
+	<file path="catalog/language/{russian,ru-ru}/{russian,ru-ru}.php">
+        <operation error="skip">
+            <search trim="false" index="0">
+			<![CDATA[?php]]>
+            </search>
+            <add position="after">
+			<![CDATA[// Convenient Editor
+$_['error_bus_editor_href'] = 'ЖЭСТАЧАЙШЭ ЗАПРЫШЧАЮ!';
+// Convenient Editor
+]]>
+            </add>
+        </operation>
+    </file>
+	<file path="catalog/language/{ukrainian,uk-ua,ua-uk}/{ukrainian,uk-ua,ua-uk}.php">
+        <operation error="skip">
+            <search trim="false" index="0">
+			<![CDATA[?php]]>
+            </search>
+            <add position="after">
+			<![CDATA[// Convenient Editor
+$_['error_bus_editor_href'] = 'ЖЭСТАЧАЙШЭ ЗАПРЫШЧАЮ!';
+// Convenient Editor
+]]>
+            </add>
+        </operation>
+    </file>
+	<!-- ↑ САЙТ ЯЗЫКОВЫЕ ФАЙЛЫ ↑ -->
+	<!-- ↓ САЙТ ШАБЛОН ↓ -->
+	<file path="catalog/view/theme/*/template/blog/category.tpl">
+		<operation error="skip">
+			<search index="0" tabl="blog_category"><![CDATA[<?php echo $button_grid; ?>]]></search>
+			<add position="after" tabl="blog_category"><![CDATA[			<?php if (isset($bus_editor_href)) { ?><!--noindex--><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_editor_href; ?>" onclick="window.open('<?php echo $bus_editor_href; ?>', '_blank');"><i class="fa fa-pencil"></i></button><!--/noindex--><?php } ?>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/blog/article.tpl">
+		<operation error="skip">
+			<search index="0" tabl="blog_article"><![CDATA[<h1><?php echo $heading_title; ?></h1>]]></search>
+			<add position="before" tabl="blog_article"><![CDATA[			<?php if (isset($bus_editor_href)) { ?><!--noindex--><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_editor_href; ?>" onclick="window.open('<?php echo $bus_editor_href; ?>', '_blank');"><i class="fa fa-pencil"></i></button><!--/noindex--><?php } ?>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/product/category.tpl">
+		<operation error="skip">
+			<search index="0" tabl="category"><![CDATA[<?php echo $button_grid; ?>]]></search>
+			<add position="after" tabl="category"><![CDATA[			<?php if (isset($bus_editor_href)) { ?><!--noindex--><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_editor_href; ?>" onclick="window.open('<?php echo $bus_editor_href; ?>', '_blank');"><i class="fa fa-pencil"></i></button><!--/noindex--><?php } ?>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/information/information.tpl">
+		<operation error="skip">
+			<search index="0" tabl="information"><![CDATA[<h1><?php echo $heading_title; ?></h1>]]></search>
+			<add position="before" tabl="information"><![CDATA[			<?php if (isset($bus_editor_href)) { ?><!--noindex--><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_editor_href; ?>" onclick="window.open('<?php echo $bus_editor_href; ?>', '_blank');"><i class="fa fa-pencil"></i></button><!--/noindex--><?php } ?>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/product/manufacturer_info.tpl">
+		<operation error="skip">
+			<search index="0" tabl="manufacturer"><![CDATA[<?php echo $button_grid; ?>]]></search>
+			<add position="after" tabl="manufacturer"><![CDATA[			<?php if (isset($bus_editor_href)) { ?><!--noindex--><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_editor_href; ?>" onclick="window.open('<?php echo $bus_editor_href; ?>', '_blank');"><i class="fa fa-pencil"></i></button><!--/noindex--><?php } ?>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/product/product.tpl">
+		<operation error="skip">
+			<search index="0" tabl="product"><![CDATA[<?php echo $button_compare; ?>]]></search>
+			<add position="after" tabl="product"><![CDATA[			<?php if (isset($bus_editor_href)) { ?><!--noindex--><button type="button" data-toggle="tooltip" class="btn btn-success" title="<?php echo $button_bus_editor_href; ?>" onclick="window.open('<?php echo $bus_editor_href; ?>', '_blank');"><i class="fa fa-pencil"></i></button><!--/noindex--><?php } ?>]]></add>
+		</operation>
+	</file>
+	<!-- ↑ САЙТ ШАБЛОН ↑ -->
+</modification>
+
+<!-- Аўтар: "БуслікДрэў" ( http://buslikdrev.by/ )
+© 2016-2020; BuslikDrev - Усе правы захаваныя.
+Спецыяльна для сайта: "OpenCart.pro" ( http://opencart.pro/ ) -->
