@@ -5,7 +5,7 @@
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
 // Heading
-$_['heading_title']                         = '<b>Удобный Редактор <span style="color:limegreen">Full</span></b> v1.0';
+$_['heading_title']                         = 'Удобный Редактор Pro';
 
 // Tab
 $_['tab_blog_category']                     = 'Настройки категорий блога';
