@@ -21,34 +21,34 @@ $_['tab_other']                             = 'Общие настройки';
 $_['text_extension']                        = 'Расширения';
 $_['text_module']                           = 'Модули';
 $_['text_edit']                             = 'Редактирование';
-$_['text_install']							= 'Установка модуля...';
-$_['text_uninstall']						= 'Удаление модуля...';
-$_['text_uninstall_files']					= 'Удаление файлов модуля...';
-$_['text_uninstall_files_log']				= 'Отчёт об удалении файлов модуля';
-$_['text_ocmod_clear']						= 'Чистка модификаторов...';
-$_['text_ocmod_clearlog']					= 'Чистка лога модификаторов...';
-$_['text_ocmod_refresh']					= 'Обновление модификаторов...';
-$_['text_cache_clear']						= 'Чистка кэша...';
+$_['text_install']                          = 'Установка модуля...';
+$_['text_uninstall']                        = 'Удаление модуля...';
+$_['text_uninstall_files']                  = 'Удаление файлов модуля...';
+$_['text_uninstall_files_log']              = 'Отчёт об удалении файлов модуля';
+$_['text_ocmod_clear']                      = 'Чистка модификаторов...';
+$_['text_ocmod_clearlog']                   = 'Чистка лога модификаторов...';
+$_['text_ocmod_refresh']                    = 'Обновление модификаторов...';
+$_['text_cache_clear']                      = 'Чистка кэша...';
 $_['text_width']                            = 'Ширина';
 $_['text_height']                           = 'Высота';
-$_['text_after']                			= 'После';
-$_['text_before']                			= 'До';
-$_['text_replace']                			= 'Заменить';
-$_['text_left']                				= 'Слева';
-$_['text_right']                			= 'Справа';
-$_['text_top']                				= 'Сверху';
-$_['text_bottom']                			= 'Снизу';
-$_['text_left_top']                			= 'В левом верхнем углу';
-$_['text_right_top']                		= 'В правом верхнем углу';
-$_['text_left_bottom']                		= 'В левом нижнем углу';
-$_['text_right_bottom']                		= 'В правом нижнем углу';
+$_['text_after']                            = 'После';
+$_['text_before']                           = 'До';
+$_['text_replace']                          = 'Заменить';
+$_['text_left']                             = 'Слева';
+$_['text_right']                            = 'Справа';
+$_['text_top']                              = 'Сверху';
+$_['text_bottom']                           = 'Снизу';
+$_['text_left_top']                         = 'В левом верхнем углу';
+$_['text_right_top']                        = 'В правом верхнем углу';
+$_['text_left_bottom']                      = 'В левом нижнем углу';
+$_['text_right_bottom']                     = 'В правом нижнем углу';
 $_['text_example']                          = '<b>Например:</b> %s';
 $_['text_view']                             = '<b>Шаблон расположен по пути:</b> catalog/view/theme/%s/template/';
-$_['text_author']                   		= 'Автор: <a href="http://buslikdrev.by/" title="Изделия ремесленного производства" target="_blank">БусликДрев</a>. Тех. поддержка: <a href="https://liveopencart.ru/buslikdrev" title="Техническая помощь по решению проблем связанные с модулем" target="_blank">ТУТ</a>. Тема поддержки: <a href="http://forum.opencart.pro/topic/6294-удобный-редактор-convenient-editor/" title="Техническая помощь по решению проблем связанные с модулем" target="_blank">ТУТ</a>.';
-$_['text_corp']                     		= '© 2016-' . date('d.m.Y') . '; <a href="http://buslikdrev.by/" title="BuslikDrev" target="_blank">BuslikDrev</a> - Все права сохранены.';
+$_['text_author']                           = 'Автор: <a href="http://buslikdrev.by/" title="Изделия ремесленного производства" target="_blank">БусликДрев</a>. Тех. поддержка: <a href="https://liveopencart.ru/buslikdrev" title="Техническая помощь по решению проблем связанные с модулем" target="_blank">ТУТ</a>. Тема поддержки: <a href="http://forum.opencart.pro/topic/6294-удобный-редактор-convenient-editor/" title="Техническая помощь по решению проблем связанные с модулем" target="_blank">ТУТ</a>.';
+$_['text_corp']                             = '© 2016-' . date('d.m.Y') . '; <a href="http://buslikdrev.by/" title="BuslikDrev" target="_blank">BuslikDrev</a> - Все права сохранены.';
 
 // Entry
-$_['entry_index']                			= 'Пропустить повторные';
+$_['entry_index']                           = 'Пропустить повторные';
 $_['entry_position']                        = 'Расположение';
 $_['entry_href_status']                     = 'Статус кнопки';
 $_['entry_href_search']                     = 'Привязка кнопки к коду';
@@ -69,7 +69,7 @@ $_['help_href_add']                         = 'Код кнопки. Неправ
 $_['help_href_admin']                       = 'Укажите внутреннюю или внешнюю ссылку админ панели для кнопки быстрого редактирования товара, если изменяли название папки на сервере, например: \'adminka/\' или \'https://site.by/adminka/\'. По умолчанию: \'admin/\'.';
 
 //Button
-$_['button_files_clear']					= 'Удалить также файлы модуля? - если нет, просто обновите страницу от греха. Отчёт об удалении файлов смотрите в логах модификаторов.';
+$_['button_files_clear']                    = 'Удалить также файлы модуля? - если нет, просто обновите страницу от греха. Отчёт об удалении файлов смотрите в логах модификаторов.';
 
 // Error
 $_['error_permission']                      = 'У вас недостаточно прав для внесения изменений!';
