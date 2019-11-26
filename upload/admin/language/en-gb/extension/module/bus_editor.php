@@ -5,7 +5,7 @@
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
 // Heading
-$_['heading_title']                         = '<b>Convenient Editor <span style="color:limegreen">Full</span></b> v1.0';
+$_['heading_title']                         = 'Convenient Editor Pro';
 
 // Tab
 $_['tab_blog_category']                     = 'Blog Category Settings';
@@ -21,34 +21,34 @@ $_['tab_other']                             = 'General Settings';
 $_['text_extension']                        = 'Extensions';
 $_['text_module']                           = 'Modules';
 $_['text_edit']                             = 'Editing';
-$_['text_install']							= 'Installing module...';
-$_['text_uninstall']						= 'Uninstalling module...';
-$_['text_uninstall_files']					= 'Removing module files...';
-$_['text_uninstall_files_log']				= 'Report on deleting module files';
-$_['text_ocmod_clear']						= 'Clearing modification...';
-$_['text_ocmod_clearlog']					= 'Clearing modification log...';
-$_['text_ocmod_refresh']					= 'Updating modification...';
-$_['text_cache_clear']						= 'Clearing the cache...';
+$_['text_install']                          = 'Installing module...';
+$_['text_uninstall']                        = 'Uninstalling module...';
+$_['text_uninstall_files']                  = 'Removing module files...';
+$_['text_uninstall_files_log']              = 'Report on deleting module files';
+$_['text_ocmod_clear']                      = 'Clearing modification...';
+$_['text_ocmod_clearlog']                   = 'Clearing modification log...';
+$_['text_ocmod_refresh']                    = 'Updating modification...';
+$_['text_cache_clear']                      = 'Clearing the cache...';
 $_['text_width']                            = 'Width';
 $_['text_height']                           = 'Height';
-$_['text_after']                			= 'After';
-$_['text_before']                			= 'Before';
-$_['text_replace']                			= 'Replace';
-$_['text_left']                				= 'Left';
-$_['text_right']                			= 'Right';
-$_['text_top']                				= 'Top';
-$_['text_bottom']                			= 'Bottom';
-$_['text_left_top']                			= 'Left and top';
-$_['text_right_top']                		= 'Right and top';
-$_['text_left_bottom']                		= 'Left and bottom';
-$_['text_right_bottom']                		= 'Right and bottom';
+$_['text_after']                            = 'After';
+$_['text_before']                           = 'Before';
+$_['text_replace']                          = 'Replace';
+$_['text_left']                             = 'Left';
+$_['text_right']                            = 'Right';
+$_['text_top']                              = 'Top';
+$_['text_bottom']                           = 'Bottom';
+$_['text_left_top']                         = 'Left and top';
+$_['text_right_top']                        = 'Right and top';
+$_['text_left_bottom']                      = 'Left and bottom';
+$_['text_right_bottom']                     = 'Right and bottom';
 $_['text_example']                          = '<b>Example:</b> %s';
 $_['text_view']                             = '<b>The template is located along the path:</b> catalog/view/theme/%s/template/';
-$_['text_author']                   		= 'Author: <a href="http://buslikdrev.by/" title="Handicraft Products" target="_blank">BuslikDrev</a>. Support: <a href="https://liveopencart.ru/buslikdrev" title="Technical help to solve problems associated with the module" target="_blank">HERE</a>. Support topic: <a href="http://forum.opencart.pro/topic/6294-удобный-редактор-convenient-editor/" title="Technical help to solve problems associated with the module" target="_blank">HERE</a>.';
-$_['text_corp']                     		= '© 2016-' . date('d.m.Y') . '; <a href="http://buslikdrev.by/" title="BuslikDrev" target="_blank">BuslikDrev</a> - All rights reserved.';
+$_['text_author']                           = 'Author: <a href="http://buslikdrev.by/" title="Handicraft Products" target="_blank">BuslikDrev</a>. Support: <a href="https://liveopencart.ru/buslikdrev" title="Technical help to solve problems associated with the module" target="_blank">HERE</a>. Support topic: <a href="http://forum.opencart.pro/topic/6294-удобный-редактор-convenient-editor/" title="Technical help to solve problems associated with the module" target="_blank">HERE</a>.';
+$_['text_corp']                             = '© 2016-' . date('d.m.Y') . '; <a href="http://buslikdrev.by/" title="BuslikDrev" target="_blank">BuslikDrev</a> - All rights reserved.';
 
 // Entry
-$_['entry_index']                			= 'Skip repeated';
+$_['entry_index']                           = 'Skip repeated';
 $_['entry_position']                        = 'Position';
 $_['entry_href_status']                     = 'Status button';
 $_['entry_href_search']                     = 'Bind a button to code';
@@ -69,7 +69,7 @@ $_['help_href_add']                         = 'Button code. Incorrectly written 
 $_['help_href_admin']                       = 'Indicate the internal or external link of the admin panel for the button for quick editing of goods, if you changed the name of the folder on the server, for example: \'adminka/\' or \'https://site.by/adminka/\'. By default: \'admin/\'.';
 
 //Button
-$_['button_files_clear']					= 'Also delete the module files? - if not, just refresh the page from sin. Report on deletion of files in the logs of modifiers.';
+$_['button_files_clear']                    = 'Also delete the module files? - if not, just refresh the page from sin. Report on deletion of files in the logs of modifiers.';
 
 // Error
 $_['error_permission']                      = 'You do not have permission to make changes!';
