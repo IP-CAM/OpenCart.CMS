@@ -4,7 +4,7 @@
 Спецыяльна для сайта: "OpenCart.pro" ( http://opencart.pro/ ) -->
 
 <modification>
-	<code>01000048</code>
+    <code>01000048</code>
     <name>Удобный Редактор - "Convenient Editor"</name>
     <version>Pro</version>
     <author>BuslikDrev.by</author>
@@ -15,7 +15,7 @@
 	<file path="catalog/controller/blog/category.php">
 		<operation error="skip">
 			<search index="0"><![CDATA[function index(]]></search>
-			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_blog_category_href_status')) {
 				$this->user = new Cart\User($this->registry);
 				if ($this->user->isLogged()) {
 					$data['button_bus_editor_href'] = $this->language->get('button_edit');
@@ -27,7 +27,7 @@
 	<file path="catalog/controller/blog/article.php">
 		<operation error="skip">
 			<search index="0"><![CDATA[function index(]]></search>
-			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_blog_article_href_status')) {
 				$this->user = new Cart\User($this->registry);
 				if ($this->user->isLogged()) {
 					$data['button_bus_editor_href'] = $this->language->get('button_edit');
@@ -39,7 +39,7 @@
 	<file path="catalog/controller/product/category.php">
 		<operation error="skip">
 			<search index="0"><![CDATA[function index(]]></search>
-			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_category_href_status')) {
 				$this->user = new Cart\User($this->registry);
 				if ($this->user->isLogged()) {
 					$data['button_bus_editor_href'] = $this->language->get('button_edit');
@@ -51,7 +51,7 @@
 	<file path="catalog/controller/information/information.php">
 		<operation error="skip">
 			<search index="0"><![CDATA[function index(]]></search>
-			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_information_href_status')) {
 				$this->user = new Cart\User($this->registry);
 				if ($this->user->isLogged()) {
 					$data['button_bus_editor_href'] = $this->language->get('button_edit');
@@ -63,7 +63,7 @@
 	<file path="catalog/controller/product/manufacturer.php">
 		<operation error="skip">
 			<search index="0"><![CDATA[function info(]]></search>
-			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_product_href_status')) {
+			<add position="after"><![CDATA[			if ($this->config->get('bus_editor_manufacturer_href_status')) {
 				$this->user = new Cart\User($this->registry);
 				if ($this->user->isLogged()) {
 					$data['button_bus_editor_href'] = $this->language->get('button_edit');
