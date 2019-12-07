@@ -204,15 +204,15 @@ class ControllerReportCustomerBlogSearch extends Controller {
 		$data['searches'] = array();
 
 		$filter_data = array(
-			'filter_date_start'	=> $filter_date_start,
-			'filter_date_end'	=> $filter_date_end,
+			'filter_date_start' => $filter_date_start,
+			'filter_date_end'   => $filter_date_end,
 			'filter_store'      => $filter_store,
 			'filter_language'   => $filter_language,
 			'filter_keyword'    => $filter_keyword,
 			'filter_customer'   => $filter_customer,
 			'filter_ip'         => $filter_ip,
-			'start'				=> ($page - 1) * $this->config->get('config_limit_admin'),
-			'limit'				=> $this->config->get('config_limit_admin')
+			'start'             => ($page - 1) * $this->config->get('config_limit_admin'),
+			'limit'             => $this->config->get('config_limit_admin')
 		);
 
 		$this->load->model('blog/category');
@@ -238,7 +238,7 @@ class ControllerReportCustomerBlogSearch extends Controller {
 			}
 
 			if ($result['customer_id'] > 0) {
-				$customer = sprintf($this->language->get('text_customer'), $this->url->link('customer/customer/edit', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'], true), $result['customer']);
+				$customer = sprintf($this->language->get('text_customer'), $this->url->link('customer/customer/edit', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'], true), $this->language->get('entry_customer'));
 			} elseif ($result['customer_id'] < 0) {
 				$customer = $this->language->get('text_robot');
 			} else {
