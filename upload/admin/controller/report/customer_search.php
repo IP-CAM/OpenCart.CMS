@@ -173,7 +173,7 @@ class ControllerReportCustomerSearch extends Controller {
 			}
 
 			if ($result['customer_id'] > 0) {
-				$customer = sprintf($this->language->get('text_customer'), $this->url->link('customer/customer/edit', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'], true), $result['customer']);
+				$customer = sprintf($this->language->get('text_customer'), $this->url->link('customer/customer/edit', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'], true), $this->language->get('entry_customer'));
 			} else {
 				$customer = $this->language->get('text_guest');
 			}
