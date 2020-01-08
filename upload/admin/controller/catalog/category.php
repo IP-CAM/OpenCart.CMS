@@ -156,7 +156,7 @@ class ControllerCatalogCategory extends Controller {
 
 		$this->load->model('catalog/category');
 
-		if (isset($this->request->post['selected']) && validateProStatus()) {
+		if (isset($this->request->post['selected']) && $this->validateProStatus()) {
 			foreach ($this->request->post['selected'] as $article_id) {
 				$this->model_catalog_category->editCategoryStatus($article_id, 1);
 			}
@@ -190,7 +190,7 @@ class ControllerCatalogCategory extends Controller {
 
 		$this->load->model('catalog/category');
 
-		if (isset($this->request->post['selected']) && validateProStatus()) {
+		if (isset($this->request->post['selected']) && $this->validateProStatus()) {
 			foreach ($this->request->post['selected'] as $article_id) {
 				$this->model_catalog_category->editCategoryStatus($article_id, 0);
 			}
