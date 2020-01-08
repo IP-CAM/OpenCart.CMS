@@ -177,15 +177,15 @@ class ControllerStartupSeoPro extends Controller {
 		$route = $data['route'];
 		unset($data['route']);
 		$url_info['scheme'] = $this->url_sheme;
-			if (!$this->valid_server) {
-				$url_info['scheme'] = 'http';
-			} else {
-				foreach ($this->ssl_routes as $ssl_route) {
-					if (stripos($route, $ssl_route) === 0) {
-						$url_info['scheme'] = 'https';
-					}
+		if (!$this->valid_server) {
+			$url_info['scheme'] = 'http';
+		} else {
+			foreach ($this->ssl_routes as $ssl_route) {
+				if (stripos($route, $ssl_route) === 0) {
+					$url_info['scheme'] = 'https';
 				}
 			}
+		}
 		switch ($route) {
 			case 'product/product':
 				if (isset($data['product_id'])) {
