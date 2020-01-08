@@ -122,7 +122,7 @@ class ControllerCatalogInformation extends Controller {
 
 		$this->load->model('catalog/information');
 
-		if (isset($this->request->post['selected']) && validateProStatus()) {
+		if (isset($this->request->post['selected']) && $this->validateProStatus()) {
 			foreach ($this->request->post['selected'] as $article_id) {
 				$this->model_catalog_information->editInformationStatus($article_id, 1);
 			}
@@ -156,7 +156,7 @@ class ControllerCatalogInformation extends Controller {
 
 		$this->load->model('catalog/information');
 
-		if (isset($this->request->post['selected']) && validateProStatus()) {
+		if (isset($this->request->post['selected']) && $this->validateProStatus()) {
 			foreach ($this->request->post['selected'] as $article_id) {
 				$this->model_catalog_information->editInformationStatus($article_id, 0);
 			}
