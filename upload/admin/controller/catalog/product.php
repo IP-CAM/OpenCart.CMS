@@ -360,7 +360,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->load->model('catalog/product');
 
-		if (isset($this->request->post['selected']) && validateProStatus()) {
+		if (isset($this->request->post['selected']) && $this->validateProStatus()) {
 			foreach ($this->request->post['selected'] as $article_id) {
 				$this->model_catalog_product->editProductStatus($article_id, 1);
 			}
@@ -445,7 +445,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->load->model('catalog/product');
 
-		if (isset($this->request->post['selected']) && validateProStatus()) {
+		if (isset($this->request->post['selected']) && $this->validateProStatus()) {
 			foreach ($this->request->post['selected'] as $article_id) {
 				$this->model_catalog_product->editProductStatus($article_id, 0);
 			}
