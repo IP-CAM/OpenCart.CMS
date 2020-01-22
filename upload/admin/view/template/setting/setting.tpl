@@ -1217,7 +1217,7 @@
                     </label>
                   </div>
                 </div>
-		<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seo_url_cache; ?>"><?php echo $entry_seo_url_cache; ?></span></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
@@ -1263,7 +1263,7 @@
                     </label>
                   </div>
                 </div>
-		<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_blog_full_path; ?>"><?php echo $entry_blog_full_path; ?></span></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
@@ -1286,7 +1286,7 @@
                     </label>
                   </div>
                 </div>
-		<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_manufacturers_full_path; ?>"><?php echo $entry_manufacturers_full_path; ?></span></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
@@ -1315,7 +1315,7 @@
                     <input class="form-control" type="text" name="config_seo_url_postfix" value="<?php echo $config_seo_url_postfix; ?>" />
                   </div>
                 </div>
-		<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_valide_get_params_status; ?>"><?php echo $entry_valide_get_params_status; ?></span></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
@@ -1338,7 +1338,7 @@
                     </label>
                   </div>
                 </div>
-		<div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-valide-get-params"><span data-toggle="tooltip" title="<?php echo $help_valide_get_params; ?>"><?php echo $entry_valide_get_params; ?></span></label>
                   <div class="col-sm-10">
                     <textarea name="config_valide_get_params" rows="10" placeholder="<?php echo $entry_valide_get_params; ?>" id="input-valide-get-params" class="form-control"><?php echo $config_valide_get_params; ?></textarea>
