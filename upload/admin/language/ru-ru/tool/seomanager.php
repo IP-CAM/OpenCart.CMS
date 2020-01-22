@@ -12,7 +12,7 @@ $_['text_default']             = 'По умолчанию';
 $_['text_module']              = 'Модули';
 $_['text_additional_1']        = 'Ссылки состоящие из роутов с параметрами';
 $_['text_additional_2']        = 'Ссылки состоящие из роутов без параметров';
-$_['text_additional_3']        = 'Ссылкки с дублями seo_url';
+$_['text_additional_3']        = 'Ссылки с дублями seo_url';
 $_['text_description']         = '- Установите в шаблоне этот код вывода описания: "<b>&lt;?php echo $description; ?&gt;</b>" в нужное вам место.';
 $_['text_description_bottom']  = '- Установите в шаблоне этот код вывода описания: "<b>&lt;?php echo $description_bottom; ?&gt;</b>" в нужное вам место.';
 
